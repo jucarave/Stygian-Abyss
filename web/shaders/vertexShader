@@ -1,0 +1,24 @@
+attribute mediump vec3 aVertexPosition;
+attribute mediump vec2 aTextureCoord;
+attribute mediump float aVertexIsDark;
+
+uniform mediump mat4 uTransformationMatrix;
+uniform mediump mat4 uPerspectiveMatrix;
+uniform mediump float uPaintInRed;
+uniform mediump float uLightDepth;
+
+varying mediump vec2 vTextureCoord;
+varying mediump float vVertexIsDark;
+varying mediump float vVertexDepth;
+varying mediump float vPaintInRed;
+
+void main(void){
+	gl_Position = uPerspectiveMatrix * uTransformationMatrix * vec4(aVertexPosition, 1.0);
+	vTextureCoord = aTextureCoord;
+	vVertexIsDark = aVertexIsDark;
+	vPaintInRed = uPaintInRed;
+	
+	vVertexDepth = cos((gl_Position.z + uLightDepth) / 3.0);
+	if (vVertexDepth < 0.0) vVertexDepth = 0.0;
+	else if (vVertexDepth > 1.0) vVertexDepth = 1.0;
+}
