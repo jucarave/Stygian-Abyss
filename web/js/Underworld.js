@@ -174,11 +174,11 @@ Underworld.prototype.stopMusic = function(){
 	this.audio.stopMusic();
 };
 
-Underworld.prototype.playMusic = function(musicCode){
+Underworld.prototype.playMusic = function(musicCode, loop){
 	var audioF = this.music[musicCode];
 	if (!audioF) return null;
 	this.stopMusic();
-	this.audio.playSound(audioF, true, true);
+	this.audio.playSound(audioF, loop, true);
 };
 
 Underworld.prototype.playSound = function(soundCode){
@@ -209,12 +209,12 @@ Underworld.prototype.loadMap = function(map, depth){
 		game.map = new MapManager(game, map, depth);
 		game.floorDepth = depth;
 		game.maps.push(game.map);
-		game.scene = null;
 	}else if (game.maps[depth - 1]){
 		game.map = game.maps[depth - 1];
-		game.scene = null;
-		game.playMusic('dungeon');
 	}
+	
+	game.scene = null;
+	game.playMusic('dungeon', false);
 };
 
 Underworld.prototype.printGreet = function(){
