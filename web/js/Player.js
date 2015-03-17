@@ -135,14 +135,15 @@ Player.prototype.jogMovement = function(){
 Player.prototype.moveTo = function(xTo, zTo){
 	var moved = false;
 	
-	if (this.onWater){ xTo /= 2; zTo /=2; }
+	var swim = (this.onLava || this.onWater);
+	if (swim){ xTo /= 2; zTo /=2; }
 	var movement = vec2(xTo, zTo);
 	var spd = vec2(xTo * 1.5, 0);
 	var fakePos = this.position.clone();
 		
 	for (var i=0;i<2;i++){
-		var normal = this.mapManager.getWallNormal(fakePos, spd, this.cameraHeight, this.onWater);
-		if (!normal){ normal = this.mapManager.getDoorNormal(fakePos, spd, this.cameraHeight, this.onWater); }
+		var normal = this.mapManager.getWallNormal(fakePos, spd, this.cameraHeight, swim);
+		if (!normal){ normal = this.mapManager.getDoorNormal(fakePos, spd, this.cameraHeight, swim); }
 		if (!normal){ normal = this.mapManager.getInstanceNormal(fakePos, spd, this.cameraHeight); } 
 		
 		if (normal){
@@ -237,7 +238,7 @@ Player.prototype.checkAction = function(){
 
 Player.prototype.doVerticalChecks = function(){
 	var pointY = this.mapManager.getYFloor(this.position.a, this.position.c);
-	var wy = (this.onWater)? 0.3 : 0;
+	var wy = (this.onWater || this.onLava)? 0.3 : 0;
 	var py = Math.floor((pointY - (this.position.b + wy)) * 100) / 100;
 	if (py <= 0.3) this.targetY = pointY;
 	if (this.mapManager.isLavaPosition(this.position.a, this.position.c)){
@@ -297,7 +298,7 @@ Player.prototype.loop = function(){
 	if (this.mapManager.game.paused) return;
 	
 	if (this.destroyed){
-		if (this.onWater){
+		if (this.onWater || this.onLava){
 			this.doFloat();
 		}else if (this.cameraHeight > 0.2){ 
 			this.cameraHeight -= 0.01; 

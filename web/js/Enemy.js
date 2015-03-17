@@ -1,4 +1,6 @@
 function Enemy(position, enemy, mapManager){
+	if (enemy.swim) position.b -= 0.2;
+	
 	this.position = position;
 	this.textureBase = enemy.textureBase;
 	this.mapManager = mapManager;
