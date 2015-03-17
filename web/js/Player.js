@@ -45,10 +45,10 @@ Player.prototype.castMissile = function(weapon){
 	var missile = new Missile(this.position.clone(), this.rotation.clone(), weapon.code, 'enemy', this.mapManager);
 	missile.str = str << 0;
 	missile.missed = (prob > ps.stats.dex);
-	if (weapon) weapon.status *= (1.0 - weapon.wear);
+	// if (weapon) weapon.status *= (1.0 - weapon.wear);
 	
 	
-	this.mapManager.addMessage("Shooting " + weapon.subItemName);
+	this.mapManager.addMessage("You shoot " + weapon.subItemName);
 	this.mapManager.instances.push(missile);
 	this.attackWait = 30;
 	this.moved = true;
@@ -117,7 +117,7 @@ Player.prototype.castAttack = function(target, weapon){
 		this.mapManager.game.playMusicHumbly('missAudio');
 	}
 	
-	if (weapon) weapon.status *= (1.0 - weapon.wear);
+	//if (weapon) weapon.status *= (1.0 - weapon.wear);
 };
 
 Player.prototype.jogMovement = function(){
@@ -181,14 +181,26 @@ Player.prototype.movement = function(){
 	var game = this.mapManager.game;
 	
 	this.mouseLook();
+
+	// Rotation with keyboard
+	if (game.keys[81] == 1 || game.keys[37] == 1){
+		this.rotation.b += this.rotationSpd.b;
+	}else if (game.keys[69] == 1 || game.keys[39] == 1){
+		this.rotation.b -= this.rotationSpd.b;
+	}else if (game.keys[38] == 1){ // Up arrow
+		this.rotation.a += this.rotationSpd.a;
+	}else if (game.keys[40] == 1){ // Down arrow
+		this.rotation.a -= this.rotationSpd.a;
+	}
+	
 	
 	var A = 0.0, B = 0.0;
 	if (game.keys[87] == 1){
 		A = Math.cos(this.rotation.b) * this.movementSpd;
 		B = -Math.sin(this.rotation.b) * this.movementSpd;
 	}else if (game.keys[83] == 1){
-		A = -Math.cos(this.rotation.b) * this.movementSpd * 0.2;
-		B = Math.sin(this.rotation.b) * this.movementSpd * 0.2;
+		A = -Math.cos(this.rotation.b) * this.movementSpd * 0.3;
+		B = Math.sin(this.rotation.b) * this.movementSpd * 0.3;
 	}
 	
 	if (game.keys[65] == 1){
@@ -206,7 +218,7 @@ Player.prototype.movement = function(){
 
 Player.prototype.checkAction = function(){
 	var game = this.mapManager.game;
-	if (game.getKeyPressed(69)){ // E Key
+	if (game.getKeyPressed(32)){ // Space
 		var xx = (this.position.a + Math.cos(this.rotation.b) * 0.6) << 0;
 		var zz = (this.position.c - Math.sin(this.rotation.b) * 0.6) << 0;
 		
@@ -220,7 +232,7 @@ Player.prototype.checkAction = function(){
 			if (object && object.activate)
 				object.activate();
 		}
-	}else if (game.getMouseButtonPressed() && this.attackWait == 0){	// Melee attack
+	}else if ((game.getMouseButtonPressed() || game.getKeyPressed(13)) && this.attackWait == 0){	// Melee attack, Enter
 		var weapon = game.inventory.getWeapon();
 		
 		if (!weapon || !weapon.ranged){ 

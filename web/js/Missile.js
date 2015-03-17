@@ -96,14 +96,17 @@ Missile.prototype.checkCollision = function(){
 	
 	if (this.missed){
 		this.mapManager.addMessage("Missed!");
+		this.mapManager.game.playMusicHumbly('missAudio');
 		return;
 	}
 	
 	if (dmg != 0){
 		this.mapManager.addMessage(dmg + " points inflicted");
+		this.mapManager.game.playMusicHumbly('hitAudio');
 		ins.receiveDamage(dmg);
 	}else{
 		this.mapManager.addMessage("Blocked!");
+		this.mapManager.game.playMusicHumbly('missAudio');
 	}
 	
 	return false;
