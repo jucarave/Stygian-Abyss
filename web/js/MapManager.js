@@ -195,7 +195,7 @@ MapManager.prototype.getNearestCleanItemTile = function(x, z){
 	
 	for (var zz=minZ;zz<=maxZ;zz++){
 		for (var xx=minX;xx<=maxX;xx++){
-			if (this.isSolid(xx, zz) || this.isWaterPosition(xx, zz)){
+			if (this.isSolid(xx, zz, 0) || this.isWaterPosition(xx, zz)){
 				continue;
 			}
 			
@@ -310,13 +310,17 @@ MapManager.prototype.getDoorNormal = function(pos, spd, h, inWater){
 	}
 };
 
-MapManager.prototype.isSolid = function(x, y){
-	if (!this.map[y]) return false;
-	if (this.map[y][x] === undefined) return false;
-	if (this.map[y][x] === 0) return false;
+MapManager.prototype.isSolid = function(x, z, y){
+	if (!this.map[z]) return false;
+	if (this.map[z][x] === undefined) return false;
+	if (this.map[z][x] === 0) return false;
 	
-	t = this.map[y][x];
+	t = this.map[z][x];
 	if (!t.w && !t.dw && !t.wd) return false;
+	
+	if (y !== undefined){
+		if (t.y + t.h <= y) return false;
+	}
 	
 	return true;
 };

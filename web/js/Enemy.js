@@ -59,7 +59,7 @@ Enemy.prototype.lookFor = function(){
 			var cx = (rx << 0);
 			var cy = (ry << 0);
 			
-			if (this.mapManager.isSolid(cx, cy)){
+			if (this.mapManager.isSolid(cx, cy, 0)){
 				return;
 			}else{
 				var px = (p.a << 0);
