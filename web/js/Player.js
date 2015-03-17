@@ -290,7 +290,7 @@ Player.prototype.step = function(){
 		if (this.position.b >= this.targetY) this.position.b = this.targetY;
 	}
 	
-	this.targetY = this.position.b;
+	//this.targetY = this.position.b;
 };
 
 Player.prototype.loop = function(){

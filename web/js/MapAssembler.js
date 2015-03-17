@@ -1,5 +1,6 @@
 function MapAssembler(mapManager, mapData, GL){
 	this.mapManager =  mapManager;
+	this.copiedTiles = [];
 	
 	this.parseMap(mapData, GL);
 				
@@ -9,6 +10,8 @@ function MapAssembler(mapManager, mapData, GL){
 	this.assembleSlopes(mapData, GL);
 	
 	this.parseObjects(mapData);
+	
+	this.copiedTiles = [];
 }
 
 MapAssembler.prototype.getEmptyGrid = function(){
@@ -21,6 +24,16 @@ MapAssembler.prototype.getEmptyGrid = function(){
 	}
 	
 	return grid;
+};
+
+MapAssembler.prototype.copyTile = function(tile){
+	var ret = {};
+	
+	for (var i in tile){
+		ret[i] = tile[i];
+	}
+	
+	return ret;
 };
 
 MapAssembler.prototype.assembleFloor = function(mapData, GL){
@@ -164,13 +177,44 @@ MapAssembler.prototype.parseMap = function(mapData, GL){
 	for (var y=0,len=mapData.map.length;y<len;y++){
 		for (var x=0,xlen=mapData.map[y].length;x<xlen;x++){
 			if (mapData.map[y][x] != 0){
-				var tile = mapData.tiles[mapData.map[y][x]];
+				var ind = mapData.map[y][x];
+				var tile = mapData.tiles[ind];
 				mapData.map[y][x] = tile;
 				
 				if (tile.f && tile.f > 100){
 					tile.rf = tile.f - 100;
 					tile.isWater = true;
+					
+					tile.y = -0.2;
+					tile.fy = -0.2;
 				}
+				
+				if (tile.f < 100){
+					var t1, t2, t3, t4;
+					if (mapData.map[y][x+1]) t1 = (mapData.tiles[mapData.map[y][x+1]].f > 100);
+					if (mapData.map[y-1]) t2 = (mapData.map[y-1][x].f > 100);
+					if (mapData.map[y][x-1]) t3 = (mapData.map[y][x-1].f > 100);
+					if (mapData.map[y+1]) t4 = (mapData.tiles[mapData.map[y+1][x]].f > 100);
+					
+					if (t1 || t2 || t3 || t4){
+						if (this.copiedTiles[ind]){
+							mapData.map[y][x] = this.copiedTiles[ind];
+						}else{
+							this.copiedTiles[ind] = this.copyTile(tile);
+							tile = this.copiedTiles[ind];
+							mapData.map[y][x] = tile;
+							
+							tile.y = -1;
+							tile.h += 1;
+							if (!tile.w){
+								tile.w = 10;
+								tile.h = 1;
+							}
+							
+						}
+					}
+				}
+				
 			}
 		}
 	}

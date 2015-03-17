@@ -1,12 +1,12 @@
 <?php
-	$version = "A0.1";
+	$version = "A0.2";
 	$environment = "LOCAL";
-	$contextPath = "/7DRL15/";
+	$contextPath = "/stygian/";
 	
 	if ($environment == "SERVER"){
-		$contextPath = "/games/7DRL15/"; 
+		$contextPath = "/games/stygian/"; 
 		
 		if ($_SERVER['HTTP_HOST'] == "games.jucarave.net" || $_SERVER['HTTP_HOST'] == "games.jucarave.com")
-			$contextPath = "/7DRL15/";
+			$contextPath = "/stygian/";
 	} 
 ?>
