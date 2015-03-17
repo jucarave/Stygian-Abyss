@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Utils.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/ObjectFactory.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Matrix.js<?php echo $ver; ?>"></script>
+		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Audio.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/WebGL.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/UI.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Underworld.js<?php echo $ver; ?>"></script>
@@ -70,15 +71,6 @@
 	
 	<body>
 		<div id="divGame" ></div>
-		<audio id = "dungeonAudio">
-			<source src="ogg/08_-_Ultima_4_-_C64_-_Dungeons.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "missAudio">
-			<source src="wav/miss.wav" type="audio/wav"/>
-		</audio>
-		<audio id = "hitAudio">
-			<source src="wav/hit.wav" type="audio/wav"/>
-		</audio>
 	</body>
 	
 </html>

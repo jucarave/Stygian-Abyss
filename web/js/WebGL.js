@@ -2,17 +2,11 @@ function WebGL(size, container){
 	if (!this.initCanvas(size, container)) return null; 
 	this.initProperties();
 	this.processShaders();
-	this.initAudioEngine();
 	
 	this.images = [];
-	this.audio = [];
 	
 	this.active = true;
 	this.light = 0;
-	
-	var gl = this;
-	addEvent(window, "blur", function(e){ gl.active = false; gl.pauseMusic(); });
-	addEvent(window, "focus", function(e){ gl.active = true; gl.restoreMusic(); });
 }
 
 WebGL.prototype.initCanvas = function(size, container){
@@ -52,13 +46,6 @@ WebGL.prototype.initProperties = function(){
 	
 	this.aspectRatio = this.canvas.width / this.canvas.height;
 	this.perspectiveMatrix = Matrix.makePerspective(45, this.aspectRatio, 0.002, 5.0);
-};
-
-WebGL.prototype.initAudioEngine = function(){
-	if (window.AudioContext)
-		this.audioCtx = new AudioContext();
-	else
-		alert("Your browser doesn't suppor the Audio API");
 };
 
 WebGL.prototype.processShaders = function(){
@@ -231,81 +218,4 @@ WebGL.prototype.areImagesReady = function(){
 	}
 	
 	return true;
-};
-
-WebGL.prototype.loadAudio = function(url, isMusic){
-	var eng = this;
-	if (!eng.audioCtx) return null;
-	
-	var audio = {buffer: null, source: null, ready: false, isMusic: isMusic, startedAt: 0, pausedAt: 0};
-	
-	var http = getHttp();
-	http.open('GET', url, true);
-	http.responseType = 'arraybuffer';
-	
-	http.onload = function(){
-		eng.audioCtx.decodeAudioData(http.response, function(buffer){
-			audio.buffer = buffer;
-			audio.ready = true;
-		}, function(msg){
-			alert(msg);
-		});
-	};
-	
-	http.send();
-	
-	this.audio.push(audio);
-	
-	return audio;
-};
-
-WebGL.prototype.playSound = function(soundFile, loop, tryIfNotReady){
-	return;
-	var eng = this;
-	if (!soundFile || !soundFile.ready){
-		if (tryIfNotReady){ soundFile.timeO = setTimeout(function(){ eng.playSound(soundFile, loop, tryIfNotReady); }, 300); } 
-		return;
-	}
-	
-	soundFile.timeO = null;
-	var source = eng.audioCtx.createBufferSource();
-	source.buffer = soundFile.buffer;
-	source.connect(eng.audioCtx.destination);
-	if (soundFile.pausedAt != 0){
-		soundFile.startedAt = Date.now() - soundFile.pausedAt;
-		source.start(0, (soundFile.pausedAt / 1000) % source.buffer.duration);
-		soundFile.pausedAt = 0;
-	}else{
-		soundFile.startedAt = Date.now();
-		source.start(0);
-	}
-	source.loop = loop;
-	source.looping = loop;
-	
-	if (soundFile.isMusic)
-		soundFile.source = source;
-};
-
-WebGL.prototype.pauseMusic = function(){
-	for (var i=0,len=this.audio.length;i<len;i++){
-		var audio = this.audio[i];
-		
-		audio.pausedAt = 0;
-		if (audio.isMusic && audio.source){
-			audio.source.stop();
-			audio.pausedAt = (Date.now() - audio.startedAt);
-			audio.restoreLoop = audio.source.loop;
-		}
-	}
-};
-
-WebGL.prototype.restoreMusic = function(){
-	for (var i=0,len=this.audio.length;i<len;i++){
-		var audio = this.audio[i];
-		
-		if (audio.isMusic && audio.source && audio.pausedAt != 0){
-			audio.source = null;
-			this.playSound(audio, audio.restoreLoop, true);
-		}
-	}
 };
