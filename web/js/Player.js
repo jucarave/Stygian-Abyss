@@ -236,7 +236,10 @@ Player.prototype.checkAction = function(){
 				object.activate();
 		}
 		if (cheatEnabled){
-			this.mapManager.game.loadMap(false, game.floorDepth + 1);
+			if (game.floorDepth < 8)
+				this.mapManager.game.loadMap(false, game.floorDepth + 1);
+			else
+				this.mapManager.game.loadMap('codexRoom');
 		}
 	}else if ((game.getMouseButtonPressed() || game.getKeyPressed(13)) && this.attackWait == 0){	// Melee attack, Enter
 		var weapon = game.inventory.getWeapon();
