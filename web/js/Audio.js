@@ -55,7 +55,7 @@ AudioAPI.prototype.stopMusic = function(){
 	}
 };
 
-AudioAPI.prototype.playSound = function(soundFile, loop, tryIfNotReady){
+AudioAPI.prototype.playSound = function(soundFile, loop, tryIfNotReady, volume){
 	var eng = this;
 	if (!soundFile || !soundFile.ready){
 		if (tryIfNotReady){ soundFile.timeO = setTimeout(function(){ eng.playSound(soundFile, loop, tryIfNotReady); }, 1000); } 
@@ -70,8 +70,17 @@ AudioAPI.prototype.playSound = function(soundFile, loop, tryIfNotReady){
 	var source = eng.audioCtx.createBufferSource();
 	source.buffer = soundFile.buffer;
 	
-	source.connect(eng.gainNode);
-	eng.gainNode.connect(eng.audioCtx.destination);
+	var gainNode;
+	if (volume !== undefined){
+		gainNode = this.audioCtx.createGain();
+		gainNode.gain.value = volume;
+		soundFile.volume = volume;
+	}else{
+		gainNode = eng.gainNode;
+	}
+	
+	source.connect(gainNode);
+	gainNode.connect(eng.audioCtx.destination);
 	
 	if (soundFile.pausedAt != 0){
 		soundFile.startedAt = Date.now() - soundFile.pausedAt;
@@ -95,6 +104,7 @@ AudioAPI.prototype.pauseMusic = function(){
 		
 		audio.pausedAt = 0;
 		if (audio.isMusic && audio.source){
+			audio.wasPlaying = audio.playing;
 			audio.source.stop();
 			audio.pausedAt = (Date.now() - audio.startedAt);
 			audio.restoreLoop = audio.source.loop;
@@ -106,9 +116,10 @@ AudioAPI.prototype.restoreMusic = function(){
 	for (var i=0,len=this._audio.length;i<len;i++){
 		var audio = this._audio[i];
 		
+		if (!audio.looping && !audio.wasPlaying) continue;
 		if (audio.isMusic && audio.source && audio.pausedAt != 0){
 			audio.source = null;
-			this.playSound(audio, audio.restoreLoop, true, audio.pausedAt);
+			this.playSound(audio, audio.restoreLoop, true, audio.volume);
 		}
 	}
 };

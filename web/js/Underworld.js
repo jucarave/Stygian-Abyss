@@ -178,7 +178,7 @@ Underworld.prototype.playMusic = function(musicCode, loop){
 	var audioF = this.music[musicCode];
 	if (!audioF) return null;
 	this.stopMusic();
-	this.audio.playSound(audioF, loop, true);
+	this.audio.playSound(audioF, loop, true, 0.2);
 };
 
 Underworld.prototype.playSound = function(soundCode){
