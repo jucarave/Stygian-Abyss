@@ -1,3 +1,5 @@
+var cheatEnabled = false;
+
 function Player(position, direction, mapManager){
 	this.position = position;
 	this.rotation = direction;
@@ -231,6 +233,9 @@ Player.prototype.checkAction = function(){
 			var object = this.mapManager.getInstanceAtGrid(vec3(xx, this.position.b, zz));
 			if (object && object.activate)
 				object.activate();
+		}
+		if (cheatEnabled){
+			this.mapManager.game.loadMap(false, game.floorDepth + 1);
 		}
 	}else if ((game.getMouseButtonPressed() || game.getKeyPressed(13)) && this.attackWait == 0){	// Melee attack, Enter
 		var weapon = game.inventory.getWeapon();
