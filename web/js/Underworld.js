@@ -219,7 +219,12 @@ Underworld.prototype.loadMap = function(map, depth){
 		game.map = game.maps[depth - 1];
 		game.scene = null;
 	}
-	//this.playMusicHumbly('dungeonAudio');
+	if (depth)
+		this.playMusicHumbly('dungeonAudio'+depth);
+	else if (map === 'codex')
+		this.playMusicHumbly('codexRoomAudio');
+	
+	
 };
 
 Underworld.prototype.printGreet = function(){
