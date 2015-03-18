@@ -11,6 +11,7 @@ function Underworld(){
 	
 	this.GL = new WebGL(this.size, $$("divGame"));
 	this.UI = new UI(this.size, $$("divGame"));
+	this.audio = new AudioAPI();
 	
 	this.player = new PlayerStats();
 	this.inventory = new Inventory(10);
@@ -25,6 +26,7 @@ function Underworld(){
 	this.mouseMovement = {x: -10000, y: -10000};
 	this.images = {};
 	this.music = {};
+	this.sounds = {};
 	this.textures = {wall: [], floor: [], ceil: []};
 	this.objectTex = {};
 	this.models = {};
@@ -58,8 +60,19 @@ Underworld.prototype.create3DObjects = function(){
 };
 
 Underworld.prototype.loadMusic = function(){
-	//this.music.title = this.GL.loadAudio(cp + "ogg/Britannian_music.ogg?version=" + version, true);
-	//this.music.dungeon = this.GL.loadAudio(cp + "ogg/08_-_Ultima_4_-_C64_-_Dungeons.ogg?version=" + version, true);
+	this.sounds.hit = this.audio.loadAudio(cp + "wav/hit.wav?version=" + version, false);
+	this.sounds.miss = this.audio.loadAudio(cp + "wav/miss.wav?version=" + version, false);
+	this.music.dungeon = [
+		this.audio.loadAudio(cp + "ogg/08_-_Ultima_4_-_C64_-_Dungeons.ogg?version=" + version, true),
+		this.audio.loadAudio(cp + "ogg/10_-_Ultima_5_-_C64_-_Halls_of_Doom.ogg?version=" + version, true),
+		this.audio.loadAudio(cp + "ogg/05_-_Ultima_3_-_C64_-_Combat.ogg?version=" + version, true),
+		this.audio.loadAudio(cp + "ogg/07_-_Ultima_3_-_C64_-_Exodus'_Castle.ogg?version=" + version, true),
+		this.audio.loadAudio(cp + "ogg/04_-_Ultima_5_-_C64_-_Engagement_and_Melee.ogg?version=" + version, true),
+		this.audio.loadAudio(cp + "ogg/03_-_Ultima_4_-_C64_-_Lord_British's_Castle.ogg?version=" + version, true),
+		this.audio.loadAudio(cp + "ogg/11_-_Ultima_5_-_C64_-_Worlds_Below.ogg?version=" + version, true),
+		this.audio.loadAudio(cp + "ogg/10_-_Ultima_5_-_C64_-_Halls_of_Doom.ogg?version=" + version, true)
+	];
+	this.music.codexRoom = this.audio.loadAudio(cp + "ogg/07_-_Ultima_4_-_C64_-_Shrines.ogg?version=" + version, true);
 };
 
 Underworld.prototype.loadImages = function(){
@@ -167,30 +180,21 @@ Underworld.prototype.postLoading = function(){
 };
 
 Underworld.prototype.stopMusic = function(){
-	for (var i in this.music){
-		var audio = this.music[i];
-		
-		if (audio.timeO){
-			clearTimeout(audio.timeO);
-		}else if (audio.isMusic && audio.source){
-			audio.source.stop();
-			audio.source = null;
-		}
-	}
+	this.audio.stopMusic();
 };
 
-Underworld.prototype.playMusic = function(musicCode){
+Underworld.prototype.playMusic = function(musicCode, loop){
 	var audioF = this.music[musicCode];
 	if (!audioF) return null;
 	this.stopMusic();
-	this.GL.playSound(audioF, true, true);
+	this.audio.playSound(audioF, loop, true, 0.2);
 };
 
-Underworld.prototype.playMusicHumbly = function(audioElementId){
-	document.getElementById(audioElementId).volume = 0.3;
-	document.getElementById(audioElementId).play();
+Underworld.prototype.playSound = function(soundCode){
+	var audioF = this.sounds[soundCode];
+	if (!audioF) return null;
+	this.audio.playSound(audioF, false, false);
 };
-
 
 Underworld.prototype.getUI = function(){
 	return this.UI.ctx;
@@ -214,17 +218,14 @@ Underworld.prototype.loadMap = function(map, depth){
 		game.map = new MapManager(game, map, depth);
 		game.floorDepth = depth;
 		game.maps.push(game.map);
-		game.scene = null;
 	}else if (game.maps[depth - 1]){
 		game.map = game.maps[depth - 1];
-		game.scene = null;
 	}
+	game.scene = null;
 	if (depth)
-		this.playMusicHumbly('dungeonAudio'+depth);
+		game.playMusic('dungeon'+depth, false);
 	else if (map === 'codex')
-		this.playMusicHumbly('codexRoomAudio');
-	
-	
+		game.playMusic('codexRoomAudio', false);
 };
 
 Underworld.prototype.printGreet = function(){
@@ -914,4 +915,7 @@ addEvent(window, "load", function(){
 	addEvent(document, "pointerlockchange", pointerlockchange);
 	addEvent(document, "mozpointerlockchange", pointerlockchange);
 	addEvent(document, "webkitpointerlockchange", pointerlockchange);
+	
+	addEvent(window, "blur", function(e){ game.GL.active = false; game.audio.pauseMusic();  });
+	addEvent(window, "focus", function(e){ game.GL.active = true; game.audio.restoreMusic(); });
 });

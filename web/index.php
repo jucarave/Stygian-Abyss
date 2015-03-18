@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Utils.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/ObjectFactory.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Matrix.js<?php echo $ver; ?>"></script>
+		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Audio.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/WebGL.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/UI.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Underworld.js<?php echo $ver; ?>"></script>
@@ -70,39 +71,6 @@
 	
 	<body>
 		<div id="divGame" ></div>
-		<audio id = "dungeonAudio1">
-			<source src="ogg/08_-_Ultima_4_-_C64_-_Dungeons.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "dungeonAudio2">
-			<source src="ogg/10_-_Ultima_5_-_C64_-_Halls_of_Doom.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "dungeonAudio3">
-			<source src="ogg/05_-_Ultima_3_-_C64_-_Combat.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "dungeonAudio4">
-			<source src="ogg/07_-_Ultima_3_-_C64_-_Exodus'_Castle.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "dungeonAudio5">
-			<source src="ogg/04_-_Ultima_5_-_C64_-_Engagement_and_Melee.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "dungeonAudio6">
-			<source src="ogg/03_-_Ultima_4_-_C64_-_Lord_British's_Castle.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "dungeonAudio7">
-			<source src="ogg/11_-_Ultima_5_-_C64_-_Worlds_Below.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "dungeonAudio8">
-			<source src="ogg/10_-_Ultima_5_-_C64_-_Halls_of_Doom.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "codexRoomAudio">
-			<source src="ogg/07_-_Ultima_4_-_C64_-_Shrines.ogg" type="audio/ogg"/>
-		</audio>
-		<audio id = "missAudio">
-			<source src="wav/miss.wav" type="audio/wav"/>
-		</audio>
-		<audio id = "hitAudio">
-			<source src="wav/hit.wav" type="audio/wav"/>
-		</audio>
 	</body>
 	
 </html>
