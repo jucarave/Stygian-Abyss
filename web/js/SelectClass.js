@@ -8,28 +8,24 @@ SelectClass.prototype.step = function(){
 	if (game.getKeyPressed(13) || game.getMouseButtonPressed()){
 		var mouse = game.mouse;
 		
-		if (game.mouse.a >= 154 && game.mouse.a < 214 && game.mouse.b >= 1){
-			if (game.mouse.b < 61){
-				playerS.setVirtue("Compassion");
-			}else if (game.mouse.b >= 67 && game.mouse.b < 127){
-				playerS.setVirtue("Honor");
-			}else if (game.mouse.b >= 133 && game.mouse.b < 193){
-				playerS.setVirtue("Humility");
-			}
-		}else if (game.mouse.a >= 221 && game.mouse.a < 280 && game.mouse.b >= 1){
-			if (game.mouse.b < 61){
+		if (game.mouse.b >= 28 && game.mouse.b < 100){
+			if (game.mouse.a <= 88)
 				playerS.setVirtue("Honesty");
-			}else if (game.mouse.b >= 133 && game.mouse.b < 193){
-				playerS.setVirtue("Sacrifice");
-			}
-		}else if (game.mouse.a >= 288 && game.mouse.a < 347 && game.mouse.b >= 1){
-			if (game.mouse.b < 61){
+			else if (game.mouse.a <= 178)
+				playerS.setVirtue("Compassion");
+			else if (game.mouse.a <= 268)
 				playerS.setVirtue("Valor");
-			}else if (game.mouse.b >= 67 && game.mouse.b < 127){
-				playerS.setVirtue("Spirituality");
-			}else if (game.mouse.b >= 133 && game.mouse.b < 193){
+			else
 				playerS.setVirtue("Justice");
-			}
+		}else if (game.mouse.b >= 100 && game.mouse.b < 170){
+			if (game.mouse.a <= 88)
+				playerS.setVirtue("Sacrifice");
+			else if (game.mouse.a <= 178)
+				playerS.setVirtue("Honor");
+			else if (game.mouse.a <= 268)
+				playerS.setVirtue("Spirituality");
+			else
+				playerS.setVirtue("Humility");
 		}
 		
 		if (playerS.virtue != null){
