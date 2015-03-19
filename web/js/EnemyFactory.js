@@ -25,13 +25,13 @@ var EnemyFactory = {
 		balron: {name: 'Balron', hp: 255, textureBase: 'balron', stats: {str: '9D4', dfs: '2D2', exp: 16}},
 		//twister: {name: 'Twister', hp: 25, textureBase: 'bat', stats: {str: '4D2', dfs: '2D2', exp: 5}},			// not in u5
 		
-		warrior: {name: 'Fighter', hp: 98, textureBase: 'warrior', stats: {str: '5D5', dfs: '2D2', exp: 7}},
+		warrior: {name: 'Fighter', hp: 98, textureBase: 'fighter', stats: {str: '5D5', dfs: '2D2', exp: 7}},
 		mage: {name: 'Mage', hp: 112, textureBase: 'mage', stats: {str: '5D5', dfs: '2D2', exp: 8}},
 		bard: {name: 'Bard', hp: 48, textureBase: 'bard', stats: {str: '2D10', dfs: '2D2', exp: 7}},
-		druid: {name: 'Druid', hp: 64, textureBase: 'druid', stats: {str: '3D5', dfs: '2D2', exp: 10}},
-		tinker: {name: 'Tinker', hp: 96, textureBase: 'tinker', stats: {str: '4D5', dfs: '2D2', exp: 9}},
-		paladin: {name: 'Paladin', hp: 128, textureBase: 'paladin', stats: {str: '5D5', dfs: '2D2', exp: 4}},
-		shepherd: {name: 'Shepherd', hp: 48, textureBase: 'shepherd', stats: {str: '3D3', dfs: '2D2', exp: 9}},
+		druid: {name: 'Druid', hp: 64, textureBase: 'mage', stats: {str: '3D5', dfs: '2D2', exp: 10}},
+		tinker: {name: 'Tinker', hp: 96, textureBase: 'ranger', stats: {str: '4D5', dfs: '2D2', exp: 9}},
+		paladin: {name: 'Paladin', hp: 128, textureBase: 'fighter', stats: {str: '5D5', dfs: '2D2', exp: 4}},
+		shepherd: {name: 'Shepherd', hp: 48, textureBase: 'ranger', stats: {str: '3D3', dfs: '2D2', exp: 9}},
 		ranger: {name: 'Ranger', hp: 144, textureBase: 'ranger', stats: {str: '5D5', dfs: '2D2', exp: 3}}
 	},
 	

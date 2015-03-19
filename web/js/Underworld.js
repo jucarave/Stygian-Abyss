@@ -171,6 +171,12 @@ Underworld.prototype.loadTextures = function(){
 	this.objectTex.gremlin_run = this.GL.loadImage(cp + "img/enemies/texGremlinRun.png?version=" + version, true, 10, true);
 	this.objectTex.dragon_run = this.GL.loadImage(cp + "img/enemies/texDragonRun.png?version=" + version, true, 10, true);
 	this.objectTex.zorn_run = this.GL.loadImage(cp + "img/enemies/texZornRun.png?version=" + version, true, 10, true);
+	
+	this.objectTex.wisp_run = this.GL.loadImage(cp + "img/enemies/texWispRun.png?version=" + version, true, 10, true);
+	this.objectTex.mage_run = this.GL.loadImage(cp + "img/enemies/texMageRun.png?version=" + version, true, 10, true);
+	this.objectTex.ranger_run = this.GL.loadImage(cp + "img/enemies/texRangerRun.png?version=" + version, true, 10, true);
+	this.objectTex.fighter_run = this.GL.loadImage(cp + "img/enemies/texFighterRun.png?version=" + version, true, 10, true);
+	this.objectTex.bard_run = this.GL.loadImage(cp + "img/enemies/texBardRun.png?version=" + version, true, 10, true);
 };
 
 Underworld.prototype.postLoading = function(){
