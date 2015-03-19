@@ -177,6 +177,7 @@ Underworld.prototype.loadTextures = function(){
 	this.objectTex.ranger_run = this.GL.loadImage(cp + "img/enemies/texRangerRun.png?version=" + version, true, 10, true);
 	this.objectTex.fighter_run = this.GL.loadImage(cp + "img/enemies/texFighterRun.png?version=" + version, true, 10, true);
 	this.objectTex.bard_run = this.GL.loadImage(cp + "img/enemies/texBardRun.png?version=" + version, true, 10, true);
+	this.objectTex.lavaLizard_run = this.GL.loadImage(cp + "img/enemies/texLavaLizardRun.png?version=" + version, true, 10, true);
 };
 
 Underworld.prototype.postLoading = function(){
