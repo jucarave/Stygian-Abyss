@@ -77,6 +77,7 @@ Underworld.prototype.loadImages = function(){
 	this.images.items_ui = this.GL.loadImage(cp + "img/itemsUI.png?version=" + version, false, 0, 0, {imgNum: 8, imgVNum: 2});
 	this.images.spells_ui = this.GL.loadImage(cp + "img/spellsUI.png?version=" + version, false, 0, 0, {imgNum: 4, imgVNum: 4});
 	this.images.titleScreen = this.GL.loadImage(cp + "img/titleScreen.png?version=" + version, false);
+	this.images.endingScreen = this.GL.loadImage(cp + "img/endingScreen.png?version=" + version, false);
 	this.images.selectClass = this.GL.loadImage(cp + "img/selectClass.png?version=" + version, false);
 	this.images.inventory = this.GL.loadImage(cp + "img/inventory.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
 	this.images.inventoryDrop = this.GL.loadImage(cp + "img/inventoryDrop.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
