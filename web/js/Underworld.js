@@ -77,7 +77,7 @@ Underworld.prototype.loadImages = function(){
 	this.images.items_ui = this.GL.loadImage(cp + "img/itemsUI.png?version=" + version, false, 0, 0, {imgNum: 8, imgVNum: 2});
 	this.images.spells_ui = this.GL.loadImage(cp + "img/spellsUI.png?version=" + version, false, 0, 0, {imgNum: 4, imgVNum: 4});
 	this.images.titleScreen = this.GL.loadImage(cp + "img/titleScreen.png?version=" + version, false);
-	this.images.endingScreen = this.GL.loadImage(cp + "img/endingScreen.png?version=" + version, false);
+	this.images.endingScreen = this.GL.loadImage(cp + "img/ending.png?version=" + version, false);
 	this.images.selectClass = this.GL.loadImage(cp + "img/selectClass.png?version=" + version, false);
 	this.images.inventory = this.GL.loadImage(cp + "img/inventory.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
 	this.images.inventoryDrop = this.GL.loadImage(cp + "img/inventoryDrop.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
@@ -136,7 +136,7 @@ Underworld.prototype.loadTextures = function(){
 	
 	// Items
 	this.objectTex.items = this.GL.loadImage(cp + "img/texItems.png?version=" + version, true, 1, true);
-	this.objectTex.items.buffers = AnimatedTexture.getTextureBufferCoords(8, 8, this.GL.ctx);
+	this.objectTex.items.buffers = AnimatedTexture.getTextureBufferCoords(8, 4, this.GL.ctx);
 	
 	this.objectTex.spells = this.GL.loadImage(cp + "img/texSpells.png?version=" + version, true, 1, true);
 	this.objectTex.spells.buffers = AnimatedTexture.getTextureBufferCoords(4, 4, this.GL.ctx);

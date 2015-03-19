@@ -78,6 +78,8 @@ Enemy.prototype.lookFor = function(){
 
 Enemy.prototype.doVerticalChecks = function(){
 	var pointY = this.mapManager.getYFloor(this.position.a, this.position.c, true);
+	if (this.enemy.stats.fly && pointY < 0.0) pointY = this.position.b;
+	
 	var py = Math.floor((pointY - this.position.b) * 100) / 100;
 	if (py <= 0.3) this.targetY = pointY;
 };

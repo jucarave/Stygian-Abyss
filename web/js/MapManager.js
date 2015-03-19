@@ -394,7 +394,6 @@ MapManager.prototype.getYFloor = function(x, y, noWater){
 	if (t.f) tt = t.fy;
 	
 	if (!noWater && this.isWaterTile(t.f)) tt -= 0.3;
-	else if (noWater && this.isWaterTile(t.f)) tt += 0.2;
 	
 	if (t.sl){
 		if (t.dir == 0) tt += yy * 0.5; else
