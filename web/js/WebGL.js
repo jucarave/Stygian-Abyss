@@ -1,3 +1,6 @@
+var Matrix = require('./Matrix');
+var Utils = require('./Utils');
+
 function WebGL(size, container){
 	if (!this.initCanvas(size, container)) return null; 
 	this.initProperties();
@@ -9,8 +12,10 @@ function WebGL(size, container){
 	this.light = 0;
 }
 
+module.exports = WebGL;
+
 WebGL.prototype.initCanvas = function(size, container){
-	var scale = $$("divGame").offsetHeight / size.b;
+	var scale = Utils.$$("divGame").offsetHeight / size.b;
 	
 	var canvas = document.createElement("canvas");
 	canvas.width = size.a;
@@ -52,14 +57,14 @@ WebGL.prototype.processShaders = function(){
 	var gl = this.ctx;
 	
 	// Compile fragment shader
-	var elShader = $$("fragmentShader");
+	var elShader = Utils.$$("fragmentShader");
 	var code = this.getShaderCode(elShader);
 	var fShader = gl.createShader(gl.FRAGMENT_SHADER);
 	gl.shaderSource(fShader, code);
 	gl.compileShader(fShader);
 	
 	// Compile vertex shader
-	elShader = $$("vertexShader");
+	elShader = Utils.$$("vertexShader");
 	code = this.getShaderCode(elShader);
 	var vShader = gl.createShader(gl.VERTEX_SHADER);
 	gl.shaderSource(vShader, code);
@@ -126,7 +131,7 @@ WebGL.prototype.loadImage = function(src, makeItTexture, textureIndex, isSolid, 
 	img.imgNum = params.imgNum;
 	img.vImgNum = params.imgVNum;
 	
-	addEvent(img, "load", function(){
+	Utils.addEvent(img, "load", function(){
 		img.imgWidth = img.width / img.imgNum;
 		img.imgHeight = img.height / img.vImgNum;
 		img.ready = true;

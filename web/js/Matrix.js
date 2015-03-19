@@ -1,4 +1,4 @@
-var Matrix = {
+module.exports = {
 	makePerspective: function(fov, aspectRatio, zNear, zFar){
 		var zLimit = zNear * Math.tan(fov * Math.PI / 360);
 		var A = -(zFar + zNear) / (zFar - zNear);

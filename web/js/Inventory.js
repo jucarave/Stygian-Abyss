@@ -4,6 +4,8 @@ function Inventory(limitItems){
 	this.limitItems = limitItems;
 }
 
+module.exports = Inventory;
+
 Inventory.prototype.reset = function(){
 	this.items = [];
 };

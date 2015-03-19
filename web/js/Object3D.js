@@ -1,3 +1,5 @@
+//TODO: This class is not references anywhere
+
 function Object3D(position, model, texture, mapManager){
 	this.position = position;
 	this.rotation = vec3(0,0,0);
@@ -8,6 +10,8 @@ function Object3D(position, model, texture, mapManager){
 	this.visible = true;
 	this.destroyed = false;
 }
+
+module.exports = Object3D;
 
 Object3D.prototype.activate = function(){
 };

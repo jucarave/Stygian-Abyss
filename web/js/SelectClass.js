@@ -2,6 +2,8 @@ function SelectClass(/*Game*/ game){
 	this.game = game;
 }
 
+module.exports = SelectClass;
+
 SelectClass.prototype.step = function(){
 	var game = this.game;
 	var playerS = game.player;

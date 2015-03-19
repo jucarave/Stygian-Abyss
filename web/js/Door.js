@@ -22,6 +22,8 @@ function Door(mapManager, wallPosition, dir, textureCode, wallTexture, lock){
 	this.modifyCollision();
 }
 
+module.exports = Door;
+
 Door.prototype.getBoundingBox = function(){
 	return this.boundingBox;
 };

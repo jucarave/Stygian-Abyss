@@ -1,4 +1,4 @@
-var EnemyFactory = {
+module.exports = {
 	enemies: {
 		bat: {name: 'Giant Bat', hp: 48, textureBase: 'bat', stats: {str: '1D9', dfs: '2D2', exp: 4, fly: true}},
 		rat: {name: 'Giant Rat', hp: 48, textureBase: 'rat', stats: {str: '1D9', dfs: '2D2', exp: 4}},
@@ -37,9 +37,9 @@ var EnemyFactory = {
 	},
 	
 	getEnemy: function(name){
-		if (!EnemyFactory.enemies[name]) throw "Invalid enemy name: " + name;
+		if (!this.enemies[name]) throw "Invalid enemy name: " + name;
 		
-		var enemy = EnemyFactory.enemies[name];
+		var enemy = this.enemies[name];
 		var ret = {};
 		
 		for (var i in enemy){

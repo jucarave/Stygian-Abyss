@@ -1,3 +1,8 @@
+var AnimatedTexture = require('./AnimatedTexture');
+var ObjectFactory = require('./ObjectFactory');
+var Utils = require('./Utils');
+
+
 function Enemy(position, enemy, mapManager){
 	if (enemy.swim) position.b -= 0.2;
 	
@@ -23,6 +28,8 @@ function Enemy(position, enemy, mapManager){
 	
 	this.visible = true;
 }
+
+module.exports = Enemy;
 
 Enemy.prototype.receiveDamage = function(dmg){
 	this.hurt = 5.0;
@@ -131,8 +138,8 @@ Enemy.prototype.attackPlayer = function(player){
 		return;
 	}
 	
-	var str = rollDice(this.enemy.stats.str);
-	var dfs = rollDice(this.mapManager.game.player.stats.dfs);
+	var str = Utils.rollDice(this.enemy.stats.str);
+	var dfs = Utils.rollDice(this.mapManager.game.player.stats.dfs);
 	
 	// Check if the player has the protection spell
 	if (this.mapManager.game.protection > 0){

@@ -1,3 +1,18 @@
+var AnimatedTexture = require('./AnimatedTexture');
+var AudioAPI = require('./Audio');
+var Console = require('./Console');
+var Inventory = require('./Inventory');
+var Item = require('./Item');
+var ItemFactory = require('./ItemFactory');
+var MapManager = require('./MapManager');
+var Missile = require('./Missile');
+var ObjectFactory = require('./ObjectFactory');
+var PlayerStats = require('./PlayerStats');
+var TitleScreen = require('./TitleScreen');
+var UI = require('./UI');
+var Utils = require('./Utils');
+var WebGL = require('./WebGL');
+
 /*===================================================
 				 7DRL15 Source Code
 				
@@ -9,8 +24,8 @@
 function Underworld(){
 	this.size = vec2(355, 200);
 	
-	this.GL = new WebGL(this.size, $$("divGame"));
-	this.UI = new UI(this.size, $$("divGame"));
+	this.GL = new WebGL(this.size, Utils.$$("divGame"));
+	this.UI = new UI(this.size, Utils.$$("divGame"));
 	this.audio = new AudioAPI();
 	
 	this.player = new PlayerStats();
@@ -531,7 +546,7 @@ Underworld.prototype.activeSpell = function(index){
 		break;
 		
 		case 'missile':
-			var str = rollDice(ps.stats.magicPower) + rollDice(item.str);
+			var str = Utils.rollDice(ps.stats.magicPower) + Utils.rollDice(item.str);
 			
 			var missile = new Missile(p.position.clone(), p.rotation.clone(), 'magicMissile', 'enemy', this.map);
 			missile.str = str << 0;
@@ -543,7 +558,7 @@ Underworld.prototype.activeSpell = function(index){
 		break;
 		
 		case 'iceball':
-			var str = rollDice(ps.stats.magicPower) + rollDice(item.str);
+			var str = Utils.rollDice(ps.stats.magicPower) + Utils.rollDice(item.str);
 			
 			var missile = new Missile(p.position.clone(), p.rotation.clone(), 'iceBall', 'enemy', this.map);
 			missile.str = str << 0;
@@ -605,7 +620,7 @@ Underworld.prototype.activeSpell = function(index){
 		break;
 		
 		case 'fireball':
-			var str = rollDice(ps.stats.magicPower) + rollDice(item.str);
+			var str = Utils.rollDice(ps.stats.magicPower) + Utils.rollDice(item.str);
 			
 			var missile = new Missile(p.position.clone(), p.rotation.clone(), 'fireBall', 'enemy', this.map);
 			missile.str = str << 0;
@@ -649,7 +664,7 @@ Underworld.prototype.activeSpell = function(index){
 		break;
 		
 		case 'kill':
-			var str = rollDice(ps.stats.magicPower) + rollDice(item.str);
+			var str = Utils.rollDice(ps.stats.magicPower) + Utils.rollDice(item.str);
 			
 			var missile = new Missile(p.position.clone(), p.rotation.clone(), 'kill', 'enemy', this.map);
 			missile.str = str << 0;
@@ -827,11 +842,11 @@ Underworld.prototype.getMouseMovement = function(){
 	return ret;
 };
 
-addEvent(window, "load", function(){
+Utils.addEvent(window, "load", function(){
 	var game = new Underworld();
 	game.loadGame();
 	
-	addEvent(document, "keydown", function(e){
+	Utils.addEvent(document, "keydown", function(e){
 		if (window.event) e = window.event;
 		
 		if (e.keyCode == 8){
@@ -843,7 +858,7 @@ addEvent(window, "load", function(){
 		game.keys[e.keyCode] = 1;
 	});
 	
-	addEvent(document, "keyup", function(e){
+	Utils.addEvent(document, "keyup", function(e){
 		if (window.event) e = window.event;
 		
 		if (e.keyCode == 8){
@@ -855,7 +870,7 @@ addEvent(window, "load", function(){
 	});
 	
 	var canvas = game.UI.canvas;
-	addEvent(canvas, "mousedown", function(e){
+	Utils.addEvent(canvas, "mousedown", function(e){
 		if (window.event) e = window.event;
 		
 		if (game.map != null)
@@ -868,7 +883,7 @@ addEvent(window, "load", function(){
 		game.mouse.c = 1;
 	});
 	
-	addEvent(canvas, "mouseup", function(e){
+	Utils.addEvent(canvas, "mouseup", function(e){
 		if (window.event) e = window.event;
 		
 		game.mouse.a = Math.round((e.clientX - canvas.offsetLeft) / game.UI.scale);
@@ -876,20 +891,20 @@ addEvent(window, "load", function(){
 		game.mouse.c = 0;
 	});
 	
-	addEvent(canvas, "mousemove", function(e){
+	Utils.addEvent(canvas, "mousemove", function(e){
 		if (window.event) e = window.event;
 		
 		game.mouse.a = Math.round((e.clientX - canvas.offsetLeft) / game.UI.scale);
 		game.mouse.b = Math.round((e.clientY - canvas.offsetTop) / game.UI.scale);
 	});
 	
-	addEvent(window, "focus", function(){
+	Utils.addEvent(window, "focus", function(){
 		game.firstFrame = Date.now();
 		game.numberFrames = 0;
 	});
 	
-	addEvent(window, "resize", function(){
-		var scale = $$("divGame").offsetHeight / game.size.b;
+	Utils.addEvent(window, "resize", function(){
+		var scale = Utils.$$("divGame").offsetHeight / game.size.b;
 		var canvas = game.GL.canvas;
 		
 		canvas = game.UI.canvas;
@@ -913,17 +928,17 @@ addEvent(window, "load", function(){
 			document.mozPointerLockElement === canvas ||
 			document.webkitPointerLockElement === canvas){
 				
-			addEvent(document, "mousemove", moveCallback);
+			Utils.addEvent(document, "mousemove", moveCallback);
 		}else{
 			document.removeEventListener("mousemove", moveCallback);
 			game.mouseMovement = {x: -10000, y: -10000};
 		}
 	};
 	
-	addEvent(document, "pointerlockchange", pointerlockchange);
-	addEvent(document, "mozpointerlockchange", pointerlockchange);
-	addEvent(document, "webkitpointerlockchange", pointerlockchange);
+	Utils.addEvent(document, "pointerlockchange", pointerlockchange);
+	Utils.addEvent(document, "mozpointerlockchange", pointerlockchange);
+	Utils.addEvent(document, "webkitpointerlockchange", pointerlockchange);
 	
-	addEvent(window, "blur", function(e){ game.GL.active = false; game.audio.pauseMusic();  });
-	addEvent(window, "focus", function(e){ game.GL.active = true; game.audio.restoreMusic(); });
+	Utils.addEvent(window, "blur", function(e){ game.GL.active = false; game.audio.pauseMusic();  });
+	Utils.addEvent(window, "focus", function(e){ game.GL.active = true; game.audio.restoreMusic(); });
 });

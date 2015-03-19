@@ -1,4 +1,4 @@
-var ItemFactory = {
+module.exports = {
 	items: {
 		// Items
 		yellowPotion: {name: "Yellow potion", tex: "items", subImg: 0, type: 'potion'},
@@ -42,9 +42,9 @@ var ItemFactory = {
 	},
 	
 	getItemByCode: function(itemCode, status){
-		if (!ItemFactory.items[itemCode]) throw "Invalid Item code: " + itemCode;
+		if (!this.items[itemCode]) throw "Invalid Item code: " + itemCode;
 		
-		var item = ItemFactory.items[itemCode];
+		var item = this.items[itemCode];
 		var ret = {};
 		for (var i in item){
 			ret[i] = item[i];

@@ -1,3 +1,8 @@
+var AnimatedTexture = require('./AnimatedTexture');
+var ObjectFactory = require('./ObjectFactory');
+
+//TODO: This class is not references anywhere?
+
 function Billboard(position, textureCode, mapManager, params){
 	this.position = position;
 	this.textureCode = textureCode;
@@ -17,6 +22,8 @@ function Billboard(position, textureCode, mapManager, params){
 	if (params) this.parseParams(params);
 	if (textureCode == "none") this.visible = false;
 }
+
+module.exports = Billboard;
 
 Billboard.prototype.parseParams = function(params){
 	for (var i in params){

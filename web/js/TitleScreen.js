@@ -1,7 +1,11 @@
+var SelectClass = require('./SelectClass');
+
 function TitleScreen(/*Game*/ game){
 	this.game = game;
 	this.blink = 30;
 }
+
+module.exports = TitleScreen;
 
 TitleScreen.prototype.step = function(){
 	if (this.game.getKeyPressed(13) || this.game.getMouseButtonPressed()){

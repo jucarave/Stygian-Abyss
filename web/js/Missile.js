@@ -1,3 +1,6 @@
+var ObjectFactory = require('./ObjectFactory');
+var Utils = require('./Utils');
+
 function Missile(position, rotation, type, target, mapManager){
 	var gl = mapManager.game.GL.ctx;
 	
@@ -53,6 +56,8 @@ function Missile(position, rotation, type, target, mapManager){
 	this.billboard.texBuffer = mapManager.game.objectTex.bolts.buffers[subImg];
 }
 
+module.exports = Missile;
+
 Missile.prototype.checkCollision = function(){
 	var map = this.mapManager.map;
 	if (this.position.a < 0 || this.position.c < 0 || this.position.a >= map[0].length || this.position.c >= map.length) return false;
@@ -86,10 +91,10 @@ Missile.prototype.checkCollision = function(){
 			return true;
 		}
 		
-		dfs = rollDice(ins.enemy.stats.dfs);
+		dfs = Utils.rollDice(ins.enemy.stats.dfs);
 	}else{
 		ins = this.mapManager.player;
-		dfs = rollDice(this.mapManager.game.player.stats.dfs);
+		dfs = Utils.rollDice(this.mapManager.game.player.stats.dfs);
 	}
 	
 	var dmg = Math.max(this.str - dfs, 0);

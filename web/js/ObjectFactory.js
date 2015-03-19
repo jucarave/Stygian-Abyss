@@ -1,4 +1,6 @@
-var ObjectFactory = {
+var Utils = require('./Utils');
+
+module.exports = {
 	normals: {
 		down:  vec2( 0, 1),
 		right: vec2( 1, 0),
@@ -505,10 +507,10 @@ var ObjectFactory = {
 					rect[3] = Math.max(rect[3], y + 6);
 					
 					var vv;
-					if (objectType == "F"){ vv = ObjectFactory.floor(vec3(1.0,1.0,1.0), vec2(1.0,1.0), gl); }else // Floor
-					if (objectType == "C"){ vv = ObjectFactory.ceil(vec3(1.0,1.0,1.0), vec2(1.0,1.0), gl); }else // Ceil
-					if (objectType == "B"){ vv = ObjectFactory.cube(vec3(1.0,mapData[y][x].h,1.0), vec2(1.0,mapData[y][x].h), gl, false, ObjectFactory.getCubeFaces(mapData, x, y)); }else // Block
-					if (objectType == "S"){ vv = ObjectFactory.slope(vec3(1.0,1.0,1.0), vec2(1.0,1.0), gl, mapData[y][x].dir); } // Slope
+					if (objectType == "F"){ vv = this.floor(vec3(1.0,1.0,1.0), vec2(1.0,1.0), gl); }else // Floor
+					if (objectType == "C"){ vv = this.ceil(vec3(1.0,1.0,1.0), vec2(1.0,1.0), gl); }else // Ceil
+					if (objectType == "B"){ vv = this.cube(vec3(1.0,mapData[y][x].h,1.0), vec2(1.0,mapData[y][x].h), gl, false, this.getCubeFaces(mapData, x, y)); }else // Block
+					if (objectType == "S"){ vv = this.slope(vec3(1.0,1.0,1.0), vec2(1.0,1.0), gl, mapData[y][x].dir); } // Slope
 					
 					var vertexOff = vertices.length / 3;
 					for (var i=0,len=vv.vertices.length;i<len;i+=3){
@@ -694,7 +696,7 @@ var ObjectFactory = {
 	load3DModel: function(modelFile, gl){
 		var model = {ready: false};
 		
-		var http = getHttp();
+		var http = Utils.getHttp();
 		http.open("GET", cp + "models/" + modelFile + ".obj?version=" + version, true);
 		http.onreadystatechange = function(){
 			if (http.readyState == 4 && http.status == 200) {
@@ -748,7 +750,7 @@ var ObjectFactory = {
 				}
 				
 				var base = {vertices: vertexIndex, indices: indices, texCoords: texIndices, darkVertex: darkVertex};
-				var model3D = ObjectFactory.create3DObject(gl, base);
+				var model3D = this.create3DObject(gl, base);
 
 				model.rotation = model3D.rotation;
 				model.position = model3D.position;

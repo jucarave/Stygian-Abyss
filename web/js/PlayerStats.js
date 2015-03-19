@@ -19,6 +19,8 @@ function PlayerStats(){
 	};
 }
 
+module.exports = PlayerStats;
+
 PlayerStats.prototype.reset = function(){
 	this.hp = 0;
 	this.mHP = 0;

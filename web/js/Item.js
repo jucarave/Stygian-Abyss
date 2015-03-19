@@ -1,3 +1,7 @@
+var Billboard = require('./Billboard');
+var ItemFactory = require('./ItemFactory');
+var ObjectFactory = require('./ObjectFactory');
+
 function Item(position, item, mapManager){
 	var gl = mapManager.game.GL.ctx;
 	
@@ -13,6 +17,8 @@ function Item(position, item, mapManager){
 	
 	if (item) this.setItem(item);
 }
+
+module.exports = Item;
 
 Item.prototype.setItem = function(item){
 	this.item = item;

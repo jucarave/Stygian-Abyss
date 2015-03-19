@@ -12,6 +12,7 @@ function Console(/*Int*/ maxMessages, /*Int*/ limit, /*Int*/ splitAt,  /*Game*/ 
 	this.spaceLines = null;
 }
 
+module.exports = Console;
 
 Console.prototype.render = function(/*Int*/ x, /*Int*/ y){
 	var s = this.messages.length - 1;

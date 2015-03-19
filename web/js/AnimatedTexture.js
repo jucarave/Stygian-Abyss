@@ -1,4 +1,4 @@
-var AnimatedTexture = {
+module.exports = {
 	_1Frame: [],
 	_2Frames: [],
 	_3Frames: [],

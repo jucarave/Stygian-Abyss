@@ -1,3 +1,6 @@
+var Missile = require('./Missile');
+var Utils = require('./Utils');
+
 var cheatEnabled = false;
 
 function Player(position, direction, mapManager){
@@ -24,6 +27,8 @@ function Player(position, direction, mapManager){
 	this.lavaCounter = 0;
 }
 
+module.exports = Player;
+
 Player.prototype.receiveDamage = function(dmg){
 	var game = this.mapManager.game;
 	
@@ -42,8 +47,8 @@ Player.prototype.castMissile = function(weapon){
 	var game = this.mapManager.game;
 	var ps = game.player;
 	
-	var str = rollDice(ps.stats.str);
-	if (weapon) str += rollDice(weapon.str) * weapon.status;
+	var str = Utils.rollDice(ps.stats.str);
+	if (weapon) str += Utils.rollDice(weapon.str) * weapon.status;
 	
 	var prob = Math.random();
 	var missile = new Missile(this.position.clone(), this.rotation.clone(), weapon.code, 'enemy', this.mapManager);
@@ -102,11 +107,11 @@ Player.prototype.castAttack = function(target, weapon){
 		return;
 	}
 	
-	var str = rollDice(ps.stats.str);
-	//var dfs = rollDice(target.enemy.stats.dfs);
+	var str = Utils.rollDice(ps.stats.str);
+	//var dfs = Utils.rollDice(target.enemy.stats.dfs);
 	var dfs = 0;
 	
-	if (weapon) str += rollDice(weapon.str) * weapon.status;
+	if (weapon) str += Utils.rollDice(weapon.str) * weapon.status;
 	
 	var dmg = Math.max(str - dfs, 0) << 0;
 	

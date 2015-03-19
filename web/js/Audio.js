@@ -1,3 +1,4 @@
+var Utils = require('./Utils');
 function AudioAPI(){
 	this._audio = [];
 	
@@ -7,6 +8,8 @@ function AudioAPI(){
 	
 	this.initAudioEngine();
 }
+
+module.exports = AudioAPI;
 
 AudioAPI.prototype.initAudioEngine = function(){
 	if (window.AudioContext){
@@ -22,7 +25,7 @@ AudioAPI.prototype.loadAudio = function(url, isMusic){
 	
 	var audio = {buffer: null, source: null, ready: false, isMusic: isMusic, pausedAt: 0};
 	
-	var http = getHttp();
+	var http = Utils.getHttp();
 	http.open('GET', url, true);
 	http.responseType = 'arraybuffer';
 	

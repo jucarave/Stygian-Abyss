@@ -6,34 +6,9 @@
 <html>
 	<head>
 		<title>Stygian Abyss</title>
-		
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Vec.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Utils.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/ObjectFactory.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Matrix.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Audio.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/WebGL.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/UI.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Underworld.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/MapAssembler.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/MapManager.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Player.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/TitleScreen.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/SelectClass.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/AnimatedTexture.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Door.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Billboard.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Console.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Inventory.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Item.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Enemy.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/ItemFactory.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Object3D.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/EnemyFactory.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/PlayerStats.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Missile.js<?php echo $ver; ?>"></script>
+		<script type="text/javascript" src="<?php echo $contextPath; ?>js/stygianAbyss.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/stygianGen.js<?php echo $ver; ?>"></script>
-		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Stairs.js<?php echo $ver; ?>"></script>
 		
 		<script type="text/javascript">
 			var version = "<?php echo $version; ?>";

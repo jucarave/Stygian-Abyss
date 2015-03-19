@@ -2,6 +2,8 @@ function UI(size, container){
 	this.initCanvas(size, container);
 }
 
+module.exports = UI;
+
 UI.prototype.initCanvas = function(size, container){
 	var canvas = document.createElement("canvas");
 	canvas.width = size.a;

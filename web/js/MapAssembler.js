@@ -1,3 +1,12 @@
+var Door = require('./Door');
+var Enemy = require('./Enemy');
+var EnemyFactory = require('./EnemyFactory');
+var Item = require('./Item');
+var ItemFactory = require('./ItemFactory');
+var ObjectFactory = require('./ObjectFactory');
+var Player = require('./Player');
+var Stairs = require('./Stairs');
+
 function MapAssembler(mapManager, mapData, GL){
 	this.mapManager =  mapManager;
 	this.copiedTiles = [];
@@ -13,6 +22,8 @@ function MapAssembler(mapManager, mapData, GL){
 	
 	this.copiedTiles = [];
 }
+
+module.exports = MapAssembler;
 
 MapAssembler.prototype.getEmptyGrid = function(){
 	var grid = [];

@@ -1,3 +1,7 @@
+var MapAssembler = require('./MapAssembler');
+var ObjectFactory = require('./ObjectFactory');
+var Utils = require('./Utils');
+
 function MapManager(game, map, depth){
 	this.map = null;
 	
@@ -23,6 +27,8 @@ function MapManager(game, map, depth){
 		this.generateMap(depth);
 	}
 }
+
+module.exports = MapManager;
 
 MapManager.prototype.generateMap = function(depth){
 	var config = {
@@ -67,7 +73,7 @@ MapManager.prototype.generateMap = function(depth){
 
 MapManager.prototype.loadMap = function(mapName){
 	var mapM = this;
-	var http = getHttp();
+	var http = Utils.getHttp();
 	http.open('GET', cp + 'maps/' + mapName + ".json", true);
 	http.onreadystatechange = function() {
   		if (http.readyState == 4 && http.status == 200) {

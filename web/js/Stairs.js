@@ -1,3 +1,5 @@
+var ObjectFactory = require('./ObjectFactory');
+
 function Stairs(position, mapManager, direction){
 	this.position = position;
 	this.mapManager = mapManager;
@@ -20,6 +22,8 @@ function Stairs(position, mapManager, direction){
 	
 	this.tile = null;
 }
+
+module.exports = Stairs;
 
 Stairs.prototype.activate = function(){
 	if (this.targetId < 9)
