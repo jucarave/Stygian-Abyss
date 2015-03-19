@@ -18,6 +18,8 @@ function Underworld(){
 	this.console = new Console(10, 10, 300, this);
 	this.font = '10px "Courier"';
 	
+	this.grPack = 'img/';
+	
 	this.scene = null;
 	this.map = null;
 	this.maps = [];
@@ -74,111 +76,111 @@ Underworld.prototype.loadMusic = function(){
 };
 
 Underworld.prototype.loadImages = function(){
-	this.images.items_ui = this.GL.loadImage(cp + "img/itemsUI.png?version=" + version, false, 0, 0, {imgNum: 8, imgVNum: 2});
-	this.images.spells_ui = this.GL.loadImage(cp + "img/spellsUI.png?version=" + version, false, 0, 0, {imgNum: 4, imgVNum: 4});
-	this.images.titleScreen = this.GL.loadImage(cp + "img/titleScreen.png?version=" + version, false);
-	this.images.endingScreen = this.GL.loadImage(cp + "img/ending.png?version=" + version, false);
-	this.images.selectClass = this.GL.loadImage(cp + "img/selectClass.png?version=" + version, false);
-	this.images.inventory = this.GL.loadImage(cp + "img/inventory.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
-	this.images.inventoryDrop = this.GL.loadImage(cp + "img/inventoryDrop.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
-	this.images.inventorySelected = this.GL.loadImage(cp + "img/inventory_selected.png?version=" + version, false);
-	this.images.scrollFont = this.GL.loadImage(cp + "img/scrollFontWhite.png?version=" + version, false);
-	this.images.restart = this.GL.loadImage(cp + "img/restart.png?version=" + version, false);
-	this.images.paused = this.GL.loadImage(cp + "img/paused.png?version=" + version, false);
+	this.images.items_ui = this.GL.loadImage(cp + this.grPack + "itemsUI.png?version=" + version, false, 0, 0, {imgNum: 8, imgVNum: 2});
+	this.images.spells_ui = this.GL.loadImage(cp + this.grPack + "spellsUI.png?version=" + version, false, 0, 0, {imgNum: 4, imgVNum: 4});
+	this.images.titleScreen = this.GL.loadImage(cp + this.grPack + "titleScreen.png?version=" + version, false);
+	this.images.endingScreen = this.GL.loadImage(cp + this.grPack + "ending.png?version=" + version, false);
+	this.images.selectClass = this.GL.loadImage(cp + this.grPack + "selectClass.png?version=" + version, false);
+	this.images.inventory = this.GL.loadImage(cp + this.grPack + "inventory.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
+	this.images.inventoryDrop = this.GL.loadImage(cp + this.grPack + "inventoryDrop.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
+	this.images.inventorySelected = this.GL.loadImage(cp + this.grPack + "inventory_selected.png?version=" + version, false);
+	this.images.scrollFont = this.GL.loadImage(cp + this.grPack + "scrollFontWhite.png?version=" + version, false);
+	this.images.restart = this.GL.loadImage(cp + this.grPack + "restart.png?version=" + version, false);
+	this.images.paused = this.GL.loadImage(cp + this.grPack + "paused.png?version=" + version, false);
 };
 
 Underworld.prototype.loadTextures = function(){
 	this.textures = {wall: [null], floor: [null], ceil: [null], water: [null]};
 	
 	// No Texture
-	var noTex = this.GL.loadImage(cp + "img/noTexture.png?version=" + version, true, 1, true);
+	var noTex = this.GL.loadImage(cp + this.grPack + "noTexture.png?version=" + version, true, 1, true);
 	this.textures.wall.push(noTex);
 	this.textures.floor.push(noTex);
 	this.textures.ceil.push(noTex);
 	
 	// Walls
-	this.textures.wall.push(this.GL.loadImage(cp + "img/texWall01.png?version=" + version, true, 1, true));
-	this.textures.wall.push(this.GL.loadImage(cp + "img/texWall02.png?version=" + version, true, 2, true));
+	this.textures.wall.push(this.GL.loadImage(cp + this.grPack + "texWall01.png?version=" + version, true, 1, true));
+	this.textures.wall.push(this.GL.loadImage(cp + this.grPack + "texWall02.png?version=" + version, true, 2, true));
 	
-	this.textures.wall.push(this.GL.loadImage(cp + "img/roomWall1.png?version=" + version, true, 3, true));
-	this.textures.wall.push(this.GL.loadImage(cp + "img/roomWall2.png?version=" + version, true, 4, true));
-	this.textures.wall.push(this.GL.loadImage(cp + "img/roomWall3.png?version=" + version, true, 5, true));
-	this.textures.wall.push(this.GL.loadImage(cp + "img/roomWall4.png?version=" + version, true, 6, true));
-	this.textures.wall.push(this.GL.loadImage(cp + "img/roomWall5.png?version=" + version, true, 7, true));
-	this.textures.wall.push(this.GL.loadImage(cp + "img/roomWall6.png?version=" + version, true, 8, true));
-	this.textures.wall.push(this.GL.loadImage(cp + "img/cavernWall1.png?version=" + version, true, 9, true));
+	this.textures.wall.push(this.GL.loadImage(cp + this.grPack + "roomWall1.png?version=" + version, true, 3, true));
+	this.textures.wall.push(this.GL.loadImage(cp + this.grPack + "roomWall2.png?version=" + version, true, 4, true));
+	this.textures.wall.push(this.GL.loadImage(cp + this.grPack + "roomWall3.png?version=" + version, true, 5, true));
+	this.textures.wall.push(this.GL.loadImage(cp + this.grPack + "roomWall4.png?version=" + version, true, 6, true));
+	this.textures.wall.push(this.GL.loadImage(cp + this.grPack + "roomWall5.png?version=" + version, true, 7, true));
+	this.textures.wall.push(this.GL.loadImage(cp + this.grPack + "roomWall6.png?version=" + version, true, 8, true));
+	this.textures.wall.push(this.GL.loadImage(cp + this.grPack + "cavernWall1.png?version=" + version, true, 9, true));
 	
 	// Floors
-	this.textures.floor.push(this.GL.loadImage(cp + "img/texFloor01.png?version=" + version, true, 1, true));
-	this.textures.floor.push(this.GL.loadImage(cp + "img/texFloor02.png?version=" + version, true, 2, true));
-	this.textures.floor.push(this.GL.loadImage(cp + "img/texFloor03.png?version=" + version, true, 3, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "texFloor01.png?version=" + version, true, 1, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "texFloor02.png?version=" + version, true, 2, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "texFloor03.png?version=" + version, true, 3, true));
 	
-	this.textures.floor.push(this.GL.loadImage(cp + "img/cavernFloor1.png?version=" + version, true, 4, true));
-	this.textures.floor.push(this.GL.loadImage(cp + "img/cavernFloor2.png?version=" + version, true, 5, true));
-	this.textures.floor.push(this.GL.loadImage(cp + "img/cavernFloor3.png?version=" + version, true, 6, true));
-	this.textures.floor.push(this.GL.loadImage(cp + "img/cavernFloor4.png?version=" + version, true, 7, true));
-	this.textures.floor.push(this.GL.loadImage(cp + "img/roomFloor1.png?version=" + version, true, 8, true));
-	this.textures.floor.push(this.GL.loadImage(cp + "img/roomFloor2.png?version=" + version, true, 9, true));
-	this.textures.floor.push(this.GL.loadImage(cp + "img/roomFloor3.png?version=" + version, true, 10, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "cavernFloor1.png?version=" + version, true, 4, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "cavernFloor2.png?version=" + version, true, 5, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "cavernFloor3.png?version=" + version, true, 6, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "cavernFloor4.png?version=" + version, true, 7, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "roomFloor1.png?version=" + version, true, 8, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "roomFloor2.png?version=" + version, true, 9, true));
+	this.textures.floor.push(this.GL.loadImage(cp + this.grPack + "roomFloor3.png?version=" + version, true, 10, true));
 	
-	this.textures.floor[50] = (this.GL.loadImage(cp + "img/texHole.png?version=" + version, true, 50, true));
+	this.textures.floor[50] = (this.GL.loadImage(cp + this.grPack + "texHole.png?version=" + version, true, 50, true));
 	
 	// Liquids
-	this.textures.water.push(this.GL.loadImage(cp + "img/texWater01.png?version=" + version, true, 1, true));
-	this.textures.water.push(this.GL.loadImage(cp + "img/texWater02.png?version=" + version, true, 2, true));
-	this.textures.water.push(this.GL.loadImage(cp + "img/texLava01.png?version=" + version, true, 3, true));
-	this.textures.water.push(this.GL.loadImage(cp + "img/texLava02.png?version=" + version, true, 4, true));
+	this.textures.water.push(this.GL.loadImage(cp + this.grPack + "texWater01.png?version=" + version, true, 1, true));
+	this.textures.water.push(this.GL.loadImage(cp + this.grPack + "texWater02.png?version=" + version, true, 2, true));
+	this.textures.water.push(this.GL.loadImage(cp + this.grPack + "texLava01.png?version=" + version, true, 3, true));
+	this.textures.water.push(this.GL.loadImage(cp + this.grPack + "texLava02.png?version=" + version, true, 4, true));
 	
 	// Ceilings
-	this.textures.ceil.push(this.GL.loadImage(cp + "img/texCeil01.png?version=" + version, true, 1, true));
-	this.textures.ceil.push(this.GL.loadImage(cp + "img/cavernWall1.png?version=" + version, true, 2, true));
-	this.textures.ceil[50] = (this.GL.loadImage(cp + "img/texHole.png?version=" + version, true, 50, true));
+	this.textures.ceil.push(this.GL.loadImage(cp + this.grPack + "texCeil01.png?version=" + version, true, 1, true));
+	this.textures.ceil.push(this.GL.loadImage(cp + this.grPack + "cavernWall1.png?version=" + version, true, 2, true));
+	this.textures.ceil[50] = (this.GL.loadImage(cp + this.grPack + "texHole.png?version=" + version, true, 50, true));
 	
 	// Items
-	this.objectTex.items = this.GL.loadImage(cp + "img/texItems.png?version=" + version, true, 1, true);
+	this.objectTex.items = this.GL.loadImage(cp + this.grPack + "texItems.png?version=" + version, true, 1, true);
 	this.objectTex.items.buffers = AnimatedTexture.getTextureBufferCoords(8, 4, this.GL.ctx);
 	
-	this.objectTex.spells = this.GL.loadImage(cp + "img/texSpells.png?version=" + version, true, 1, true);
+	this.objectTex.spells = this.GL.loadImage(cp + this.grPack + "texSpells.png?version=" + version, true, 1, true);
 	this.objectTex.spells.buffers = AnimatedTexture.getTextureBufferCoords(4, 4, this.GL.ctx);
 	
 	// Magic Bolts
-	this.objectTex.bolts = this.GL.loadImage(cp + "img/texBolts.png?version=" + version, true, 1, true);
+	this.objectTex.bolts = this.GL.loadImage(cp + this.grPack + "texBolts.png?version=" + version, true, 1, true);
 	this.objectTex.bolts.buffers = AnimatedTexture.getTextureBufferCoords(4, 2, this.GL.ctx);
 	
 	// Stairs
-	this.objectTex.stairs = this.GL.loadImage(cp + "img/texStairs.png?version=" + version, true, 1, true);
+	this.objectTex.stairs = this.GL.loadImage(cp + this.grPack + "texStairs.png?version=" + version, true, 1, true);
 	this.objectTex.stairs.buffers = AnimatedTexture.getTextureBufferCoords(2, 2, this.GL.ctx);
 	
 	// Enemies
-	this.objectTex.bat_run = this.GL.loadImage(cp + "img/enemies/texBatRun.png?version=" + version, true, 1, true);
-	this.objectTex.rat_run = this.GL.loadImage(cp + "img/enemies/texRatRun.png?version=" + version, true, 2, true);
-	this.objectTex.spider_run = this.GL.loadImage(cp + "img/enemies/texSpiderRun.png?version=" + version, true, 3, true);
-	this.objectTex.troll_run = this.GL.loadImage(cp + "img/enemies/texTrollRun.png?version=" + version, true, 4, true);
-	this.objectTex.gazer_run = this.GL.loadImage(cp + "img/enemies/texGazerRun.png?version=" + version, true, 5, true);
-	this.objectTex.ghost_run = this.GL.loadImage(cp + "img/enemies/texGhostRun.png?version=" + version, true, 6, true);
-	this.objectTex.headless_run = this.GL.loadImage(cp + "img/enemies/texHeadlessRun.png?version=" + version, true, 7, true);
-	this.objectTex.orc_run = this.GL.loadImage(cp + "img/enemies/texOrcRun.png?version=" + version, true, 8, true);
-	this.objectTex.reaper_run = this.GL.loadImage(cp + "img/enemies/texReaperRun.png?version=" + version, true, 9, true);
-	this.objectTex.skeleton_run = this.GL.loadImage(cp + "img/enemies/texSkeletonRun.png?version=" + version, true, 10, true);
+	this.objectTex.bat_run = this.GL.loadImage(cp + this.grPack + "enemies/texBatRun.png?version=" + version, true, 1, true);
+	this.objectTex.rat_run = this.GL.loadImage(cp + this.grPack + "enemies/texRatRun.png?version=" + version, true, 2, true);
+	this.objectTex.spider_run = this.GL.loadImage(cp + this.grPack + "enemies/texSpiderRun.png?version=" + version, true, 3, true);
+	this.objectTex.troll_run = this.GL.loadImage(cp + this.grPack + "enemies/texTrollRun.png?version=" + version, true, 4, true);
+	this.objectTex.gazer_run = this.GL.loadImage(cp + this.grPack + "enemies/texGazerRun.png?version=" + version, true, 5, true);
+	this.objectTex.ghost_run = this.GL.loadImage(cp + this.grPack + "enemies/texGhostRun.png?version=" + version, true, 6, true);
+	this.objectTex.headless_run = this.GL.loadImage(cp + this.grPack + "enemies/texHeadlessRun.png?version=" + version, true, 7, true);
+	this.objectTex.orc_run = this.GL.loadImage(cp + this.grPack + "enemies/texOrcRun.png?version=" + version, true, 8, true);
+	this.objectTex.reaper_run = this.GL.loadImage(cp + this.grPack + "enemies/texReaperRun.png?version=" + version, true, 9, true);
+	this.objectTex.skeleton_run = this.GL.loadImage(cp + this.grPack + "enemies/texSkeletonRun.png?version=" + version, true, 10, true);
 	
-	this.objectTex.daemon_run = this.GL.loadImage(cp + "img/enemies/texDaemonRun.png?version=" + version, true, 10, true);
-	this.objectTex.mongbat_run = this.GL.loadImage(cp + "img/enemies/texMongbatRun.png?version=" + version, true, 10, true);
-	this.objectTex.hydra_run = this.GL.loadImage(cp + "img/enemies/texHydraRun.png?version=" + version, true, 10, true);
-	this.objectTex.seaSerpent_run = this.GL.loadImage(cp + "img/enemies/texSeaSerpentRun.png?version=" + version, true, 10, true);
-	this.objectTex.octopus_run = this.GL.loadImage(cp + "img/enemies/texOctopusRun.png?version=" + version, true, 10, true);
-	this.objectTex.balron_run = this.GL.loadImage(cp + "img/enemies/texBalronRun.png?version=" + version, true, 10, true);
-	this.objectTex.liche_run = this.GL.loadImage(cp + "img/enemies/texLicheRun.png?version=" + version, true, 10, true);
-	this.objectTex.ghost_run = this.GL.loadImage(cp + "img/enemies/texGhostRun.png?version=" + version, true, 10, true);
-	this.objectTex.gremlin_run = this.GL.loadImage(cp + "img/enemies/texGremlinRun.png?version=" + version, true, 10, true);
-	this.objectTex.dragon_run = this.GL.loadImage(cp + "img/enemies/texDragonRun.png?version=" + version, true, 10, true);
-	this.objectTex.zorn_run = this.GL.loadImage(cp + "img/enemies/texZornRun.png?version=" + version, true, 10, true);
+	this.objectTex.daemon_run = this.GL.loadImage(cp + this.grPack + "enemies/texDaemonRun.png?version=" + version, true, 10, true);
+	this.objectTex.mongbat_run = this.GL.loadImage(cp + this.grPack + "enemies/texMongbatRun.png?version=" + version, true, 10, true);
+	this.objectTex.hydra_run = this.GL.loadImage(cp + this.grPack + "enemies/texHydraRun.png?version=" + version, true, 10, true);
+	this.objectTex.seaSerpent_run = this.GL.loadImage(cp + this.grPack + "enemies/texSeaSerpentRun.png?version=" + version, true, 10, true);
+	this.objectTex.octopus_run = this.GL.loadImage(cp + this.grPack + "enemies/texOctopusRun.png?version=" + version, true, 10, true);
+	this.objectTex.balron_run = this.GL.loadImage(cp + this.grPack + "enemies/texBalronRun.png?version=" + version, true, 10, true);
+	this.objectTex.liche_run = this.GL.loadImage(cp + this.grPack + "enemies/texLicheRun.png?version=" + version, true, 10, true);
+	this.objectTex.ghost_run = this.GL.loadImage(cp + this.grPack + "enemies/texGhostRun.png?version=" + version, true, 10, true);
+	this.objectTex.gremlin_run = this.GL.loadImage(cp + this.grPack + "enemies/texGremlinRun.png?version=" + version, true, 10, true);
+	this.objectTex.dragon_run = this.GL.loadImage(cp + this.grPack + "enemies/texDragonRun.png?version=" + version, true, 10, true);
+	this.objectTex.zorn_run = this.GL.loadImage(cp + this.grPack + "enemies/texZornRun.png?version=" + version, true, 10, true);
 	
-	this.objectTex.wisp_run = this.GL.loadImage(cp + "img/enemies/texWispRun.png?version=" + version, true, 10, true);
-	this.objectTex.mage_run = this.GL.loadImage(cp + "img/enemies/texMageRun.png?version=" + version, true, 10, true);
-	this.objectTex.ranger_run = this.GL.loadImage(cp + "img/enemies/texRangerRun.png?version=" + version, true, 10, true);
-	this.objectTex.fighter_run = this.GL.loadImage(cp + "img/enemies/texFighterRun.png?version=" + version, true, 10, true);
-	this.objectTex.bard_run = this.GL.loadImage(cp + "img/enemies/texBardRun.png?version=" + version, true, 10, true);
-	this.objectTex.lavaLizard_run = this.GL.loadImage(cp + "img/enemies/texLavaLizardRun.png?version=" + version, true, 10, true);
+	this.objectTex.wisp_run = this.GL.loadImage(cp + this.grPack + "enemies/texWispRun.png?version=" + version, true, 10, true);
+	this.objectTex.mage_run = this.GL.loadImage(cp + this.grPack + "enemies/texMageRun.png?version=" + version, true, 10, true);
+	this.objectTex.ranger_run = this.GL.loadImage(cp + this.grPack + "enemies/texRangerRun.png?version=" + version, true, 10, true);
+	this.objectTex.fighter_run = this.GL.loadImage(cp + this.grPack + "enemies/texFighterRun.png?version=" + version, true, 10, true);
+	this.objectTex.bard_run = this.GL.loadImage(cp + this.grPack + "enemies/texBardRun.png?version=" + version, true, 10, true);
+	this.objectTex.lavaLizard_run = this.GL.loadImage(cp + this.grPack + "enemies/texLavaLizardRun.png?version=" + version, true, 10, true);
 };
 
 Underworld.prototype.postLoading = function(){
