@@ -26,6 +26,7 @@ function Player(position, direction, mapManager){
 	this.attackWait = 0;
 	
 	this.lavaCounter = 0;
+	this.launchAttackCounter = 0;
 }
 
 module.exports = Player;
@@ -90,7 +91,7 @@ Player.prototype.meleeAttack = function(weapon){
 		
 		if (object && object.enemy){
 			this.castAttack(object, weapon);
-			this.attackWait = 30;
+			this.attackWait = 20;
 			this.moved = true;
 			i = 11;
 		}
@@ -249,8 +250,8 @@ Player.prototype.checkAction = function(){
 	}else if ((game.getMouseButtonPressed() || game.getKeyPressed(13)) && this.attackWait == 0){	// Melee attack, Enter
 		var weapon = game.inventory.getWeapon();
 		
-		if (!weapon || !weapon.ranged){ 
-			this.meleeAttack(weapon);
+		if (!weapon || !weapon.ranged){
+			this.launchAttackCounter = 5;
 		}else if (weapon && weapon.ranged){
 			this.castMissile(weapon);
 		}
@@ -345,6 +346,15 @@ Player.prototype.loop = function(){
 	}
 	if (this.attackWait > 0) this.attackWait -= 1;
 	if (this.hurt > 0) this.hurt -= 1;
+	if (this.launchAttackCounter > 0){
+		this.launchAttackCounter--;
+		if (this.launchAttackCounter == 0){
+			var weapon = this.mapManager.game.inventory.getWeapon();
+			if (!weapon || !weapon.ranged)
+				this.meleeAttack(weapon);
+		}
+		
+	}
 	
 	this.moved = false;
 	this.step();
