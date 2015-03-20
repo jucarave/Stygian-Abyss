@@ -151,7 +151,6 @@ Player.prototype.moveTo = function(xTo, zTo){
 		
 	for (var i=0;i<2;i++){
 		var normal = this.mapManager.getWallNormal(fakePos, spd, this.cameraHeight, swim);
-		if (!normal){ normal = this.mapManager.getDoorNormal(fakePos, spd, this.cameraHeight, swim); }
 		if (!normal){ normal = this.mapManager.getInstanceNormal(fakePos, spd, this.cameraHeight); } 
 		
 		if (normal){

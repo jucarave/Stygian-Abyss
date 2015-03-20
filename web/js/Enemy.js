@@ -101,7 +101,6 @@ Enemy.prototype.moveTo = function(xTo, zTo){
 		
 	for (var i=0;i<2;i++){
 		var normal = this.mapManager.getWallNormal(fakePos, spd, this.cameraHeight, this.onWater);
-		if (!normal){ normal = this.mapManager.getDoorNormal(fakePos, spd, this.cameraHeight, this.onWater); }
 		if (!normal){ normal = this.mapManager.getInstanceNormal(fakePos, spd, this.cameraHeight, this); } 
 		
 		if (normal){
@@ -112,7 +111,6 @@ Enemy.prototype.moveTo = function(xTo, zTo){
 		}
 		
 		fakePos.a += movement.a;
-		
 		spd = vec2(0, zTo * 1.5);
 	}
 	
@@ -186,7 +184,9 @@ Enemy.prototype.step = function(){
 		var dx = Math.cos(dir) * 0.02;
 		var dy = -Math.sin(dir) * 0.02;
 		
-		this.moveTo(dx, dy);
+		var lat = vec2(Math.cos(dir + Math.PI_2), -Math.sin(dir + Math.PI_2));
+		
+		this.moveTo(dx, dy, lat);
 	}else{
 		this.lookFor();
 	}

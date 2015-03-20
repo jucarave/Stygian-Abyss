@@ -336,17 +336,21 @@ MapManager.prototype.isSolid = function(x, z, y){
 };
 
 MapManager.prototype.getWallNormal = function(pos, spd, h, inWater){
-	var xx = ((pos.a + spd.a) << 0);
-	var zz = ((pos.c + spd.b) << 0);
-	
 	var t, th;
 	var y = pos.b;
+	
+	var xx = ((pos.a + spd.a) << 0);
+	var zz = ((pos.c + spd.b) << 0);
 	
 	if (!this.map[zz]) return null;
 	if (this.map[zz][xx] === undefined) return null;
 	if (this.map[zz][xx] === 0) return null;
 	
 	t = this.map[zz][xx];
+	i = 4;
+	
+	if (!t) return null;
+	
 	th = t.h - 0.3;
 	if (inWater) y += 0.3;
 	if (t.sl) th += 0.2;
