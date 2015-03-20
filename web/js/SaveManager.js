@@ -12,8 +12,10 @@ SaveManager.prototype = {
 			maps: this.game.maps
 		};
 		var serialized = circular.serialize(saveObject);
+		
 		var serializedObject = JSON.parse(serialized);
 		console.log(serializedObject);
+		console.log("Size: "+serialized.length);
 	}
 }
 

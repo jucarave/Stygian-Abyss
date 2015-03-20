@@ -4,6 +4,7 @@ var Utils = require('./Utils');
 var cheatEnabled = false;
 
 function Player(position, direction, mapManager){
+	this._c = circular.register('Player');
 	this.position = position;
 	this.rotation = direction;
 	this.mapManager = mapManager;

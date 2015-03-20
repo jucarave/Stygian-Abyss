@@ -3,7 +3,6 @@ var ObjectFactory = require('./ObjectFactory');
 var Utils = require('./Utils');
 
 circular.setTransient('MapManager', 'game');
-circular.setTransient('MapManager', 'player');
 
 function MapManager(game, map, depth){
 	this._c = circular.register('MapManager');
