@@ -60,6 +60,13 @@ Vec4.prototype.sum = function(vector){
 	return this;
 };
 
+Vec4.prototype.invert2 = function(){
+	var a = this.a;
+	
+	this.a = this.b;
+	this.b = a;
+};
+
 function vec2(a, b){
 	return new Vec4(a,b,0,0);
 }
