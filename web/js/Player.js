@@ -259,7 +259,10 @@ Player.prototype.checkAction = function(){
 			this.mapManager.game.inventory.destroyItem(weapon);
 			this.mapManager.addMessage(weapon.name + " damaged!");
 		}
+	} else if (game.getKeyPressed(79)){ // O, TODO: change to Ctrl+S 
+		game.saveManager.saveGame();
 	}
+
 };
 
 Player.prototype.doVerticalChecks = function(){

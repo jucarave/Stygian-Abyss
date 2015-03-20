@@ -45,7 +45,9 @@ module.exports = {
 		if (!this.items[itemCode]) throw "Invalid Item code: " + itemCode;
 		
 		var item = this.items[itemCode];
-		var ret = {};
+		var ret = {
+			_c: circular.setSafe()
+		};
 		for (var i in item){
 			ret[i] = item[i];
 		}

@@ -2,7 +2,10 @@ var Billboard = require('./Billboard');
 var ItemFactory = require('./ItemFactory');
 var ObjectFactory = require('./ObjectFactory');
 
+circular.setTransient('Item', 'billboard');
+
 function Item(position, item, mapManager){
+	this._c = circular.register('Item');
 	var gl = mapManager.game.GL.ctx;
 	
 	this.position = position;

@@ -2,8 +2,11 @@ var AnimatedTexture = require('./AnimatedTexture');
 var ObjectFactory = require('./ObjectFactory');
 var Utils = require('./Utils');
 
+circular.setTransient('Enemy', 'billboard');
+circular.setTransient('Enemy', 'textureCoords');
 
 function Enemy(position, enemy, mapManager){
+	this._c = circular.register('Enemy');
 	if (enemy.swim) position.b -= 0.2;
 	
 	this.position = position;

@@ -8,6 +8,7 @@ var MapManager = require('./MapManager');
 var Missile = require('./Missile');
 var ObjectFactory = require('./ObjectFactory');
 var PlayerStats = require('./PlayerStats');
+var SaveManager = require('./SaveManager');
 var TitleScreen = require('./TitleScreen');
 var UI = require('./UI');
 var Utils = require('./Utils');
@@ -31,6 +32,7 @@ function Underworld(){
 	this.player = new PlayerStats();
 	this.inventory = new Inventory(10);
 	this.console = new Console(10, 10, 300, this);
+	this.saveManager = new SaveManager(this);
 	this.font = '10px "Courier"';
 	
 	this.grPack = 'img/';

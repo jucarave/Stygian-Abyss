@@ -21,9 +21,19 @@ function MapAssembler(mapManager, mapData, GL){
 	this.parseObjects(mapData);
 	
 	this.copiedTiles = [];
+	
+	this.initializeTiles(mapData.tiles);
 }
 
 module.exports = MapAssembler;
+
+MapAssembler.prototype.initializeTiles = function(tiles){
+	for (var i = 0; i < tiles.length; i++){
+		if (tiles[i])
+			tiles[i]._c = circular.setSafe();
+	}
+}
+
 
 MapAssembler.prototype.getEmptyGrid = function(){
 	var grid = [];
@@ -38,7 +48,9 @@ MapAssembler.prototype.getEmptyGrid = function(){
 };
 
 MapAssembler.prototype.copyTile = function(tile){
-	var ret = {};
+	var ret = {
+		_c: circular.setSafe()
+	};
 	
 	for (var i in tile){
 		ret[i] = tile[i];

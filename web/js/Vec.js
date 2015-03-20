@@ -1,4 +1,5 @@
 function Vec4(a, b, c, d){
+	this._c = circular.register('Vec4');
 	this.a = a;
 	this.b = b;
 	this.c = c;

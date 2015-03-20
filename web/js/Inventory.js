@@ -1,6 +1,6 @@
 function Inventory(limitItems){
+	this._c = circular.register('Inventory');
 	this.items = [];
-	
 	this.limitItems = limitItems;
 }
 

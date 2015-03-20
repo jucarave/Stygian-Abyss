@@ -2,7 +2,11 @@ var MapAssembler = require('./MapAssembler');
 var ObjectFactory = require('./ObjectFactory');
 var Utils = require('./Utils');
 
+circular.setTransient('MapManager', 'game');
+circular.setTransient('MapManager', 'player');
+
 function MapManager(game, map, depth){
+	this._c = circular.register('MapManager');
 	this.map = null;
 	
 	this.waterTiles = [];
@@ -495,14 +499,14 @@ MapManager.prototype.getInstancesToDraw = function(){
 		var added = false;
 		for (var j=0,jlen=this.orderInstances.length;j<jlen;j++){
 			if (dist > this.orderInstances[j].dist){
-				this.orderInstances.splice(j,0,{ins: ins, dist: dist});
+				this.orderInstances.splice(j,0,{_c: circular.register('OrderInstance'), ins: ins, dist: dist});
 				added = true;
 				j = jlen;
 			}
 		}
 		
 		if (!added){
-			this.orderInstances.push({ins: ins, dist: dist});
+			this.orderInstances.push({_c: circular.register('OrderInstance'), ins: ins, dist: dist});
 		}
 	}
 };

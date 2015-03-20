@@ -1,6 +1,9 @@
 var ObjectFactory = require('./ObjectFactory');
 
+circular.setTransient('Stairs', 'billboard');
+
 function Stairs(position, mapManager, direction){
+	this._c = circular.register("Stairs");
 	this.position = position;
 	this.mapManager = mapManager;
 	this.direction = direction;

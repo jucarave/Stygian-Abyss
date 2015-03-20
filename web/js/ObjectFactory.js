@@ -1,5 +1,10 @@
 var Utils = require('./Utils');
 
+circular.setTransient('WebGLObject', 'vertexBuffer');
+circular.setTransient('WebGLObject', 'texBuffer');
+circular.setTransient('WebGLObject', 'indicesBuffer');
+circular.setTransient('WebGLObject', 'darkBuffer');
+
 module.exports = {
 	normals: {
 		down:  vec2( 0, 1),
@@ -536,6 +541,8 @@ module.exports = {
 			}
 		}
 		
+		// TODO: Recreate buffer data on deserialization
+		
 		// Creates the buffer data for the vertices
 		var vertexBuffer = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
@@ -565,9 +572,9 @@ module.exports = {
 		
 		var buffer = this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer, darkBuffer);
 		buffer.boundaries = rect;
-		
 		return buffer;
 	},
+	
 	
 	getCubeFaces: function(map, x, y){
 		var ret = [1,1,1,1];
@@ -607,6 +614,7 @@ module.exports = {
 	
 	getObjectWithProperties: function(vertexBuffer, indexBuffer, texBuffer, darkBuffer){
 		var obj = {
+			_c: circular.register('WebGLObject'),
 			rotation: vec3(0, 0, 0),
 			position: vec3(0, 0, 0),
 			vertexBuffer: vertexBuffer, 

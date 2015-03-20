@@ -1,4 +1,5 @@
 function PlayerStats(){
+	this._c = circular.register('PlayerStats');
 	this.hp = 0;
 	this.mHP = 0;
 	this.mana = 0;
@@ -12,7 +13,8 @@ function PlayerStats(){
 	this.poisoned = false;
 	
 	this.stats = {
-		str: '0D0',
+		_c: circular.setSafe(),
+		str: '0D0', 
 		dfs: '0D0',
 		dex: 0,
 		magicPower: '0D0'
@@ -33,6 +35,7 @@ PlayerStats.prototype.reset = function(){
 	this.exp = 0;
 	
 	this.stats = {
+		_c: circular.setSafe(),
 		str: '0D0',
 		dfs: '0D0',
 		dex: 0,

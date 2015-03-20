@@ -40,7 +40,9 @@ module.exports = {
 		if (!this.enemies[name]) throw "Invalid enemy name: " + name;
 		
 		var enemy = this.enemies[name];
-		var ret = {};
+		var ret = {
+			_c: circular.setSafe()
+		};
 		
 		for (var i in enemy){
 			ret[i] = enemy[i];
