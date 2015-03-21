@@ -119,6 +119,8 @@ WebGL.prototype.loadImage = function(src, makeItTexture, textureIndex, isSolid, 
 	if (!params) params = {};
 	if (!params.imgNum) params.imgNum = 1;
 	if (!params.imgVNum) params.imgVNum = 1;
+	if (!params.xOrig) params.xOrig = 0;
+	if (!params.yOrig) params.yOrig = 0;
 	
 	var gl = this;
 	var img = new Image();
@@ -130,6 +132,8 @@ WebGL.prototype.loadImage = function(src, makeItTexture, textureIndex, isSolid, 
 	img.isSolid = (isSolid === true);
 	img.imgNum = params.imgNum;
 	img.vImgNum = params.imgVNum;
+	img.xOrig = params.xOrig;
+	img.yOrig = params.yOrig;
 	
 	Utils.addEvent(img, "load", function(){
 		img.imgWidth = img.width / img.imgNum;

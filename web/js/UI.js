@@ -17,6 +17,7 @@ UI.prototype.initCanvas = function(size, container){
 	this.ctx = this.canvas.getContext("2d");
 	this.ctx.width = canvas.width;
 	this.ctx.height = canvas.height;
+	this.ctx.imageSmoothingEnabled = false;
 	
 	container.appendChild(this.canvas);
 	
@@ -37,6 +38,22 @@ UI.prototype.drawSprite = function(sprite, x, y, subImage){
 		);
 };
 
+UI.prototype.drawSpriteExt = function(sprite, x, y, subImage, imageAngle){
+	var xImg = subImage % sprite.imgNum;
+	var yImg = (subImage / sprite.imgNum) << 0;
+	
+	this.ctx.save();
+	this.ctx.translate(x+sprite.xOrig, y+sprite.yOrig);
+	this.ctx.rotate(imageAngle);
+	
+	this.ctx.drawImage(sprite,
+		xImg * sprite.imgWidth, yImg * sprite.imgHeight, sprite.imgWidth, sprite.imgHeight,
+		-sprite.xOrig, -sprite.yOrig, sprite.imgWidth, sprite.imgHeight
+		);
+		
+	this.ctx.restore();
+};
+
 UI.prototype.drawText = function(text, x, y, console){
 	var w = console.spaceChars;
 	var h = console.spriteFont.height;
@@ -50,7 +67,7 @@ UI.prototype.drawText = function(text, x, y, console){
 		}
 		x += w;
 	}
-}
+};
 
 UI.prototype.clear = function(){
 	this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

@@ -105,6 +105,7 @@ Underworld.prototype.loadImages = function(){
 	this.images.restart = this.GL.loadImage(cp + this.grPack + "restart.png?version=" + version, false);
 	this.images.paused = this.GL.loadImage(cp + this.grPack + "paused.png?version=" + version, false);
 	this.images.vpSword = this.GL.loadImage(cp + this.grPack + "vpSword.png?version=" + version, false);
+	this.images.compass = this.GL.loadImage(cp + this.grPack + "compassUI.png?version=" + version, false, 0, 0, {xOrig: 11, yOrig: 11, imgNum: 2, imgVNum: 1});
 };
 
 Underworld.prototype.loadTextures = function(){
@@ -367,9 +368,9 @@ Underworld.prototype.drawUI = function(){
 	// Draw health bar
 	var hp = ps.hp / ps.mHP;
 	ctx.fillStyle = (ps.poisoned)? "rgb(122,0,122)" : "rgb(122,0,0)";
-	ctx.fillRect(8,8,80,4);
+	ctx.fillRect(8,8,75,4);
 	ctx.fillStyle = (ps.poisoned)? "rgb(200,0,200)" : "rgb(200,0,0)";
-	ctx.fillRect(8,8,(80 * hp) << 0,4);
+	ctx.fillRect(8,8,(75 * hp) << 0,4);
 	
 	// Draw mana
 	var mana = ps.mana / ps.mMana;
@@ -380,19 +381,19 @@ Underworld.prototype.drawUI = function(){
 	
 	// Draw Inventory
 	if (this.setDropItem)
-		this.UI.drawSprite(this.images.inventoryDrop, 110, 6, 0);
+		this.UI.drawSprite(this.images.inventoryDrop, 90, 6, 0);
 	else
-		this.UI.drawSprite(this.images.inventory, 110, 6, 0);
+		this.UI.drawSprite(this.images.inventory, 90, 6, 0);
 	
 	for (var i=0,len=this.inventory.items.length;i<len;i++){
 		var item = this.inventory.items[i];
 		var spr = item.tex + '_ui';
 
 		if (!this.setDropItem && (item.type == 'weapon' || item.type == 'armour') && item.equipped)
-			this.UI.drawSprite(this.images.inventorySelected, 110 + (22 * i), 6, 0);		
-		this.UI.drawSprite(this.images[spr], 113 + (22 * i), 9, item.subImg);
+			this.UI.drawSprite(this.images.inventorySelected, 90 + (22 * i), 6, 0);		
+		this.UI.drawSprite(this.images[spr], 93 + (22 * i), 9, item.subImg);
 	}
-	this.UI.drawSprite(this.images.inventory, 110, 6, 1);
+	this.UI.drawSprite(this.images.inventory, 90, 6, 1);
 	
 	// If the player is hurt draw a red screen
 	if (player.hurt > 0.0){
@@ -412,6 +413,10 @@ Underworld.prototype.drawUI = function(){
 	this.UI.drawText(this.player.className, 10,31,this.console);
 	this.UI.drawText('HP: '+ps.hp, 10,9,this.console);
 	this.UI.drawText('Mana:'+ps.mana, 10,17,this.console);
+	
+	// Draw the compass
+	this.UI.drawSprite(this.images.compass, 320, 12, 0);
+	this.UI.drawSpriteExt(this.images.compass, 320, 12, 1, Math.PI + this.map.player.rotation.b);
 	
 	// TODO: Change sprite (or don't draw) based on current weapon
 	this.UI.drawSprite(this.images.vpSword, 220, 130 + this.map.player.launchAttackCounter * 2 - this.map.player.attackWait * 1.5, 0);
