@@ -50,7 +50,7 @@ module.exports = {
 		smallSign: {name: "Sign", tex: "items", subImg: 23, type: 'feature'},
 		lamp: {name: "Lamp", tex: "items", subImg: 24, type: 'feature'},
 		flame: {name: "Flame", tex: "items", subImg: 25, type: 'feature'},
-		campfire: {name: "Campire", tex: "items", subImg: 26, type: 'feature'},
+		campfire: {name: "Campfire", tex: "items", subImg: 26, type: 'feature'},
 		altar: {name: "Altar", tex: "items", subImg: 27, type: 'feature'},
 		prisonerThing: {name: "Shackles", tex: "items", subImg: 28, type: 'feature'},
 		fountain: {name: "Fountain", tex: "items", subImg: 29, type: 'feature'}
