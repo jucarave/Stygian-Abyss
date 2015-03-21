@@ -1,10 +1,5 @@
 var Utils = require('./Utils');
 
-circular.setTransient('WebGLObject', 'vertexBuffer');
-circular.setTransient('WebGLObject', 'texBuffer');
-circular.setTransient('WebGLObject', 'indicesBuffer');
-circular.setTransient('WebGLObject', 'darkBuffer');
-
 module.exports = {
 	normals: {
 		down:  vec2( 0, 1),
@@ -614,7 +609,6 @@ module.exports = {
 	
 	getObjectWithProperties: function(vertexBuffer, indexBuffer, texBuffer, darkBuffer){
 		var obj = {
-			_c: circular.register('WebGLObject'),
 			rotation: vec3(0, 0, 0),
 			position: vec3(0, 0, 0),
 			vertexBuffer: vertexBuffer, 

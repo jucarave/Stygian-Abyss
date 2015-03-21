@@ -1,6 +1,9 @@
 function SaveManager(game){
 	this.game = game;
+	this.storage = new Storage();
 }
+
+var Storage = require('./Storage');
 
 SaveManager.prototype = {
 	saveGame: function(){
@@ -9,13 +12,31 @@ SaveManager.prototype = {
 			version: version, 
 			player: this.game.player,
 			inventory: this.game.inventory,
-			maps: this.game.maps
+			maps: this.game.maps,
+			floorDepth: this.game.floorDepth
 		};
 		var serialized = circular.serialize(saveObject);
 		
-		var serializedObject = JSON.parse(serialized);
+		/*var serializedObject = JSON.parse(serialized);
 		console.log(serializedObject);
-		console.log("Size: "+serialized.length);
+		console.log("Size: "+serialized.length);*/
+		
+		this.storage.setItem('stygianGame', serialized);
+	},
+	restoreGame: function(game){
+		var gameData = this.storage.getItem('stygianGame');
+		if (!gameData){
+			return false;
+		}
+		var deserialized = circular.parse(gameData, game);
+		if (deserialized.version != version){
+			return false;
+		}
+		game.player = deserialized.player;
+		game.inventory = deserialized.inventory;
+		game.maps = deserialized.maps;
+		game.floorDepth = deserialized.floorDepth;
+		return true;
 	}
 }
 

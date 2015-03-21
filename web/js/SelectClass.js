@@ -32,6 +32,7 @@ SelectClass.prototype.step = function(){
 		
 		if (playerS.virtue != null){
 			game.createInitialInventory(playerS.className);
+			game.printGreet();
 			game.loadMap(false, 1);
 		}
 	}

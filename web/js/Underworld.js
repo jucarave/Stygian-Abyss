@@ -242,7 +242,8 @@ Underworld.prototype.getObjectTexture = function(textureCode){
 Underworld.prototype.loadMap = function(map, depth){
 	var game = this;
 	if (depth === undefined || !game.maps[depth - 1]){
-		game.map = new MapManager(game, map, depth);
+		game.map = new MapManager();
+		game.map.init(game, map, depth);
 		game.floorDepth = depth;
 		game.maps.push(game.map);
 	}else if (game.maps[depth - 1]){
@@ -253,16 +254,23 @@ Underworld.prototype.loadMap = function(map, depth){
 		game.playMusic('dungeon'+depth, false);
 	else if (map === 'codexRoom')
 		game.playMusic('codexRoom', false);
+	game.player.currentMap = map;
+	game.player.currentDepth = depth;
 };
 
 Underworld.prototype.printGreet = function(){
-	this.console.messages = [];
-	
 	// Shows a welcome message with the game instructions.
 	this.console.addSFMessage("You enter the legendary Stygian Abyss.");
 	this.console.addSFMessage("Use Q-W-E to move forward, A-S-D to strafe and step back");
 	this.console.addSFMessage("Press Space bar to interact and Enter to attack");
 	this.console.addSFMessage("Press T to drop objects");
+};
+
+Underworld.prototype.printWelcomeBack = function(){
+	this.console.addSFMessage("");
+	this.console.addSFMessage("");
+	this.console.addSFMessage("");
+	this.console.addSFMessage("You wake up.");
 };
 
 Underworld.prototype.newGame = function(){
@@ -272,9 +280,7 @@ Underworld.prototype.newGame = function(){
 	this.maps = [];
 	this.map = null;
 	this.scene = null;
-	
-	this.printGreet();
-		
+	this.console.messages = [];	
 	this.scene = new TitleScreen(this);
 	this.loop();
 };
@@ -701,7 +707,8 @@ Underworld.prototype.dropItem = function(i){
 		cleanPos.a += 0.5;
 		cleanPos.c += 0.5;
 		
-		var nIt = new Item(cleanPos, null, this.map);
+		var nIt = new Item();
+		nIt.init(cleanPos, null, this.map);
 		nIt.setItem(item);
 		this.map.instances.push(nIt);
 		

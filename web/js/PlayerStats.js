@@ -22,6 +22,7 @@ function PlayerStats(){
 }
 
 module.exports = PlayerStats;
+circular.registerClass('PlayerStats', PlayerStats);
 
 PlayerStats.prototype.reset = function(){
 	this.hp = 0;

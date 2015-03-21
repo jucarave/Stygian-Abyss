@@ -4,9 +4,14 @@ var Utils = require('./Utils');
 var cheatEnabled = false;
 
 function Player(position, direction, mapManager){
-	console.log(direction);
-	
 	this._c = circular.register('Player');
+}
+
+module.exports = Player;
+circular.registerClass('Player', Player);
+
+Player.prototype.init = function(position, direction, mapManager){
+	console.log(direction);
 	this.position = position;
 	this.rotation = direction;
 	this.mapManager = mapManager;
@@ -29,9 +34,7 @@ function Player(position, direction, mapManager){
 	
 	this.lavaCounter = 0;
 	this.launchAttackCounter = 0;
-}
-
-module.exports = Player;
+};
 
 Player.prototype.receiveDamage = function(dmg){
 	var game = this.mapManager.game;
@@ -262,8 +265,10 @@ Player.prototype.checkAction = function(){
 			this.mapManager.game.inventory.destroyItem(weapon);
 			this.mapManager.addMessage(weapon.name + " damaged!");
 		}
-	} else if (game.getKeyPressed(79)){ // O, TODO: change to Ctrl+S 
+	} else if (game.getKeyPressed(79)){ // O, TODO: change to Ctrl+S
+		this.mapManager.addMessage("Saving game.");
 		game.saveManager.saveGame();
+		this.mapManager.addMessage("Game Saved.");
 	}
 
 };

@@ -3,8 +3,24 @@ var ObjectFactory = require('./ObjectFactory');
 var Utils = require('./Utils');
 
 circular.setTransient('MapManager', 'game');
+circular.setTransient('MapManager', 'mapToDraw');
 
-function MapManager(game, map, depth){
+circular.setReviver('MapManager', function(object, game){
+	object.game = game;
+	var GL = game.GL.ctx;
+	var mapAssembler = new MapAssembler();
+	object.mapToDraw = [];
+	mapAssembler.assembleTerrain(object, GL);
+});
+
+function MapManager(){
+	this._c = circular.register('MapManager');
+}
+
+module.exports = MapManager;
+circular.registerClass('MapManager', MapManager);
+
+MapManager.prototype.init = function(game, map, depth){
 	this._c = circular.register('MapManager');
 	this.map = null;
 	
@@ -29,9 +45,7 @@ function MapManager(game, map, depth){
 	} else {
 		this.generateMap(depth);
 	}
-}
-
-module.exports = MapManager;
+};
 
 MapManager.prototype.generateMap = function(depth){
 	var config = {
@@ -59,7 +73,8 @@ MapManager.prototype.generateMap = function(depth){
 		window.generatedLevel = (generatedLevel.level);
 		var mapData = kramgineExporter.getLevel(generatedLevel.level);
 		window.mapData = (mapData);
-		new MapAssembler(mapM, mapData, mapM.game.GL.ctx);
+		var mapAssembler = new MapAssembler();
+		mapAssembler.assembleMap(mapM, mapData, mapM.game.GL.ctx);
 		mapM.map = mapData.map;
 		mapM.waterTiles = [101, 103];
 		mapM.getInstancesToDraw();
@@ -83,7 +98,8 @@ MapManager.prototype.loadMap = function(mapName){
   			try{
 				mapData = JSON.parse(http.responseText);
 				
-				new MapAssembler(mapM, mapData, mapM.game.GL.ctx);
+				var mapAssembler = new MapAssembler();
+				mapAssembler.assembleMap(mapM, mapData, mapM.game.GL.ctx);
 				
 				mapM.map = mapData.map;
 				
