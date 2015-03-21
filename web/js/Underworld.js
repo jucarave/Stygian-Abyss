@@ -82,6 +82,9 @@ Underworld.prototype.loadMusic = function(){
 	this.sounds.hit = this.audio.loadAudio(cp + "wav/hit.wav?version=" + version, false);
 	this.sounds.miss = this.audio.loadAudio(cp + "wav/miss.wav?version=" + version, false);
 	this.music.dungeon1 = this.audio.loadAudio(cp + "ogg/08_-_Ultima_4_-_C64_-_Dungeons.ogg?version=" + version, true);
+};
+
+Underworld.prototype.loadMusicPost = function(){
 	this.music.dungeon2 = this.audio.loadAudio(cp + "ogg/12_-_Ultima_5_-_C64_-_Lord_Blackthorn.ogg?version=" + version, true);
 	this.music.dungeon3 = this.audio.loadAudio(cp + "ogg/05_-_Ultima_3_-_C64_-_Combat.ogg?version=" + version, true);
 	this.music.dungeon4 = this.audio.loadAudio(cp + "ogg/07_-_Ultima_3_-_C64_-_Exodus'_Castle.ogg?version=" + version, true);
@@ -90,7 +93,7 @@ Underworld.prototype.loadMusic = function(){
 	this.music.dungeon7 = this.audio.loadAudio(cp + "ogg/11_-_Ultima_5_-_C64_-_Worlds_Below.ogg?version=" + version, true);
 	this.music.dungeon8 = this.audio.loadAudio(cp + "ogg/10_-_Ultima_5_-_C64_-_Halls_of_Doom.ogg?version=" + version, true);
 	this.music.codexRoom = this.audio.loadAudio(cp + "ogg/07_-_Ultima_4_-_C64_-_Shrines.ogg?version=" + version, true);
-};
+}
 
 Underworld.prototype.loadImages = function(){
 	this.images.items_ui = this.GL.loadImage(cp + this.grPack + "itemsUI.png?version=" + version, false, 0, 0, {imgNum: 8, imgVNum: 2});
@@ -204,6 +207,7 @@ Underworld.prototype.loadTextures = function(){
 
 Underworld.prototype.postLoading = function(){
 	this.console.createSpriteFont(this.images.scrollFont, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?,./", 6);
+	this.loadMusicPost();
 };
 
 Underworld.prototype.stopMusic = function(){
@@ -242,7 +246,8 @@ Underworld.prototype.getObjectTexture = function(textureCode){
 Underworld.prototype.loadMap = function(map, depth){
 	var game = this;
 	if (depth === undefined || !game.maps[depth - 1]){
-		game.map = new MapManager(game, map, depth);
+		game.map = new MapManager();
+		game.map.init(game, map, depth);
 		game.floorDepth = depth;
 		game.maps.push(game.map);
 	}else if (game.maps[depth - 1]){
@@ -250,19 +255,26 @@ Underworld.prototype.loadMap = function(map, depth){
 	}
 	game.scene = null;
 	if (depth)
-		game.playMusic('dungeon'+depth, false);
+		game.playMusic('dungeon'+depth, true);
 	else if (map === 'codexRoom')
-		game.playMusic('codexRoom', false);
+		game.playMusic('codexRoom', true);
+	game.player.currentMap = map;
+	game.player.currentDepth = depth;
 };
 
 Underworld.prototype.printGreet = function(){
-	this.console.messages = [];
-	
 	// Shows a welcome message with the game instructions.
 	this.console.addSFMessage("You enter the legendary Stygian Abyss.");
 	this.console.addSFMessage("Use Q-W-E to move forward, A-S-D to strafe and step back");
 	this.console.addSFMessage("Press Space bar to interact and Enter to attack");
 	this.console.addSFMessage("Press T to drop objects");
+};
+
+Underworld.prototype.printWelcomeBack = function(){
+	this.console.addSFMessage("");
+	this.console.addSFMessage("");
+	this.console.addSFMessage("");
+	this.console.addSFMessage("You wake up.");
 };
 
 Underworld.prototype.newGame = function(){
@@ -272,9 +284,7 @@ Underworld.prototype.newGame = function(){
 	this.maps = [];
 	this.map = null;
 	this.scene = null;
-	
-	this.printGreet();
-		
+	this.console.messages = [];	
 	this.scene = new TitleScreen(this);
 	this.loop();
 };
@@ -282,7 +292,7 @@ Underworld.prototype.newGame = function(){
 Underworld.prototype.loadGame = function(){
 	var game = this;
 	
-	if (game.GL.areImagesReady()){
+	if (game.GL.areImagesReady() && game.audio.areSoundsReady()){
 		game.postLoading();
 		game.newGame();
 	}else{
@@ -701,7 +711,8 @@ Underworld.prototype.dropItem = function(i){
 		cleanPos.a += 0.5;
 		cleanPos.c += 0.5;
 		
-		var nIt = new Item(cleanPos, null, this.map);
+		var nIt = new Item();
+		nIt.init(cleanPos, null, this.map);
 		nIt.setItem(item);
 		this.map.instances.push(nIt);
 		

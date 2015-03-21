@@ -6,6 +6,9 @@ function Vec4(a, b, c, d){
 	this.d = d;
 }
 
+circular.registerClass('Vec4', Vec4);
+
+
 Vec4.prototype.equals = function(a, b, c, d){
 	if (c == undefined) c = 0;
 	if (d == undefined) d = 0;

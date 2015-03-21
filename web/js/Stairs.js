@@ -2,8 +2,20 @@ var ObjectFactory = require('./ObjectFactory');
 
 circular.setTransient('Stairs', 'billboard');
 
-function Stairs(position, mapManager, direction){
+circular.setReviver('Stairs', function(object, game){
+	object.billboard = ObjectFactory.billboard(vec3(1.0, 1.0, 1.0), vec2(1.0, 1.0), game.GL.ctx);
+	object.billboard.texBuffer = game.objectTex.stairs.buffers[object.imgInd];
+	object.billboard.noRotate = true;
+});
+
+function Stairs(){
 	this._c = circular.register("Stairs");
+}
+
+module.exports = Stairs;
+circular.registerClass('Stairs', Stairs);
+
+Stairs.prototype.init = function (position, mapManager, direction){
 	this.position = position;
 	this.mapManager = mapManager;
 	this.direction = direction;
@@ -25,8 +37,6 @@ function Stairs(position, mapManager, direction){
 	
 	this.tile = null;
 }
-
-module.exports = Stairs;
 
 Stairs.prototype.activate = function(){
 	if (this.targetId < 9)

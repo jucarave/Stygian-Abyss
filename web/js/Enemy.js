@@ -5,8 +5,19 @@ var Utils = require('./Utils');
 circular.setTransient('Enemy', 'billboard');
 circular.setTransient('Enemy', 'textureCoords');
 
-function Enemy(position, enemy, mapManager){
+circular.setReviver('Enemy', function(object, game) {
+	object.billboard = ObjectFactory.billboard(vec3(1.0, 1.0, 1.0), vec2(1.0, 1.0), game.GL.ctx);
+	object.textureCoords = AnimatedTexture.getByNumFrames(2);
+});
+
+function Enemy(){
 	this._c = circular.register('Enemy');
+}
+
+module.exports = Enemy;
+circular.registerClass('Enemy', Enemy);
+
+Enemy.prototype.init = function(position, enemy, mapManager){
 	if (enemy.swim) position.b -= 0.2;
 	
 	this.position = position;
@@ -31,8 +42,6 @@ function Enemy(position, enemy, mapManager){
 	this.enemyAttackCounter = 0;
 	this.visible = true;
 }
-
-module.exports = Enemy;
 
 Enemy.prototype.receiveDamage = function(dmg){
 	this.hurt = 5.0;

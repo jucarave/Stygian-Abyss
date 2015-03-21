@@ -4,8 +4,23 @@ var ObjectFactory = require('./ObjectFactory');
 
 circular.setTransient('Item', 'billboard');
 
-function Item(position, item, mapManager){
+circular.setReviver('Item', function(object, game){
+	object.billboard = ObjectFactory.billboard(vec3(1.0,1.0,1.0), vec2(1.0, 1.0), game.GL.ctx);
+	object.billboard.texBuffer = null;
+	if (object.item) {
+		object.billboard.texBuffer = game.objectTex[object.item.tex].buffers[object.item.subImg];
+		object.textureCode = object.item.tex;
+	}
+});	
+
+function Item(){
 	this._c = circular.register('Item');
+}
+
+module.exports = Item;
+circular.registerClass('Item', Item);
+
+Item.prototype.init = function(position, item, mapManager){
 	var gl = mapManager.game.GL.ctx;
 	
 	this.position = position;
@@ -21,7 +36,6 @@ function Item(position, item, mapManager){
 	if (item) this.setItem(item);
 }
 
-module.exports = Item;
 
 Item.prototype.setItem = function(item){
 	this.item = item;

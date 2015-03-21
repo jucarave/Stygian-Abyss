@@ -5,6 +5,7 @@ function Inventory(limitItems){
 }
 
 module.exports = Inventory;
+circular.registerClass('Inventory', Inventory);
 
 Inventory.prototype.reset = function(){
 	this.items = [];

@@ -7,13 +7,18 @@ var ObjectFactory = require('./ObjectFactory');
 var Player = require('./Player');
 var Stairs = require('./Stairs');
 
-function MapAssembler(mapManager, mapData, GL){
+function MapAssembler(){
+}
+
+module.exports = MapAssembler;
+
+MapAssembler.prototype.assembleMap = function(mapManager, mapData, GL){
 	this.mapManager =  mapManager;
 	this.copiedTiles = [];
 	
 	this.parseMap(mapData, GL);
 				
-	this.assembleFloor(mapData, GL);
+	this.assembleFloor(mapData, GL); 
 	this.assembleCeils(mapData, GL);
 	this.assembleBlocks(mapData, GL);
 	this.assembleSlopes(mapData, GL);
@@ -25,7 +30,13 @@ function MapAssembler(mapManager, mapData, GL){
 	this.initializeTiles(mapData.tiles);
 }
 
-module.exports = MapAssembler;
+MapAssembler.prototype.assembleTerrain = function(mapManager, GL){
+	this.mapManager =  mapManager;
+	this.assembleFloor(mapManager, GL); 
+	this.assembleCeils(mapManager, GL);
+	this.assembleBlocks(mapManager, GL);
+	this.assembleSlopes(mapManager, GL);
+}
 
 MapAssembler.prototype.initializeTiles = function(tiles){
 	for (var i = 0; i < tiles.length; i++){
@@ -252,19 +263,26 @@ MapAssembler.prototype.parseObjects = function(mapData){
 		
 		switch (o.type){
 			case "player":
-				this.mapManager.player = new Player(vec3(x, y, z), vec3(0.0, o.dir * Math.PI_2, 0.0), this.mapManager);
+				this.mapManager.player = new Player();
+				this.mapManager.player.init(vec3(x, y, z), vec3(0.0, o.dir * Math.PI_2, 0.0), this.mapManager);
 			break;
 			case "item":
 				var status = Math.min(0.3 + (Math.random() * 0.7), 1.0);
 				var item = ItemFactory.getItemByCode(o.item, status);
-				this.mapManager.instances.push(new Item(vec3(x, y, z), item, this.mapManager));
+				var itemObject = new Item();
+				itemObject.init(vec3(x, y, z), item, this.mapManager);
+				this.mapManager.instances.push(itemObject);
 			break;
 			case "enemy":
 				var enemy = EnemyFactory.getEnemy(o.enemy);
-				this.mapManager.instances.push(new Enemy(vec3(x, y, z), enemy, this.mapManager));
+				var enemyObject = new Enemy();
+				enemyObject.init(vec3(x, y, z), enemy, this.mapManager);
+				this.mapManager.instances.push(enemyObject);
 			break;
 			case "stairs":
-				this.mapManager.instances.push(new Stairs(vec3(x, y, z), this.mapManager, o.dir));
+				var stairsObj = new Stairs();
+				stairsObj.init(vec3(x, y, z), this.mapManager, o.dir);
+				this.mapManager.instances.push(stairsObj);
 			break;
 			case "door":
 				var xx = (x << 0) - ((o.dir == "H")? 1 : 0);
