@@ -45,6 +45,8 @@ Item.prototype.activate = function(){
 			mm.addMessage("may be lost forever.")
 			mm.addMessage("Return now unto thine our world, live there as an example to thy");
 			mm.addMessage("people, as our memory of thy gallant deeds serves us.")
+		} else if (this.item.type == 'feature'){
+			mm.addMessage("You see a "+this.item.name);
 		} else if (game.addItem(this.item)){
 			var stat = '';
 			if (this.item.status !== undefined)

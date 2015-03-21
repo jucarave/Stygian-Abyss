@@ -39,6 +39,21 @@ module.exports = {
 		
 		// Codex
 		codex: {name: "Codex of Ultimate Wisdom", tex: "items", subImg: 16, type: 'codex'},
+		
+		// Temp: Dungeon features as items
+		orb: {name: "Orb", tex: "items", subImg: 17, type: 'feature'},
+		deadTree: {name: "Dead Tree", tex: "items", subImg: 18, type: 'feature'},
+		tree: {name: "Tree", tex: "items", subImg: 19, type: 'feature'},
+		statue: {name: "Statue", tex: "items", subImg: 20, type: 'feature'},
+		signPost: {name: "Signpost", tex: "items", subImg: 21, type: 'feature'},
+		well: {name: "Well", tex: "items", subImg: 22, type: 'feature'},
+		smallSign: {name: "Sign", tex: "items", subImg: 23, type: 'feature'},
+		lamp: {name: "Lamp", tex: "items", subImg: 24, type: 'feature'},
+		flame: {name: "Flame", tex: "items", subImg: 25, type: 'feature'},
+		campfire: {name: "Campire", tex: "items", subImg: 26, type: 'feature'},
+		altar: {name: "Altar", tex: "items", subImg: 27, type: 'feature'},
+		prisonerThing: {name: "Shackles", tex: "items", subImg: 28, type: 'feature'},
+		fountain: {name: "Fountain", tex: "items", subImg: 29, type: 'feature'}
 	},
 	
 	getItemByCode: function(itemCode, status){
