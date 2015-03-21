@@ -255,9 +255,9 @@ Underworld.prototype.loadMap = function(map, depth){
 	}
 	game.scene = null;
 	if (depth)
-		game.playMusic('dungeon'+depth, false);
+		game.playMusic('dungeon'+depth, true);
 	else if (map === 'codexRoom')
-		game.playMusic('codexRoom', false);
+		game.playMusic('codexRoom', true);
 	game.player.currentMap = map;
 	game.player.currentDepth = depth;
 };
