@@ -28,7 +28,7 @@ function Enemy(position, enemy, mapManager){
 	this.sleep = 0;
 	
 	this.attackWait = 0.0;
-	
+	this.enemyAttackCounter = 0;
 	this.visible = true;
 }
 
@@ -134,11 +134,6 @@ Enemy.prototype.moveTo = function(xTo, zTo){
 
 Enemy.prototype.attackPlayer = function(player){
 	if (this.hurt > 0.0) return;
-	if (this.attackWait > 0){
-		this.attackWait -= 1;
-		return;
-	}
-	
 	var str = Utils.rollDice(this.enemy.stats.str);
 	var dfs = Utils.rollDice(this.mapManager.game.player.stats.dfs);
 	
@@ -148,8 +143,6 @@ Enemy.prototype.attackPlayer = function(player){
 	}
 	
 	var dmg = Math.max(str - dfs, 0);
-	
-	this.mapManager.addMessage(this.enemy.name + " attacks!");
 	
 	if (dmg > 0){
 		this.mapManager.addMessage(dmg + " damage inflicted");
@@ -162,19 +155,33 @@ Enemy.prototype.attackPlayer = function(player){
 };
 
 Enemy.prototype.step = function(){
-	if (this.target){
-		var player = this.mapManager.player;
-		if (player.destroyed) return;
-		var p = player.position;
-		
+	var player = this.mapManager.player;
+	if (player.destroyed) return;
+	var p = player.position;
+	if (this.enemyAttackCounter > 0){
+		this.enemyAttackCounter --;
+		if (this.enemyAttackCounter == 0){
+			var xx = Math.abs(p.a - this.position.a);
+			var yy = Math.abs(p.c - this.position.c);
+			if (xx <= 1 && yy <=1){
+				this.attackPlayer(player);
+				return;
+			}
+		}
+	} else if (this.target){
 		var xx = Math.abs(p.a - this.position.a);
 		var yy = Math.abs(p.c - this.position.c);
-		
+		if (this.attackWait > 0){
+			this.attackWait --;
+		}
 		if (xx <= 1 && yy <=1){
-			this.attackPlayer(player);
+			if (this.attackWait == 0){
+				this.mapManager.addMessage(this.enemy.name + " attacks!");
+				this.enemyAttackCounter = 10;
+			}
 			return;
 		}
-		
+
 		if (xx > 10 || yy > 10){
 			this.target = null;
 			return;
