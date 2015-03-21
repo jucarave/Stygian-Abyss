@@ -5,13 +5,13 @@ module.exports = {
 		redPotion: {name: "Red Potion", tex: "items", subImg: 1, type: 'potion'},
 		
 		// Weapons
-		staff: {name: "Staff", tex: "items", subImg: 2, type: 'weapon', str: '4D4', wear: 0.02},
-		dagger: {name: "Dagger", tex: "items", subImg: 3, type: 'weapon', str: '3D8', wear: 0.05},
+		staff: {name: "Staff", tex: "items", subImg: 2, viewPortImg: 1, type: 'weapon', str: '4D4', wear: 0.02},
+		dagger: {name: "Dagger", tex: "items", subImg: 3, viewPortImg: 2, type: 'weapon', str: '3D8', wear: 0.05},
 		sling: {name: "Sling", tex: "items", subImg: 4, type: 'weapon', str: '4D8', ranged: true, subItemName: 'rock', wear: 0.04},
-		mace: {name: "Mace", tex: "items", subImg: 5, type: 'weapon', str: '10D4', wear: 0.03},
-		axe: {name: "Axe", tex: "items", subImg: 6, type: 'weapon', str: '12D4', wear: 0.01},
-		sword: {name: "Sword", tex: "items", subImg: 8, type: 'weapon', str: '16D4', wear: 0.008},
-		mysticSword: {name: "Mystic Sword", tex: "items", subImg: 9, type: 'weapon', str: '16D16', wear: 0.008},
+		mace: {name: "Mace", tex: "items", subImg: 5, viewPortImg: 3, type: 'weapon', str: '10D4', wear: 0.03},
+		axe: {name: "Axe", tex: "items", subImg: 6, viewPortImg: 4, type: 'weapon', str: '12D4', wear: 0.01},
+		sword: {name: "Sword", tex: "items", subImg: 8, viewPortImg: 0, type: 'weapon', str: '16D4', wear: 0.008},
+		mysticSword: {name: "Mystic Sword", tex: "items", subImg: 9, viewPortImg: 5, type: 'weapon', str: '16D16', wear: 0.008},
 		bow: {name: "Bow", tex: "items", subImg: 10, type: 'weapon', str: '10D4', ranged: true, subItemName: 'arrow', wear: 0.01},
 		crossbow: {name: "Crossbow", tex: "items", subImg: 11, type: 'weapon', str: '16D4', ranged: true, subItemName: 'crossbow bolt', wear: 0.008},
 		

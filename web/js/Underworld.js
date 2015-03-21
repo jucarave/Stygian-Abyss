@@ -104,7 +104,7 @@ Underworld.prototype.loadImages = function(){
 	this.images.scrollFont = this.GL.loadImage(cp + this.grPack + "scrollFontWhite.png?version=" + version, false);
 	this.images.restart = this.GL.loadImage(cp + this.grPack + "restart.png?version=" + version, false);
 	this.images.paused = this.GL.loadImage(cp + this.grPack + "paused.png?version=" + version, false);
-	this.images.vpSword = this.GL.loadImage(cp + this.grPack + "vpSword.png?version=" + version, false);
+	this.images.viewportWeapons = this.GL.loadImage(cp + this.grPack + "viewportWeapons.png?version=" + version, false, 0, 0, {imgNum: 4, imgVNum: 4});
 };
 
 Underworld.prototype.loadTextures = function(){
@@ -413,8 +413,9 @@ Underworld.prototype.drawUI = function(){
 	this.UI.drawText('HP: '+ps.hp, 10,9,this.console);
 	this.UI.drawText('Mana:'+ps.mana, 10,17,this.console);
 	
-	// TODO: Change sprite (or don't draw) based on current weapon
-	this.UI.drawSprite(this.images.vpSword, 220, 130 + this.map.player.launchAttackCounter * 2 - this.map.player.attackWait * 1.5, 0);
+	var weapon = this.inventory.getWeapon();
+	if (weapon && weapon.viewPortImg >= 0)
+		this.UI.drawSprite(this.images.viewportWeapons, 160, 130 + this.map.player.launchAttackCounter * 2 - this.map.player.attackWait * 1.5, weapon.viewPortImg);
 	
 	game.console.render(8, 130);
 };
