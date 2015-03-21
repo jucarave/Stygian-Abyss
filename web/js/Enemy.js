@@ -100,7 +100,7 @@ Enemy.prototype.moveTo = function(xTo, zTo){
 	var fakePos = this.position.clone();
 		
 	for (var i=0;i<2;i++){
-		var normal = this.mapManager.getWallNormal(fakePos, spd, this.cameraHeight, this.onWater);
+		var normal = this.mapManager.getBBoxWallNormal(fakePos, spd, 0.3);
 		if (!normal){ normal = this.mapManager.getInstanceNormal(fakePos, spd, this.cameraHeight, this); } 
 		
 		if (normal){

@@ -334,6 +334,72 @@ MapManager.prototype.isSolid = function(x, z, y){
 	return true;
 };
 
+MapManager.prototype.checkBoxCollision = function(box1, box2){
+	if (box1.x2 < box2.x1 || box1.x1 > box2.x2 || box1.z2 < box2.z1 || box1.z1 > box2.z2){
+		return false;
+	}
+	
+	return true;
+};
+
+MapManager.prototype.getBBoxWallNormal = function(pos, spd, bWidth){
+	var x = ((pos.a + spd.a) << 0);
+	var z = ((pos.c + spd.b) << 0);
+	var y = pos.b;
+	
+	var bBox = {
+		x1: pos.a + spd.a - bWidth,
+		z1: pos.c + spd.b - bWidth,
+		x2: pos.a + spd.a + bWidth,
+		z2: pos.c + spd.b + bWidth
+	};
+	
+	var xm = x - 1;
+	var zm = z - 1;
+	var xM = xm + 3;
+	var zM = zm + 3;
+	
+	var t;
+	for (var zz=zm;zz<zM;zz++){
+		for (var xx=xm;xx<xM;xx++){
+			if (!this.map[zz]) continue;
+			if (this.map[zz][xx] === undefined) continue;
+			if (this.map[zz][xx] === 0) continue;
+			
+			t = this.map[zz][xx];
+			
+			if (!t.w && !t.dw && !t.wd) continue;
+			if (t.y+1 <= y) continue;
+			else if (t.y > y + 1) continue;
+			
+			var box = {
+				x1: xx,
+				z1: zz,
+				x2: xx + 1,
+				z2: zz + 1
+			};
+			
+			if (this.checkBoxCollision(bBox, box)){
+				var xxx = pos.a - xx;
+				var zzz = pos.c - zz;
+				
+				var nV = this.wallHasNormal(xx, zz, 'u') || this.wallHasNormal(xx, zz, 'd');
+				var nH = this.wallHasNormal(xx, zz, 'r') || this.wallHasNormal(xx, zz, 'l');
+				
+				if (zzz >= -bWidth && zzz < 1 + bWidth && nH){
+					return ObjectFactory.normals.left;
+				}
+				
+				if (xxx >= -bWidth && xxx < 1 + bWidth && nV){
+					return ObjectFactory.normals.up;
+				}
+			}
+		}
+	}
+	
+	return null;
+};
+
 MapManager.prototype.getWallNormal = function(pos, spd, h, inWater){
 	var t, th;
 	var y = pos.b;
