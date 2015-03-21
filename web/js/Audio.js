@@ -136,3 +136,11 @@ AudioAPI.prototype.mute = function(){
 		this.gainNode.gain.value = 1;
 	}
 };
+
+AudioAPI.prototype.areSoundsReady = function(){
+	for (var i=0,len=this._audio.length;i<len;i++){
+		if (!this._audio[i].ready) return false;
+	}
+	
+	return true;
+};
