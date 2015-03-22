@@ -37,6 +37,9 @@ SaveManager.prototype = {
 		game.maps = deserialized.maps;
 		game.floorDepth = deserialized.floorDepth;
 		return true;
+	},
+	deleteGame: function(){
+		this.storage.removeItem('stygianGame');
 	}
 }
 

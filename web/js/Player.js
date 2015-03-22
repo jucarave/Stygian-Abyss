@@ -4,7 +4,7 @@ var Utils = require('./Utils');
 var cheatEnabled = false;
 
 function Player(position, direction, mapManager){
-	this._c = circular.register('Player');
+	this._c = circular.register('Player'); 
 }
 
 module.exports = Player;
@@ -46,6 +46,7 @@ Player.prototype.receiveDamage = function(dmg){
 	if (player.hp <= 0){
 		player.hp = 0;
 		this.mapManager.addMessage("You died!");
+		game.saveManager.deleteGame();
 		this.destroyed = true;
 	}
 };
