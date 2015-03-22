@@ -206,7 +206,7 @@ Underworld.prototype.loadTextures = function(){
 };
 
 Underworld.prototype.postLoading = function(){
-	this.console.createSpriteFont(this.images.scrollFont, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?,./", 6);
+	this.console.createSpriteFont(this.images.scrollFont, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?,./", 7);
 	this.loadMusicPost();
 };
 
@@ -431,7 +431,7 @@ Underworld.prototype.drawUI = function(){
 	var weapon = this.inventory.getWeapon();
 	if (weapon && weapon.viewPortImg >= 0)
 		this.UI.drawSprite(this.images.viewportWeapons, 160, 130 + this.map.player.launchAttackCounter * 2 - this.map.player.attackWait * 1.5, weapon.viewPortImg);
-	game.console.render(8, 130);
+	game.console.render(8, 120);
 };
 
 Underworld.prototype.addExperience = function(expPoints){

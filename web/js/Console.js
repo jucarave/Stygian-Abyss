@@ -21,10 +21,42 @@ Console.prototype.render = function(/*Int*/ x, /*Int*/ y){
 	ctx.drawImage(this.sfContext.canvas, x, y);
 };
 
+Console.prototype.parseFont = function(spriteFont){
+	var charasWidth = [];
+	
+	var canvas = document.createElement("canvas");
+	canvas.width = spriteFont.width;
+	canvas.height = spriteFont.height;
+	
+	var ctx = canvas.getContext("2d");
+	ctx.drawImage(spriteFont, 0, 0);
+	
+	var imgData = ctx.getImageData(0,0,canvas.width,1);
+	var width = 0;
+	for (var i=0,len=imgData.data.length;i<len;i+=4){
+		var r = imgData.data[i];
+		var g = imgData.data[i+1];
+		var b = imgData.data[i+2];
+		
+		if (r == 255 && g == 0 && b == 255){
+			width++;
+		}else{
+			if (width != 0){
+				charasWidth.push(width);
+				width = 0;
+			}
+		}
+	}
+	
+	return charasWidth;
+};
+
 Console.prototype.createSpriteFont = function(/*Image*/ spriteFont, /*String*/ charactersUsed, /*Int*/ verticalSpace){
 	this.spriteFont = spriteFont;
 	this.listOfChars = charactersUsed;
 	this.spaceLines = verticalSpace;
+	
+	this.charasWidth = this.parseFont(spriteFont);
 	
 	var canvas = document.createElement("canvas");
 	canvas.width = 100;
@@ -84,11 +116,13 @@ Console.prototype.addSFMessage = function(/*String*/ message){
 			
 			if (ind != -1){
 				this.sfContext.drawImage(this.spriteFont,
-					w * ind, 0, w, h,
-					x, y, w, h);
+					w * ind, 1, w, h - 1,
+					x, y, w, h - 1);
+					
+				x += this.charasWidth[ind] + 1;
+			}else{
+				x += w;
 			}
-			
-			x += w;
 		}
 	}
 };

@@ -62,8 +62,8 @@ UI.prototype.drawText = function(text, x, y, console){
 		var ind = console.listOfChars.indexOf(chara);
 		if (ind != -1){
 			this.ctx.drawImage(console.spriteFont,
-				w * ind, 0, w, h,
-				x, y, w, h);
+				w * ind, 1, w, h - 1,
+				x, y, w, h - 1);
 		}
 		x += w;
 	}
