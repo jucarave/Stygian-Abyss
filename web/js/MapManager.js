@@ -385,8 +385,8 @@ MapManager.prototype.getBBoxWallNormal = function(pos, spd, bWidth){
 			t = this.map[zz][xx];
 			
 			if (!t.w && !t.dw && !t.wd) continue;
-			if (t.y+1 <= y) continue;
-			else if (t.y > y + 1) continue;
+			if (t.y+t.h <= y) continue;
+			else if (t.y > y + 0.5) continue;
 			
 			var box = {
 				x1: xx,
