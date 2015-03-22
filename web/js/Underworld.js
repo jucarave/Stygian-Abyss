@@ -267,7 +267,7 @@ Underworld.prototype.printGreet = function(){
 	this.console.addSFMessage("You enter the legendary Stygian Abyss.");
 	this.console.addSFMessage("Use Q-W-E to move forward, A-S-D to strafe and step back");
 	this.console.addSFMessage("Press Space bar to interact and Enter to attack");
-	this.console.addSFMessage("Press T to drop objects");
+	this.console.addSFMessage("Press T to drop objects and O to Save your game");
 };
 
 Underworld.prototype.printWelcomeBack = function(){
