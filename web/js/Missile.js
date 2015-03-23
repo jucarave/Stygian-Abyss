@@ -67,7 +67,11 @@ Missile.prototype.checkCollision = function(){
 	var z = this.position.c << 0;
 	var tile = map[z][x];
 	
-	if (tile.w || tile.wd || tile.wd) return false;
+	if (tile.w || tile.wd || tile.wd){
+		if (!(tile.y + tile.h < y || tile.y > y)){
+			 return false;
+		}
+	}
 	if (y < tile.fy || y > tile.ch) return false;
 	
 	var ins, dfs;

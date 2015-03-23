@@ -38,22 +38,22 @@ module.exports = {
 		kill: {name: "Spellmix of Kill", tex: "spells", subImg: 13, type: 'magic', str: '400D5', mana: 25},
 		
 		// Codex
-		codex: {name: "Codex of Ultimate Wisdom", tex: "items", subImg: 16, type: 'codex'},
+		codex: {name: "Codex of Ultimate Wisdom", tex: "itemsMisc", subImg: 0, type: 'codex'},
 		
 		// Temp: Dungeon features as items
-		orb: {name: "Orb", tex: "items", subImg: 17, type: 'feature'},
-		deadTree: {name: "Dead Tree", tex: "items", subImg: 18, type: 'feature'},
-		tree: {name: "Tree", tex: "items", subImg: 19, type: 'feature'},
-		statue: {name: "Statue", tex: "items", subImg: 20, type: 'feature'},
-		signPost: {name: "Signpost", tex: "items", subImg: 21, type: 'feature'},
-		well: {name: "Well", tex: "items", subImg: 22, type: 'feature'},
-		smallSign: {name: "Sign", tex: "items", subImg: 23, type: 'feature'},
-		lamp: {name: "Lamp", tex: "items", subImg: 24, type: 'feature'},
-		flame: {name: "Flame", tex: "items", subImg: 25, type: 'feature'},
-		campfire: {name: "Campfire", tex: "items", subImg: 26, type: 'feature'},
-		altar: {name: "Altar", tex: "items", subImg: 27, type: 'feature'},
-		prisonerThing: {name: "Shackles", tex: "items", subImg: 28, type: 'feature'},
-		fountain: {name: "Fountain", tex: "items", subImg: 29, type: 'feature'}
+		orb: {name: "Orb", tex: "itemsMisc", subImg: 1, type: 'feature'},
+		deadTree: {name: "Dead Tree", tex: "itemsMisc", subImg: 2, type: 'feature'},
+		tree: {name: "Tree", tex: "itemsMisc", subImg: 3, type: 'feature'},
+		statue: {name: "Statue", tex: "itemsMisc", subImg: 4, type: 'feature'},
+		signPost: {name: "Signpost", tex: "itemsMisc", subImg: 5, type: 'feature'},
+		well: {name: "Well", tex: "itemsMisc", subImg: 6, type: 'feature'},
+		smallSign: {name: "Sign", tex: "itemsMisc", subImg: 7, type: 'feature'},
+		lamp: {name: "Lamp", tex: "itemsMisc", subImg: 8, type: 'feature'},
+		flame: {name: "Flame", tex: "itemsMisc", subImg: 9, type: 'feature'},
+		campfire: {name: "Campfire", tex: "itemsMisc", subImg: 10, type: 'feature'},
+		altar: {name: "Altar", tex: "itemsMisc", subImg: 11, type: 'feature'},
+		prisonerThing: {name: "Shackles", tex: "itemsMisc", subImg: 12, type: 'feature'},
+		fountain: {name: "Fountain", tex: "itemsMisc", subImg: 13, animationLength: 4, type: 'feature', solid: true}
 	},
 	
 	getItemByCode: function(itemCode, status){
