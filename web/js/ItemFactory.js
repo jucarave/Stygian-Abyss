@@ -40,19 +40,19 @@ module.exports = {
 		// Codex
 		codex: {name: "Codex of Ultimate Wisdom", tex: "itemsMisc", subImg: 0, type: 'codex'},
 		
-		// Temp: Dungeon features as items
-		orb: {name: "Orb", tex: "itemsMisc", subImg: 1, type: 'feature'},
-		deadTree: {name: "Dead Tree", tex: "itemsMisc", subImg: 2, type: 'feature'},
-		tree: {name: "Tree", tex: "itemsMisc", subImg: 3, type: 'feature'},
-		statue: {name: "Statue", tex: "itemsMisc", subImg: 4, type: 'feature'},
-		signPost: {name: "Signpost", tex: "itemsMisc", subImg: 5, type: 'feature'},
-		well: {name: "Well", tex: "itemsMisc", subImg: 6, type: 'feature'},
-		smallSign: {name: "Sign", tex: "itemsMisc", subImg: 7, type: 'feature'},
-		lamp: {name: "Lamp", tex: "itemsMisc", subImg: 8, type: 'feature'},
-		flame: {name: "Flame", tex: "itemsMisc", subImg: 9, type: 'feature'},
-		campfire: {name: "Campfire", tex: "itemsMisc", subImg: 10, type: 'feature'},
-		altar: {name: "Altar", tex: "itemsMisc", subImg: 11, type: 'feature'},
-		prisonerThing: {name: "Shackles", tex: "itemsMisc", subImg: 12, type: 'feature'},
+		// Dungeon features
+		orb: {name: "Orb", tex: "itemsMisc", subImg: 1, type: 'feature', solid: true},
+		deadTree: {name: "Dead Tree", tex: "itemsMisc", subImg: 2, type: 'feature', solid: true},
+		tree: {name: "Tree", tex: "itemsMisc", subImg: 3, type: 'feature', solid: true},
+		statue: {name: "Statue", tex: "itemsMisc", subImg: 4, type: 'feature', solid: true},
+		signPost: {name: "Signpost", tex: "itemsMisc", subImg: 5, type: 'feature', solid: true},
+		well: {name: "Well", tex: "itemsMisc", subImg: 6, type: 'feature', solid: true},
+		smallSign: {name: "Sign", tex: "itemsMisc", subImg: 7, type: 'feature', solid: true},
+		lamp: {name: "Lamp", tex: "itemsMisc", subImg: 8, type: 'feature', solid: true},
+		flame: {name: "Flame", tex: "itemsMisc", subImg: 9, type: 'feature', solid: true},
+		campfire: {name: "Campfire", tex: "itemsMisc", subImg: 10, type: 'feature', solid: true},
+		altar: {name: "Altar", tex: "itemsMisc", subImg: 11, type: 'feature', solid: true},
+		prisonerThing: {name: "Stocks", tex: "itemsMisc", subImg: 12, type: 'feature', solid: true},
 		fountain: {name: "Fountain", tex: "itemsMisc", subImg: 13, animationLength: 4, type: 'feature', solid: true}
 	},
 	
