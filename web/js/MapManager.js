@@ -66,7 +66,7 @@ MapManager.prototype.generateMap = function(depth){
 	};
 	var generator = new Generator(config);
 	var kramgineExporter = new KramgineExporter(config);
-	var generatedLevel = generator.generateLevel(depth);
+	var generatedLevel = generator.generateLevel(depth, this.game.uniqueRegistry);
 	
 	var mapM = this;
 	try{

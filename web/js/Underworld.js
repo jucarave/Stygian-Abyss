@@ -41,6 +41,9 @@ function Underworld(){
 	this.map = null;
 	this.maps = [];
 	this.keys = [];
+	this.uniqueRegistry = {
+		_c: circular.setSafe()
+	};
 	this.mouse = vec3(0.0, 0.0, 0);
 	this.mouseMovement = {x: -10000, y: -10000};
 	this.images = {};
@@ -482,10 +485,10 @@ Underworld.prototype.createInitialInventory = function(className){
 	}
 	switch (className){
 	case 'Druid': case 'Ranger':
-		this.inventory.items.push(ItemFactory.getItemByCode('bow', 0.6));
+		this.inventory.items.push(ItemFactory.getItemByCode('bowMagic', 0.6));
 		break;
 	case 'Bard': case 'Tinker':
-		this.inventory.items.push(ItemFactory.getItemByCode('sling', 0.7));
+		this.inventory.items.push(ItemFactory.getItemByCode('slingEttin', 0.7));
 		break;
 		
 	}

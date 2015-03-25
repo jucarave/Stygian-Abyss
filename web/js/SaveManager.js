@@ -13,7 +13,8 @@ SaveManager.prototype = {
 			player: this.game.player,
 			inventory: this.game.inventory,
 			maps: this.game.maps,
-			floorDepth: this.game.floorDepth
+			floorDepth: this.game.floorDepth,
+			uniqueRegistry: this.game.uniqueRegistry
 		};
 		var serialized = circular.serialize(saveObject);
 		
@@ -36,6 +37,7 @@ SaveManager.prototype = {
 		game.inventory = deserialized.inventory;
 		game.maps = deserialized.maps;
 		game.floorDepth = deserialized.floorDepth;
+		game.uniqueRegistry = deserialized.uniqueRegistry;
 		return true;
 	},
 	deleteGame: function(){
