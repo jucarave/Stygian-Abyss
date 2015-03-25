@@ -533,8 +533,10 @@ Underworld.prototype.activeSpell = function(index){
 			if (this.player.poisoned){
 				this.player.poisoned = false;
 				this.console.addSFMessage("AN NOX!");
+				this.console.addSFMessage("You are cured.");
 			}else{
 				this.console.addSFMessage("AN NOX...");
+				this.console.addSFMessage("Nothing happens");
 			}
 		break;
 		
@@ -710,7 +712,7 @@ Underworld.prototype.dropItem = function(i){
 	var player = this.map.player;
 	var cleanPos = this.map.getNearestCleanItemTile(player.position.a, player.position.c);
 	if (!cleanPos){
-		this.console.addSFMessage('Can not drop it here');
+		this.console.addSFMessage('Cannot drop it here');
 		this.setDropItem = false;
 	}else{
 		this.console.addSFMessage(item.name + ' dropped');
@@ -777,7 +779,7 @@ Underworld.prototype.checkInvControl = function(){
 				this.console.addSFMessage(item.name + ' wielded');
 				this.inventory.equipItem(i);
 			}else if (item.type == 'armour' && !item.equipped){
-				this.console.addSFMessage(item.name + ' wore');
+				this.console.addSFMessage(item.name + ' worn');
 				this.inventory.equipItem(i);
 			}else if (item.type == 'magic'){
 				this.activeSpell(i);
