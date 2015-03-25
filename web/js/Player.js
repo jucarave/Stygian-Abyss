@@ -65,7 +65,7 @@ Player.prototype.castMissile = function(weapon){
 	missile.missed = (prob > ps.stats.dex);
 	if (weapon) 
 		weapon.status *= (1.0 - weapon.wear); // TODO: Enhance weapon degradation
-	this.mapManager.addMessage("You shoot a " + weapon.subItemName);
+	//this.mapManager.addMessage("You shoot a " + weapon.subItemName);
 	this.mapManager.instances.push(missile);
 	this.attackWait = 30;
 	this.moved = true;
@@ -111,7 +111,7 @@ Player.prototype.castAttack = function(target, weapon){
 	var prob = Math.random();
 	if (prob > ps.stats.dex){
 		game.playSound('miss');
-		this.mapManager.addMessage("Missed!");
+		//this.mapManager.addMessage("Missed!");
 		return;
 	}
 	
@@ -123,14 +123,15 @@ Player.prototype.castAttack = function(target, weapon){
 	
 	var dmg = Math.max(str - dfs, 0) << 0;
 	
-	this.mapManager.addMessage("Attacking " + target.enemy.name);
+	//this.mapManager.addMessage("Attacking " + target.enemy.name);
 	
 	if (dmg > 0){
 		game.playSound('hit');
-		this.mapManager.addMessage(dmg + " points inflicted");
+		this.mapManager.addMessage(target.enemy.name + " damaged x"+dmg); // TODO: Replace with damage popup on the enemy
 		target.receiveDamage(dmg);
 	}else{
-		this.mapManager.addMessage("Blocked!");
+		// this.mapManager.addMessage("Blocked!");
+		this.mapManager.game.playSound('block');
 	}
 	
 	if (weapon) 

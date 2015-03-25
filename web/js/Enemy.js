@@ -49,7 +49,7 @@ Enemy.prototype.receiveDamage = function(dmg){
 	this.enemy.hp -= dmg;
 	if (this.enemy.hp <= 0){
 		this.mapManager.game.addExperience(this.enemy.stats.exp);
-		this.mapManager.addMessage(this.enemy.name + " killed");
+		//this.mapManager.addMessage(this.enemy.name + " killed");
 		this.destroyed = true;
 	}
 };
@@ -154,10 +154,11 @@ Enemy.prototype.attackPlayer = function(player){
 	var dmg = Math.max(str - dfs, 0);
 	
 	if (dmg > 0){
-		this.mapManager.addMessage(dmg + " damage inflicted");
+		this.mapManager.addMessage(this.enemy.name + " attacks x"+dmg);
 		player.receiveDamage(dmg);
 	}else{
-		this.mapManager.addMessage("Blocked!");
+		//this.mapManager.addMessage("Blocked!");
+		this.mapManager.game.playSound('block');
 	}
 	
 	this.attackWait = 90;
@@ -185,7 +186,7 @@ Enemy.prototype.step = function(){
 		}
 		if (xx <= 1 && yy <=1){
 			if (this.attackWait == 0){
-				this.mapManager.addMessage(this.enemy.name + " attacks!");
+				// this.mapManager.addMessage(this.enemy.name + " attacks!"); Removed, will be replaced by attack animation
 				this.enemyAttackCounter = 10;
 			}
 			return;

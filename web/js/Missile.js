@@ -117,18 +117,18 @@ Missile.prototype.checkCollision = function(){
 	var dmg = Math.max(this.str - dfs, 0);
 	
 	if (this.missed){
-		this.mapManager.addMessage("Missed!");
+		//this.mapManager.addMessage("Missed!");
 		this.mapManager.game.playSound('miss');
 		return;
 	}
 	
 	if (dmg != 0){
-		this.mapManager.addMessage(dmg + " points inflicted");
+		this.mapManager.addMessage(dmg + " damage"); // TODO: Replace with popup over ins
 		this.mapManager.game.playSound('hit');
 		ins.receiveDamage(dmg);
 	}else{
-		this.mapManager.addMessage("Blocked!");
-		this.mapManager.game.playSound('miss');
+		//this.mapManager.addMessage("Blocked!");
+		this.mapManager.game.playSound('block');
 	}
 	
 	return false;

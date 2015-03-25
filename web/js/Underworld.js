@@ -84,6 +84,7 @@ Underworld.prototype.create3DObjects = function(){
 Underworld.prototype.loadMusic = function(){
 	this.sounds.hit = this.audio.loadAudio(cp + "wav/hit.wav?version=" + version, false);
 	this.sounds.miss = this.audio.loadAudio(cp + "wav/miss.wav?version=" + version, false);
+	this.sounds.block = this.audio.loadAudio(cp + "wav/block.wav?version=" + version, false);
 	this.music.dungeon1 = this.audio.loadAudio(cp + "ogg/08_-_Ultima_4_-_C64_-_Dungeons.ogg?version=" + version, true);
 };
 
