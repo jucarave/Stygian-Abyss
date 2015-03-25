@@ -14,13 +14,13 @@ var UI = require('./UI');
 var Utils = require('./Utils');
 var WebGL = require('./WebGL');
 
-/*===================================================
-				 7DRL15 Source Code
+/*============================================================
+				 Stygian Abyss
 				
-			By Camilo Ramírez (Jucarave)
+  By Camilo Ramírez (Jucarave) and Slash (http://slashie.net)
 			
 					  2015
-===================================================*/
+=============================================================*/
 
 function Underworld(){
 	this.size = vec2(355, 200);
