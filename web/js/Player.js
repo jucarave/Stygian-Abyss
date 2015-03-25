@@ -153,7 +153,10 @@ Player.prototype.moveTo = function(xTo, zTo){
 	var moved = false;
 	
 	var swim = (this.onLava || this.onWater);
-	if (swim){ xTo /= 2; zTo /=2; }
+	if (swim){
+		xTo *= 0.75; 
+		zTo *= 0.75;
+	}
 	var movement = vec2(xTo, zTo);
 	var spd = vec2(xTo * 1.5, 0);
 	var fakePos = this.position.clone();
