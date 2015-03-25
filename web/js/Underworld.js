@@ -571,7 +571,8 @@ Underworld.prototype.activeSpell = function(index){
 		case 'missile':
 			var str = Utils.rollDice(ps.stats.magicPower) + Utils.rollDice(item.str);
 			
-			var missile = new Missile(p.position.clone(), p.rotation.clone(), 'magicMissile', 'enemy', this.map);
+			var missile = new Missile();
+			missile.init(p.position.clone(), p.rotation.clone(), 'magicMissile', 'enemy', this.map);
 			missile.str = str << 0;
 			
 			this.map.addMessage("GRAV POR!");
@@ -583,7 +584,8 @@ Underworld.prototype.activeSpell = function(index){
 		case 'iceball':
 			var str = Utils.rollDice(ps.stats.magicPower) + Utils.rollDice(item.str);
 			
-			var missile = new Missile(p.position.clone(), p.rotation.clone(), 'iceBall', 'enemy', this.map);
+			var missile = new Missile();
+			missile.init(p.position.clone(), p.rotation.clone(), 'iceBall', 'enemy', this.map);
 			missile.str = str << 0;
 			
 			this.map.addMessage("VAS FRIO!");
@@ -645,7 +647,8 @@ Underworld.prototype.activeSpell = function(index){
 		case 'fireball':
 			var str = Utils.rollDice(ps.stats.magicPower) + Utils.rollDice(item.str);
 			
-			var missile = new Missile(p.position.clone(), p.rotation.clone(), 'fireBall', 'enemy', this.map);
+			var missile = new Missile();
+			missile.init(p.position.clone(), p.rotation.clone(), 'fireBall', 'enemy', this.map);
 			missile.str = str << 0;
 			
 			this.map.addMessage("VAS FLAM!");
@@ -689,7 +692,8 @@ Underworld.prototype.activeSpell = function(index){
 		case 'kill':
 			var str = Utils.rollDice(ps.stats.magicPower) + Utils.rollDice(item.str);
 			
-			var missile = new Missile(p.position.clone(), p.rotation.clone(), 'kill', 'enemy', this.map);
+			var missile = new Missile();
+			missile.init(p.position.clone(), p.rotation.clone(), 'kill', 'enemy', this.map);
 			missile.str = str << 0;
 			
 			this.map.addMessage("XEN CORP!");

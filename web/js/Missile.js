@@ -1,7 +1,22 @@
 var ObjectFactory = require('./ObjectFactory');
 var Utils = require('./Utils');
 
-function Missile(position, rotation, type, target, mapManager){
+circular.setTransient('Missile', 'billboard');
+circular.setReviver('Missile', function(object, game) {
+	object.billboard = ObjectFactory.billboard(vec3(1.0, 1.0, 1.0), vec2(1.0, 1.0), game.GL.ctx);
+	object.billboard.texBuffer = game.objectTex.bolts.buffers[object.subImg];
+	
+});
+
+function Missile(){
+	this._c = circular.register('Missile');
+}
+
+module.exports = Missile;
+circular.registerClass('Missile', Missile);
+
+
+Missile.prototype.init = function(position, rotation, type, target, mapManager){
 	var gl = mapManager.game.GL.ctx;
 	
 	this.position = position;
@@ -51,12 +66,10 @@ function Missile(position, rotation, type, target, mapManager){
 			this.speed = 0.5;
 		break;
 	}
-	
+	this.subImg = subImg;
 	this.textureCode = 'bolts';
 	this.billboard.texBuffer = mapManager.game.objectTex.bolts.buffers[subImg];
-}
-
-module.exports = Missile;
+};
 
 Missile.prototype.checkCollision = function(){
 	var map = this.mapManager.map;

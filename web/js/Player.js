@@ -59,7 +59,8 @@ Player.prototype.castMissile = function(weapon){
 	if (weapon) str += Utils.rollDice(weapon.str) * weapon.status;
 	
 	var prob = Math.random();
-	var missile = new Missile(this.position.clone(), this.rotation.clone(), weapon.code, 'enemy', this.mapManager);
+	var missile = new Missile();
+	missile.init(this.position.clone(), this.rotation.clone(), weapon.code, 'enemy', this.mapManager);
 	missile.str = str << 0;
 	missile.missed = (prob > ps.stats.dex);
 	// if (weapon) weapon.status *= (1.0 - weapon.wear);
