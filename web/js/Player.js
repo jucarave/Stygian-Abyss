@@ -63,10 +63,9 @@ Player.prototype.castMissile = function(weapon){
 	missile.init(this.position.clone(), this.rotation.clone(), weapon.code, 'enemy', this.mapManager);
 	missile.str = str << 0;
 	missile.missed = (prob > ps.stats.dex);
-	// if (weapon) weapon.status *= (1.0 - weapon.wear);
-	
-	
-	this.mapManager.addMessage("You shoot " + weapon.subItemName);
+	if (weapon) 
+		weapon.status *= (1.0 - weapon.wear); // TODO: Enhance weapon degradation
+	this.mapManager.addMessage("You shoot a " + weapon.subItemName);
 	this.mapManager.instances.push(missile);
 	this.attackWait = 30;
 	this.moved = true;
@@ -134,7 +133,8 @@ Player.prototype.castAttack = function(target, weapon){
 		this.mapManager.addMessage("Blocked!");
 	}
 	
-	//if (weapon) weapon.status *= (1.0 - weapon.wear);
+	if (weapon) 
+		weapon.status *= (1.0 - weapon.wear); // TODO: Enhance weapon degradation
 };
 
 Player.prototype.jogMovement = function(){
