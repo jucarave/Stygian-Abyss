@@ -73,7 +73,7 @@ Item.prototype.activate = function(){
 			if (this.item.status !== undefined)
 				stat = ItemFactory.getStatusName(this.item.status) + ' ';
 			
-			mm.addMessage(stat + this.item.name + " picked.");
+			mm.addMessage("You pick up a "+stat + this.item.name);
 			this.destroyed = true;
 		}else{
 			mm.addMessage("You can't carry any more items");
