@@ -440,7 +440,7 @@ Underworld.prototype.drawUI = function(){
 		this.UI.drawSprite(this.images.paused, 147, 94, 0);
 	}
 	this.UI.drawText('Depth '+this.floorDepth, 10,25,this.console);
-	this.UI.drawText('Level' + ps.lvl+' '+this.player.className, 10,33,this.console);
+	this.UI.drawText('Level ' + ps.lvl+' '+this.player.className, 10,33,this.console);
 	this.UI.drawText('HP: '+ps.hp, 10,9,this.console);
 	this.UI.drawText('Mana:'+ps.mana, 10,17,this.console);
 
