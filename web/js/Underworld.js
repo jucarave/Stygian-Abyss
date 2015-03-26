@@ -104,6 +104,12 @@ Underworld.prototype.loadImages = function(){
 	this.images.items_ui = this.GL.loadImage(cp + this.grPack + "itemsUI.png?version=" + version, false, 0, 0, {imgNum: 8, imgVNum: 8});
 	this.images.spells_ui = this.GL.loadImage(cp + this.grPack + "spellsUI.png?version=" + version, false, 0, 0, {imgNum: 4, imgVNum: 4});
 	this.images.titleScreen = this.GL.loadImage(cp + this.grPack + "titleScreen.png?version=" + version, false);
+	
+	this.images.intro1 = this.GL.loadImage(cp + this.grPack + "intro1.png?version=" + version, false);
+	this.images.intro2 = this.GL.loadImage(cp + this.grPack + "intro2.png?version=" + version, false);
+	this.images.intro3 = this.GL.loadImage(cp + this.grPack + "intro3.png?version=" + version, false);
+	this.images.intro4 = this.GL.loadImage(cp + this.grPack + "intro4.png?version=" + version, false);
+	
 	this.images.endingScreen = this.GL.loadImage(cp + this.grPack + "ending.png?version=" + version, false);
 	this.images.endingScreen2 = this.GL.loadImage(cp + this.grPack + "ending2.png?version=" + version, false);
 	this.images.endingScreen3 = this.GL.loadImage(cp + this.grPack + "ending3.png?version=" + version, false);
@@ -275,18 +281,9 @@ Underworld.prototype.loadMap = function(map, depth){
 };
 
 Underworld.prototype.printGreet = function(){
-	// Shows a welcome message with the game instructions.
-	this.console.addSFMessage("You enter the legendary Stygian Abyss.");
-	this.console.addSFMessage("Use Q-W-E to move forward, A-S-D to strafe and step back");
-	this.console.addSFMessage("Press Space bar to interact and Enter to attack");
-	this.console.addSFMessage("Press T to drop objects and O to Save your game");
 };
 
 Underworld.prototype.printWelcomeBack = function(){
-	this.console.addSFMessage("");
-	this.console.addSFMessage("");
-	this.console.addSFMessage("");
-	this.console.addSFMessage("You wake up.");
 };
 
 Underworld.prototype.newGame = function(){
