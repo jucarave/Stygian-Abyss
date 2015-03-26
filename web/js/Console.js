@@ -57,7 +57,6 @@ Console.prototype.createSpriteFont = function(/*Image*/ spriteFont, /*String*/ c
 	this.spaceLines = verticalSpace;
 	
 	this.charasWidth = this.parseFont(spriteFont);
-	
 	var canvas = document.createElement("canvas");
 	canvas.width = 100;
 	canvas.height = 100;
@@ -99,30 +98,37 @@ Console.prototype.addSFMessage = function(/*String*/ message){
 	}
 	
 	var c = this.sfContext.canvas;
-	var w = this.spaceChars;
-	var h = this.spriteFont.height;
 	this.sfContext.clearRect(0,0,c.width,c.height);
 	for (var i=0,len=this.messages.length;i<len;i++){
 		var msg = this.messages[i];
 		var x = 0;
 		var y = (this.spaceLines * this.limit) - this.spaceLines * (len - i - 1);
-		
-		var mW = msg.length * w;
-		if (mW > c.width) c.width = mW + (2 * w);
-		
-		for (var j=0,jlen=msg.length;j<jlen;j++){
-			var chara = msg.charAt(j);
-			var ind = this.listOfChars.indexOf(chara);
-			
-			if (ind != -1){
-				this.sfContext.drawImage(this.spriteFont,
-					w * ind, 1, w, h - 1,
-					x, y, w, h - 1);
-					
-				x += this.charasWidth[ind] + 1;
-			}else{
-				x += w;
-			}
-		}
+		this.printText(x,y,msg);
 	}
 };
+
+Console.prototype.printText = function (x,y,msg, ctx){
+	if (!ctx){
+		ctx = this.sfContext;
+	}
+	var c = ctx.canvas;
+	
+	var w = this.spaceChars;
+	var h = this.spriteFont.height;
+	
+	var mW = msg.length * w;
+	if (mW > c.width) c.width = mW + (2 * w);
+	
+	for (var j=0,jlen=msg.length;j<jlen;j++){
+		var chara = msg.charAt(j);
+		var ind = this.listOfChars.indexOf(chara);
+		if (ind != -1){
+			ctx.drawImage(this.spriteFont,
+				w * ind, 1, w, h - 1,
+				x, y, w, h - 1);
+			x += this.charasWidth[ind] + 1;
+		}else{
+			x += w;
+		}
+	}
+}

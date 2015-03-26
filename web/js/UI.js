@@ -55,7 +55,8 @@ UI.prototype.drawSpriteExt = function(sprite, x, y, subImage, imageAngle){
 };
 
 UI.prototype.drawText = function(text, x, y, console){
-	var w = console.spaceChars;
+	console.printText(x,y, text, this.ctx);
+	/*var w = console.spaceChars;
 	var h = console.spriteFont.height;
 	for (var j=0,jlen=text.length;j<jlen;j++){
 		var chara = text.charAt(j);
@@ -66,7 +67,7 @@ UI.prototype.drawText = function(text, x, y, console){
 				x, y, w, h - 1);
 		}
 		x += w;
-	}
+	}*/
 };
 
 UI.prototype.clear = function(){
