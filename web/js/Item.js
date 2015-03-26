@@ -55,8 +55,7 @@ Item.prototype.activate = function(){
 	var game = this.mapManager.game;
 	if (this.item.isItem){
 		if (this.item.type == 'codex'){
-			// 10 lines
-			mm.addMessage("The boundless knownledge of the Codex is revealed unto thee.");
+			/*mm.addMessage("The boundless knownledge of the Codex is revealed unto thee.");
 			mm.addMessage("A voice thunders!");
 			mm.addMessage("Thou hast proven thyself to be truly good in nature");
 			mm.addMessage("Thou must know that thy quest to become an Avatar is the endless ");
@@ -65,7 +64,10 @@ Item.prototype.activate = function(){
 			mm.addMessage("to fluorish, for if thou dost stray from the paths of virtue, thy way");
 			mm.addMessage("may be lost forever.");
 			mm.addMessage("Return now unto thine our world, live there as an example to thy");
-			mm.addMessage("people, as our memory of thy gallant deeds serves us.");
+			mm.addMessage("people, as our memory of thy gallant deeds serves us.");*/
+			document.exitPointerLock();
+			game.player.destroyed = true;
+			game.ending();
 		} else if (this.item.type == 'feature'){
 			mm.addMessage("You see a "+this.item.name);
 		} else if (game.addItem(this.item)){

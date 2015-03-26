@@ -10,6 +10,7 @@ var ObjectFactory = require('./ObjectFactory');
 var PlayerStats = require('./PlayerStats');
 var SaveManager = require('./SaveManager');
 var TitleScreen = require('./TitleScreen');
+var EndingScreen = require('./EndingScreen');
 var UI = require('./UI');
 var Utils = require('./Utils');
 var WebGL = require('./WebGL');
@@ -104,6 +105,8 @@ Underworld.prototype.loadImages = function(){
 	this.images.spells_ui = this.GL.loadImage(cp + this.grPack + "spellsUI.png?version=" + version, false, 0, 0, {imgNum: 4, imgVNum: 4});
 	this.images.titleScreen = this.GL.loadImage(cp + this.grPack + "titleScreen.png?version=" + version, false);
 	this.images.endingScreen = this.GL.loadImage(cp + this.grPack + "ending.png?version=" + version, false);
+	this.images.endingScreen2 = this.GL.loadImage(cp + this.grPack + "ending2.png?version=" + version, false);
+	this.images.endingScreen3 = this.GL.loadImage(cp + this.grPack + "ending3.png?version=" + version, false);
 	this.images.selectClass = this.GL.loadImage(cp + this.grPack + "selectClass.png?version=" + version, false);
 	this.images.inventory = this.GL.loadImage(cp + this.grPack + "inventory.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
 	this.images.inventoryDrop = this.GL.loadImage(cp + this.grPack + "inventoryDrop.png?version=" + version, false, 0, 0, {imgNum: 1, imgVNum: 2});
@@ -295,6 +298,17 @@ Underworld.prototype.newGame = function(){
 	this.scene = null;
 	this.console.messages = [];	
 	this.scene = new TitleScreen(this);
+	this.loop();
+};
+
+Underworld.prototype.ending = function(){
+	this.inventory.reset();
+	this.player.reset();
+	this.maps = [];
+	this.map = null;
+	this.scene = null;
+	this.console.messages = [];	
+	this.scene = new EndingScreen(this);
 	this.loop();
 };
 
@@ -843,7 +857,8 @@ Underworld.prototype.loop = function(){
 			game.checkInvControl();
 			game.map.loop();
 			
-			game.drawUI();
+			if (this.map)
+				game.drawUI();
 		}
 		
 		if (this.scene != null){
