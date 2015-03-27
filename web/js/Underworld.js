@@ -36,7 +36,7 @@ function Underworld(){
 	this.saveManager = new SaveManager(this);
 	this.font = '10px "Courier"';
 	
-	this.grPack = 'img/';
+	this.grPack = 'img_hr/';
 	
 	this.scene = null;
 	this.map = null;
