@@ -1,6 +1,6 @@
 <?php
 	$version = "1.2";
-	$environment = "SERVER";
+	$environment = "LOCAL";
 	$contextPath = "/stygian/";
 	
 	if ($environment == "SERVER"){

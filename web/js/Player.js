@@ -11,7 +11,6 @@ module.exports = Player;
 circular.registerClass('Player', Player);
 
 Player.prototype.init = function(position, direction, mapManager){
-	console.log(direction);
 	this.position = position;
 	this.rotation = direction;
 	this.mapManager = mapManager;
@@ -242,16 +241,12 @@ Player.prototype.checkAction = function(){
 		var xx = (this.position.a + Math.cos(this.rotation.b) * 0.6) << 0;
 		var zz = (this.position.c - Math.sin(this.rotation.b) * 0.6) << 0;
 		
-		if ((this.position.a << 0) == xx && (this.position.c << 0) == zz) return;
+		var object = this.mapManager.getInstanceAtGrid(vec3(xx, this.position.b, zz));
+		if (!object) object = this.mapManager.getInstanceAtGrid(vec3(this.position.a << 0, this.position.b, this.position.c << 0));
 		
-		var door = this.mapManager.getDoorAt(xx, this.position.b, zz);
-		if (door){ 
-			door.activate();
-		}else{
-			var object = this.mapManager.getInstanceAtGrid(vec3(xx, this.position.b, zz));
-			if (object && object.activate)
-				object.activate();
-		}
+		if (object && object.activate)
+			object.activate();
+			
 		if (cheatEnabled){
 			if (game.floorDepth < 8)
 				this.mapManager.game.loadMap(false, game.floorDepth + 1);

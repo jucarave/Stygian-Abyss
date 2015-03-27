@@ -61,7 +61,7 @@ AudioAPI.prototype.stopMusic = function(){
 AudioAPI.prototype.playSound = function(soundFile, loop, tryIfNotReady, volume){
 	var eng = this;
 	if (!soundFile || !soundFile.ready){
-		if (tryIfNotReady){ soundFile.timeO = setTimeout(function(){ eng.playSound(soundFile, loop, tryIfNotReady); }, 1000); } 
+		if (tryIfNotReady){ soundFile.timeO = setTimeout(function(){ eng.playSound(soundFile, loop, tryIfNotReady, volume); }, 1000); } 
 		return;
 	}
 	
