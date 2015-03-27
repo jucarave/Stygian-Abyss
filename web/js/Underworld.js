@@ -15,13 +15,13 @@ var UI = require('./UI');
 var Utils = require('./Utils');
 var WebGL = require('./WebGL');
 
-/*============================================================
-				 Stygian Abyss
+/*=======================================================================
+				 			Stygian Abyss
 				
-  By Camilo Ramírez (Jucarave) and Slash (http://slashie.net)
+  By Camilo Ramírez (http://jucarave.com) and Slash (http://slashie.net)
 			
-					  2015
-=============================================================*/
+					  			2015
+========================================================================*/
 
 function Underworld(){
 	this.size = vec2(355, 200);
@@ -827,6 +827,8 @@ Underworld.prototype.globalLoop = function(){
 	if (this.protection > 0){ this.protection -= 1; }
 	if (this.timeStop > 0){ this.timeStop -= 1; }
 	if (this.GL.light > 0){ this.GL.light -= 1; }
+	
+	this.player.regenMana();
 };
 
 Underworld.prototype.loop = function(){

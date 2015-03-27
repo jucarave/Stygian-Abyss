@@ -5,6 +5,9 @@ function PlayerStats(){
 	this.mana = 0;
 	this.mMana = 0;
 	
+	this.regenCount = 0;
+	this.manaRegenFreq = 0;
+	
 	this.virtue = null;
 	
 	this.lvl = 1;
@@ -104,6 +107,7 @@ PlayerStats.prototype.setVirtue = function(virtueName){
 			this.stats.dfs = '2';
 			this.stats.dex = 0.8;
 			this.className = 'Mage';
+			this.manaRegenFreq = 30 * 5;
 		break;
 		
 		case "Compassion":
@@ -114,6 +118,7 @@ PlayerStats.prototype.setVirtue = function(virtueName){
 			this.stats.dfs = '4';
 			this.stats.dex = 0.9;
 			this.className = 'Bard';
+			this.manaRegenFreq = 30 * 7;
 		break;
 		
 		case "Valor":
@@ -124,6 +129,7 @@ PlayerStats.prototype.setVirtue = function(virtueName){
 			this.stats.dfs = '2';
 			this.stats.dex = 0.9;
 			this.className = 'Fighter';
+			this.manaRegenFreq = 30 * 10;
 		break;
 		
 		case "Honor":
@@ -134,6 +140,7 @@ PlayerStats.prototype.setVirtue = function(virtueName){
 			this.stats.dfs = '2';
 			this.stats.dex = 0.9;
 			this.className = 'Paladin';
+			this.manaRegenFreq = 30 * 8;
 		break;
 		
 		case "Spirituality":
@@ -144,6 +151,7 @@ PlayerStats.prototype.setVirtue = function(virtueName){
 			this.stats.dfs = '4';
 			this.stats.dex = 0.95;
 			this.className = 'Ranger';
+			this.manaRegenFreq = 30 * 9;
 		break;
 		
 		case "Humility":
@@ -154,6 +162,7 @@ PlayerStats.prototype.setVirtue = function(virtueName){
 			this.stats.dfs = '2';
 			this.stats.dex = 0.8;
 			this.className = 'Shepherd';
+			this.manaRegenFreq = 30 * 7;
 		break;
 		
 		case "Sacrifice":
@@ -164,6 +173,7 @@ PlayerStats.prototype.setVirtue = function(virtueName){
 			this.stats.dfs = '6';
 			this.stats.dex = 0.95;
 			this.className = 'Tinker';
+			this.manaRegenFreq = 30 * 7;
 		break;
 		
 		case "Justice":
@@ -174,6 +184,7 @@ PlayerStats.prototype.setVirtue = function(virtueName){
 			this.stats.dfs = '2';
 			this.stats.dex = 0.95;
 			this.className = 'Druid';
+			this.manaRegenFreq = 30 * 6;
 		break;
 	}
 	
@@ -182,4 +193,11 @@ PlayerStats.prototype.setVirtue = function(virtueName){
 	this.stats.dfs += 'D3';
 	this.stats.magicPower += 'D3';
 	this.mMana = this.mana;
+};
+
+PlayerStats.prototype.regenMana = function(){
+	if (++this.regenCount >= this.manaRegenFreq){
+		this.mana = Math.min(this.mana + 1, this.mMana);
+		this.regenCount = 0;
+	}
 };
