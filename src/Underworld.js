@@ -83,6 +83,8 @@ Underworld.prototype.create3DObjects = function(){
 };
 
 Underworld.prototype.loadMusic = function(){
+	this.sounds.step1 = this.audio.loadAudio(cp + "wav/step1.wav?version=" + version, false);
+	this.sounds.step2 = this.audio.loadAudio(cp + "wav/step2.wav?version=" + version, false);
 	this.sounds.hit = this.audio.loadAudio(cp + "wav/hit.wav?version=" + version, false);
 	this.sounds.miss = this.audio.loadAudio(cp + "wav/miss.wav?version=" + version, false);
 	this.sounds.block = this.audio.loadAudio(cp + "wav/block.wav?version=" + version, false);
@@ -531,7 +533,7 @@ Underworld.prototype.useItem = function(index){
 		break;
 	}
 	this.inventory.dropItem(index);
-}
+};
 
 Underworld.prototype.activeSpell = function(index){
 	var item = this.inventory.items[index];

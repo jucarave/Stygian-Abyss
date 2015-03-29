@@ -27,6 +27,7 @@ Player.prototype.init = function(position, direction, mapManager){
 	this.jog = vec4(0.0, 1, 0.0, 1);
 	this.onWater = false;
 	this.moved = false;
+	this.stepInd = 1;
 
 	this.hurt = 0.0;	
 	this.attackWait = 0;
@@ -145,7 +146,11 @@ Player.prototype.jogMovement = function(){
 	}else{
 		this.jog.a += 0.008 * this.jog.b;
 		if (this.jog.a >= 0.03 && this.jog.b == 1) this.jog.b = -1; else
-		if (this.jog.a <= -0.03 && this.jog.b == -1) this.jog.b = 1;
+		if (this.jog.a <= -0.03 && this.jog.b == -1){
+			this.mapManager.game.playSound('step' + this.stepInd);
+			if (++this.stepInd == 3) this.stepInd = 1;
+			this.jog.b = 1;
+		}
 	}
 };
 
