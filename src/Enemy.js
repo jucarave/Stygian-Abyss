@@ -1,6 +1,7 @@
 var AnimatedTexture = require('./AnimatedTexture');
 var ObjectFactory = require('./ObjectFactory');
 var Utils = require('./Utils');
+var Missile = require('./Missile');
 
 circular.setTransient('Enemy', 'billboard');
 circular.setTransient('Enemy', 'textureCoords');
@@ -41,7 +42,7 @@ Enemy.prototype.init = function(position, enemy, mapManager){
 	this.attackWait = 0.0;
 	this.enemyAttackCounter = 0;
 	this.visible = true;
-}
+};
 
 Enemy.prototype.receiveDamage = function(dmg){
 	this.hurt = 5.0;
@@ -141,6 +142,22 @@ Enemy.prototype.moveTo = function(xTo, zTo){
 	}
 };
 
+Enemy.prototype.castMissile = function(player){
+	var game = this.mapManager.game;
+	var ps = game.player;
+	
+	var str = Utils.rollDice(this.enemy.stats.str);
+	var dir = Math.getAngle(this.position, player.position);
+	
+	var missile = new Missile();
+	missile.init(this.position.clone(), vec2(0, dir), 'bow', 'player', this.mapManager);
+	missile.str = str << 0;
+	missile.spd *= 0.5;
+
+	this.mapManager.instances.push(missile);
+	this.attackWait = 90;
+};
+
 Enemy.prototype.attackPlayer = function(player){
 	if (this.hurt > 0.0) return;
 	var str = Utils.rollDice(this.enemy.stats.str);
@@ -173,7 +190,11 @@ Enemy.prototype.step = function(){
 		if (this.enemyAttackCounter == 0){
 			var xx = Math.abs(p.a - this.position.a);
 			var yy = Math.abs(p.c - this.position.c);
-			if (xx <= 1 && yy <=1){
+			
+			if (this.enemy.stats.ranged && xx <= 3 && yy <= 3){
+				this.castMissile(player);
+				return;
+			}else if (xx <= 1 && yy <=1){
 				this.attackPlayer(player);
 				return;
 			}
@@ -184,7 +205,8 @@ Enemy.prototype.step = function(){
 		if (this.attackWait > 0){
 			this.attackWait --;
 		}
-		if (xx <= 1 && yy <=1){
+		
+		if ((xx <= 1 && yy <=1) || (this.enemy.stats.ranged && xx <= 3 && yy <= 3)){
 			if (this.attackWait == 0){
 				// this.mapManager.addMessage(this.enemy.name + " attacks!"); Removed, will be replaced by attack animation
 				this.enemyAttackCounter = 10;

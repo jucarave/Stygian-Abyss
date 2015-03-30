@@ -28,7 +28,7 @@ MapAssembler.prototype.assembleMap = function(mapManager, mapData, GL){
 	this.copiedTiles = [];
 	
 	this.initializeTiles(mapData.tiles);
-}
+};
 
 MapAssembler.prototype.assembleTerrain = function(mapManager, GL){
 	this.mapManager =  mapManager;
@@ -43,7 +43,7 @@ MapAssembler.prototype.initializeTiles = function(tiles){
 		if (tiles[i])
 			tiles[i]._c = circular.setSafe();
 	}
-}
+};
 
 
 MapAssembler.prototype.getEmptyGrid = function(){
