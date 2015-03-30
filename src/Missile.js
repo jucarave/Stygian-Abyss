@@ -109,8 +109,12 @@ Missile.prototype.checkCollision = function(){
 		}
 		
 		dfs = Utils.rollDice(ins.enemy.stats.dfs);
-	}else{
+	}else if (this.target == 'player'){
 		ins = this.mapManager.player;
+		var xx = Math.abs(ins.position.a - this.position.a);
+		var zz = Math.abs(ins.position.c - this.position.c);
+		if (zz > 0.5 || xx > 0.5) return true;
+		
 		dfs = Utils.rollDice(this.mapManager.game.player.stats.dfs);
 	}
 	
