@@ -1,7 +1,7 @@
 <?php
 	$version = "1.3";
 	$environment = "LOCAL";
-	$contextPath = "/sab/";
+	$contextPath = "/stygian/";
 	
 	if ($environment == "SERVER"){
 		$contextPath = "/games/stygian/"; 

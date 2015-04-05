@@ -141,7 +141,7 @@ WebGL.prototype.loadImage = function(src, makeItTexture, textureIndex, isSolid, 
 		img.ready = true;
 		
 		if (makeItTexture){
-			img.texture = gl.parseTexture(img);
+			img.texture = gl.parseTexture(img, params.clampWrap);
 			img.texture.textureIndex = img.textureIndex;
 		}
 	});
@@ -150,7 +150,7 @@ WebGL.prototype.loadImage = function(src, makeItTexture, textureIndex, isSolid, 
 	return img;
 };
 
-WebGL.prototype.parseTexture = function(img){
+WebGL.prototype.parseTexture = function(img, clampEdges){
 	var gl = this.ctx;
 	
 	// Creates a texture holder to work with
@@ -166,6 +166,10 @@ WebGL.prototype.parseTexture = function(img){
 	// Assign properties of scaling
 	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
 	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+	if (clampEdges){
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+	}
 	gl.generateMipmap(gl.TEXTURE_2D);
 	
 	// Releases the texture from the workspace
