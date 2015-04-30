@@ -1,0 +1,12 @@
+{
+  "name": "stygian-abyss",
+  "version": "1.2.1",
+  "main": "index.html",
+  "window": {
+    "title": "Stygian Abyss",
+    "toolbar": false,
+    "frame": true,
+    "fullScreen": true,
+    "position": "center"
+  }
+}
