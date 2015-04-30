@@ -1,5 +1,5 @@
 <?php
-	$version = "1.2";
+	$version = "1.3";
 	$environment = "LOCAL";
 	$contextPath = "/stygian/";
 	
