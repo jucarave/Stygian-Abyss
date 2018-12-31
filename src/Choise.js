@@ -37,6 +37,16 @@ Choise.prototype.loopTimer = function() {
     }, 1000);
 };
 
+Choise.prototype.placePlayer = function() {
+    var player = this.mapManager.player,
+        offset = this.cursor * 2 - 1;
+
+    player.rotation.b += Math.degToRad(-90 * offset);
+
+    player.position.a += Math.cos(player.rotation.b);
+    player.position.c -= Math.sin(player.rotation.b);
+};
+
 Choise.prototype.loop = function() {
     if (this.status != CHOISE_STATUS.CHOOSING) { return; }
 
@@ -50,6 +60,8 @@ Choise.prototype.loop = function() {
         this.status = CHOISE_STATUS.ANSWERED;
         this.answer = this.options[this.cursor].answer.split("\n");
         this.game.keys[13] = 0;
+
+        this.placePlayer();
 
         // Destroy answer text after X milliseconds
         var self = this;
