@@ -334,6 +334,7 @@ function Choise(game, mapManager, UI, ins) {
     this.answer = "";
     this.options = choise.options;
     this.sprite = game.images.c2d[choise.image];
+    this.baseFace = (choise.face !== undefined)? Math.degToRad(choise.face) : mapManager.player.rotation.b;
 
     this.timer = 10;
     this.loopTimer();
@@ -361,7 +362,7 @@ Choise.prototype.placePlayer = function() {
     var player = this.mapManager.player,
         offset = this.cursor * 2 - 1;
 
-    player.rotation.b += Math.degToRad(-90 * offset);
+    player.rotation.b = this.baseFace + Math.degToRad(-90 * offset);
 
     player.position.a += Math.cos(player.rotation.b);
     player.position.c -= Math.sin(player.rotation.b);
@@ -458,6 +459,7 @@ Choise.prototype.drawAnswer = function() {
 
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
+    this.ctx.font = "20px 'ZX_SPECTRUM'";
 
     for (var i=0,len=this.answer.length;i<len;i++) {
         this.ctx.fillText(this.answer[i], this.ctx.width / 2, this.ctx.height - 16 - (len - 1 - i) * 10);
@@ -3832,8 +3834,8 @@ Player.prototype.doFloat = function(){
 Player.prototype.checkAgent = function() {
 	var ins = this.mapManager.getInstanceAtGrid(this.position);
 
-	if (ins && ins.choise && !ins.solid) {
-		ins.solid = true;
+	if (ins && ins.choise/* && !ins.solid*/) {
+		// ins.solid = true;
 		this.mapManager.createChoise(ins);
 	}
 };

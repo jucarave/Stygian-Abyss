@@ -16,6 +16,7 @@ function Choise(game, mapManager, UI, ins) {
     this.answer = "";
     this.options = choise.options;
     this.sprite = game.images.c2d[choise.image];
+    this.baseFace = (choise.face !== undefined)? Math.degToRad(choise.face) : mapManager.player.rotation.b;
 
     this.timer = 10;
     this.loopTimer();
@@ -43,7 +44,7 @@ Choise.prototype.placePlayer = function() {
     var player = this.mapManager.player,
         offset = this.cursor * 2 - 1;
 
-    player.rotation.b += Math.degToRad(-90 * offset);
+    player.rotation.b = this.baseFace + Math.degToRad(-90 * offset);
 
     player.position.a += Math.cos(player.rotation.b);
     player.position.c -= Math.sin(player.rotation.b);
