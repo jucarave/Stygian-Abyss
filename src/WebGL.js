@@ -50,7 +50,7 @@ WebGL.prototype.initProperties = function(){
 	gl.blendFunc( gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA );
 	
 	this.aspectRatio = this.canvas.width / this.canvas.height;
-	this.perspectiveMatrix = Matrix.makePerspective(45, this.aspectRatio, 0.002, 5.0);
+	this.perspectiveMatrix = Matrix.makePerspective(100, this.aspectRatio, 0.002, 5.0);
 };
 
 WebGL.prototype.processShaders = function(){
