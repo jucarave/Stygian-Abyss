@@ -121,7 +121,11 @@ Underworld.prototype.loadImages = function(){
 	this.images.compass = this.GL.loadImage(cp + this.grPack + "compassUI.png?version=" + version, false, 0, 0, {xOrig: 11, yOrig: 11, imgNum: 2, imgVNum: 1});
 
 	this.images.c2d = {
-		pax: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version)
+		pax: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
+		eye: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
+		dragon: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
+		blank: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
+		agent: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version)
 	};
 };
 

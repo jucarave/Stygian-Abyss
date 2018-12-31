@@ -82,6 +82,10 @@ module.exports = {
 		// Dungeon features
 		agent: {name: "Agent", tex: "itemsMisc", subImg: 0, type: 'feature', solid: true},
 		fakeAgent: {name: "Agent", tex: "itemsMisc", subImg: 0, type: 'feature'},
+		eye: {name: "Eye", tex: "itemsMisc", subImg: 1, type: 'feature'},
+		pax: {name: "Pax", tex: "itemsMisc", subImg: 1, type: 'feature'},
+		dragon: {name: "Dragon", tex: "itemsMisc", subImg: 1, type: 'feature'},
+		blank: {name: "Blank", tex: "itemsMisc", subImg: 1, type: 'feature'},
 
 		orb: {name: "Orb", tex: "itemsMisc", subImg: 1, type: 'feature', solid: true},
 		deadTree: {name: "Dead Tree", tex: "itemsMisc", subImg: 2, type: 'feature', solid: true},
