@@ -84,23 +84,23 @@ Underworld.prototype.create3DObjects = function(){
 };
 
 Underworld.prototype.loadMusic = function(){
-	this.sounds.step1 = this.audio.loadAudio(cp + "wav/step1.wav?version=" + version, false);
+	/*this.sounds.step1 = this.audio.loadAudio(cp + "wav/step1.wav?version=" + version, false);
 	this.sounds.step2 = this.audio.loadAudio(cp + "wav/step2.wav?version=" + version, false);
 	this.sounds.hit = this.audio.loadAudio(cp + "wav/hit.wav?version=" + version, false);
 	this.sounds.miss = this.audio.loadAudio(cp + "wav/miss.wav?version=" + version, false);
 	this.sounds.block = this.audio.loadAudio(cp + "wav/block.wav?version=" + version, false);
-	this.music.dungeon1 = this.audio.loadAudio(cp + "ogg/08_-_Ultima_4_-_C64_-_Dungeons.ogg?version=" + version, true);
+	this.music.dungeon1 = this.audio.loadAudio(cp + "ogg/08_-_Ultima_4_-_C64_-_Dungeons.ogg?version=" + version, true);*/
 };
 
 Underworld.prototype.loadMusicPost = function(){
-	this.music.dungeon2 = this.audio.loadAudio(cp + "ogg/02_-_Ultima_5_-_C64_-_Britannic_Lands.ogg?version=" + version, true);
+	/*this.music.dungeon2 = this.audio.loadAudio(cp + "ogg/02_-_Ultima_5_-_C64_-_Britannic_Lands.ogg?version=" + version, true);
 	this.music.dungeon3 = this.audio.loadAudio(cp + "ogg/05_-_Ultima_3_-_C64_-_Combat.ogg?version=" + version, true);
 	this.music.dungeon4 = this.audio.loadAudio(cp + "ogg/07_-_Ultima_3_-_C64_-_Exodus'_Castle.ogg?version=" + version, true);
 	this.music.dungeon5 = this.audio.loadAudio(cp + "ogg/04_-_Ultima_5_-_C64_-_Engagement_and_Melee.ogg?version=" + version, true);
 	this.music.dungeon6 = this.audio.loadAudio(cp + "ogg/03_-_Ultima_4_-_C64_-_Lord_British's_Castle.ogg?version=" + version, true);
 	this.music.dungeon7 = this.audio.loadAudio(cp + "ogg/11_-_Ultima_5_-_C64_-_Worlds_Below.ogg?version=" + version, true);
 	this.music.dungeon8 = this.audio.loadAudio(cp + "ogg/10_-_Ultima_5_-_C64_-_Halls_of_Doom.ogg?version=" + version, true);
-	this.music.codexRoom = this.audio.loadAudio(cp + "ogg/07_-_Ultima_4_-_C64_-_Shrines.ogg?version=" + version, true);
+	this.music.codexRoom = this.audio.loadAudio(cp + "ogg/07_-_Ultima_4_-_C64_-_Shrines.ogg?version=" + version, true);*/
 };
 
 Underworld.prototype.loadImages = function(){
@@ -236,16 +236,16 @@ Underworld.prototype.stopMusic = function(){
 };
 
 Underworld.prototype.playMusic = function(musicCode, loop){
-	var audioF = this.music[musicCode];
+	/*var audioF = this.music[musicCode];
 	if (!audioF) return null;
 	this.stopMusic();
-	this.audio.playSound(audioF, loop, true, 0.2);
+	this.audio.playSound(audioF, loop, true, 0.2);*/
 };
 
 Underworld.prototype.playSound = function(soundCode){
-	var audioF = this.sounds[soundCode];
+	/*var audioF = this.sounds[soundCode];
 	if (!audioF) return null;
-	this.audio.playSound(audioF, false, false, 0.3);
+	this.audio.playSound(audioF, false, false, 0.3);*/
 };
 
 Underworld.prototype.getUI = function(){
