@@ -345,7 +345,9 @@ module.exports = Choise;
 
 Choise.prototype.loopTimer = function() {
     var self = this;
-    setTimeout(function(){
+    this.timeout = setTimeout(function(){
+        if (self.status != CHOISE_STATUS.CHOOSING) { return; }
+
         self.timer -= 1;
         if (self.timer > 0) { 
             self.loopTimer(); 
@@ -379,12 +381,18 @@ Choise.prototype.loop = function() {
         this.answer = this.options[this.cursor].answer.split("\n");
         this.game.keys[13] = 0;
 
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+
         this.placePlayer();
 
         // Destroy answer text after X milliseconds
         var self = this;
         setTimeout(function() {
-            self.mapManager.choise = null;
+            if (self.mapManager.choise == self) {
+                self.mapManager.choise = null;
+            }
         }, 3000);
     }
 
