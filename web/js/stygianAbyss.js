@@ -1362,8 +1362,12 @@ module.exports = {
 		codex: {name: "Codex of Ultimate Wisdom", tex: "itemsMisc", subImg: 0, type: 'codex'},
 		
 		// Dungeon features
-		agent: {name: "Agent", tex: "itemsMisc", subImg: 0, type: 'feature', solid: true},
+		agent: {name: "Agent", tex: "itemsMisc", subImg: 0, type: 'feature'},
 		fakeAgent: {name: "Agent", tex: "itemsMisc", subImg: 0, type: 'feature'},
+		eye: {name: "Eye", tex: "itemsMisc", subImg: 0, type: 'feature'},
+		pax: {name: "Pax", tex: "itemsMisc", subImg: 0, type: 'feature'},
+		dragon: {name: "Dragon", tex: "itemsMisc", subImg: 0, type: 'feature'},
+		blank: {name: "Blank", tex: "itemsMisc", subImg: 0, type: 'feature'},
 
 		orb: {name: "Orb", tex: "itemsMisc", subImg: 1, type: 'feature', solid: true},
 		deadTree: {name: "Dead Tree", tex: "itemsMisc", subImg: 2, type: 'feature', solid: true},
@@ -1924,7 +1928,7 @@ MapManager.prototype.getInstanceAtGrid = function(position){
 		var x = Math.floor(this.instances[i].position.a);
 		var z = Math.floor(this.instances[i].position.c);
 		
-		if (x == position.a && z == position.c){
+		if (x == position.a << 0 && z == position.c << 0){
 			return (this.instances[i]);
 		}
 	}
@@ -3818,7 +3822,7 @@ Player.prototype.doFloat = function(){
 };
 
 Player.prototype.checkAgent = function() {
-	var ins = this.mapManager.getInstanceAt(this.position);
+	var ins = this.mapManager.getInstanceAtGrid(this.position);
 
 	if (ins && ins.choise && !ins.solid) {
 		ins.solid = true;
@@ -4537,7 +4541,11 @@ Underworld.prototype.loadImages = function(){
 	this.images.compass = this.GL.loadImage(cp + this.grPack + "compassUI.png?version=" + version, false, 0, 0, {xOrig: 11, yOrig: 11, imgNum: 2, imgVNum: 1});
 
 	this.images.c2d = {
-		pax: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version)
+		pax: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
+		eye: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
+		dragon: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
+		blank: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
+		agent: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version)
 	};
 };
 

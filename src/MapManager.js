@@ -206,7 +206,7 @@ MapManager.prototype.getInstanceAtGrid = function(position){
 		var x = Math.floor(this.instances[i].position.a);
 		var z = Math.floor(this.instances[i].position.c);
 		
-		if (x == position.a && z == position.c){
+		if (x == position.a << 0 && z == position.c << 0){
 			return (this.instances[i]);
 		}
 	}
