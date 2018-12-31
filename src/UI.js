@@ -54,6 +54,14 @@ UI.prototype.drawSpriteExt = function(sprite, x, y, subImage, imageAngle){
 	this.ctx.restore();
 };
 
+UI.prototype.loadSprite = function(src) {
+	var sprite = new Image();
+
+	sprite.src = src;
+
+	return sprite;
+};
+
 UI.prototype.drawText = function(text, x, y, console){
 	console.printText(x,y, text, this.ctx);
 	/*var w = console.spaceChars;

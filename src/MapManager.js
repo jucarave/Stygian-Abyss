@@ -1,6 +1,7 @@
 var MapAssembler = require('./MapAssembler');
 var ObjectFactory = require('./ObjectFactory');
 var Utils = require('./Utils');
+var Choise = require('./Choise');
 
 circular.setTransient('MapManager', 'game');
 circular.setTransient('MapManager', 'mapToDraw');
@@ -37,6 +38,8 @@ MapManager.prototype.init = function(game, map, depth){
 	this.poisonCount = 0;
 	
 	this.mapToDraw = [];
+
+	this.choise = null;
 	
 	this.loadMap("bandersnatch");
 
@@ -612,8 +615,22 @@ MapManager.prototype.getInstancesAt = function(x, z){
 	return ret;
 };
 
+MapManager.prototype.createChoise = function(ins) {
+	this.choise = new Choise(this.game, this, this.game.UI, ins);
+
+	this.choise.draw();
+}
+
 MapManager.prototype.loop = function(){
 	if (this.map == null) return;
+
+	if (this.choise) {
+		this.choise.loop();
+		this.choise.draw();
+		if (this.choise.lockPlayer()) {
+			return;
+		}
+	}
 	
 	this.step();
 	
@@ -648,7 +665,7 @@ MapManager.prototype.loop = function(){
 		this.game.drawDoor(ins.position.a, ins.position.b, ins.position.c, ins.rotation, ins.textureCode);
 		this.game.drawDoorWall(ins.doorPosition.a, ins.doorPosition.b, ins.doorPosition.c, ins.wallTexture, (ins.dir == "V"));
 	}
-	
+
 	this.player.loop();
 	if (this.poisonCount > 0){
 		this.poisonCount -= 1;

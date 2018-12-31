@@ -76,11 +76,19 @@ void main(void){
 			    image-rendering: pixelated;                 /* Awesome future-browsers */
 			    -ms-interpolation-mode: nearest-neighbor;   /* IE  */
 			}
+
+			@font-face {
+			font-family: 'ZX_SPECTRUM';
+			src: local('ZX_SPECTRUM'),
+				url(fonts/zx_spectrum-7.ttf) format('truetype');
+			}
 		</style>
 	</head>
 	
 	<body>
 		<div id="divGame" ></div>
+
+		<div style="font-family: ZX_SPECTRUM; visibility: hidden">Loading font</div>
 	</body>
 	
 </html>
