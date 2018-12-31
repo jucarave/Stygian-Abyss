@@ -341,8 +341,8 @@ Player.prototype.doFloat = function(){
 Player.prototype.checkAgent = function() {
 	var ins = this.mapManager.getInstanceAtGrid(this.position);
 
-	if (ins && ins.choise && !ins.solid) {
-		ins.solid = true;
+	if (ins && ins.choise/* && !ins.solid*/) {
+		// ins.solid = true;
 		this.mapManager.createChoise(ins);
 	}
 };
