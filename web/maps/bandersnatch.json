@@ -36,10 +36,24 @@
         },
         {
             "x":4.5,
-            "z":12,
+            "z":11.5,
             "y":0,
             "type":"item",
-            "item":"fakeAgent"
+            "item":"fakeAgent",
+            "choise": {
+                "question": "PUNNY HUMAN!!!\nWILL YOU WORSHIP ME?", 
+                "image": "pax",
+                "options": [
+                    {
+                        "question": "DENY PAX", 
+                        "answer": "ICE DOESN'T WORK IN PAX HE HAS BOTH\nFIRE AND ICE IMMUNITY\n\nYOU DIE"
+                    }, 
+                    {
+                        "question": "WORSHIP PAX",
+                        "answer": ""
+                    }
+                ]
+            }
         },
         {
             "x":4.5,

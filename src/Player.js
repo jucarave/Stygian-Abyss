@@ -338,6 +338,15 @@ Player.prototype.doFloat = function(){
 	}
 };
 
+Player.prototype.checkAgent = function() {
+	var ins = this.mapManager.getInstanceAt(this.position);
+
+	if (ins && ins.choise && !ins.solid) {
+		ins.solid = true;
+		this.mapManager.createChoise(ins);
+	}
+};
+
 Player.prototype.step = function(){
 	if (this.hurt > 0.0) return;
 	
@@ -354,6 +363,8 @@ Player.prototype.step = function(){
 		this.jog.a = 0.0;
 		if (this.position.b >= this.targetY) this.position.b = this.targetY;
 	}
+
+	this.checkAgent();
 	
 	//this.targetY = this.position.b;
 };

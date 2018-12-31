@@ -271,6 +271,7 @@ MapAssembler.prototype.parseObjects = function(mapData){
 				var item = ItemFactory.getItemByCode(o.item, status);
 				var itemObject = new Item();
 				itemObject.init(vec3(x, y, z), item, this.mapManager);
+				itemObject.choise = o.choise;
 				this.mapManager.instances.push(itemObject);
 			break;
 			case "enemy":

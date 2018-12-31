@@ -119,6 +119,10 @@ Underworld.prototype.loadImages = function(){
 	this.images.paused = this.GL.loadImage(cp + this.grPack + "paused.png?version=" + version, false);
 	this.images.viewportWeapons = this.GL.loadImage(cp + this.grPack + "viewportWeapons.png?version=" + version, false, 0, 0, {imgNum: 4, imgVNum: 4});
 	this.images.compass = this.GL.loadImage(cp + this.grPack + "compassUI.png?version=" + version, false, 0, 0, {xOrig: 11, yOrig: 11, imgNum: 2, imgVNum: 1});
+
+	this.images.c2d = {
+		pax: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version)
+	};
 };
 
 Underworld.prototype.loadTextures = function(){
