@@ -163,7 +163,7 @@ Player.prototype.moveTo = function(xTo, zTo){
 		zTo *= 0.75;
 	}
 	var movement = vec2(xTo, zTo);
-	var spd = vec2(xTo * 1.5, 0);
+	var spd = vec2(xTo, 0);
 	var fakePos = this.position.clone();
 		
 	for (var i=0;i<2;i++){
@@ -179,14 +179,14 @@ Player.prototype.moveTo = function(xTo, zTo){
 		
 		fakePos.a += movement.a;
 		
-		spd = vec2(0, zTo * 1.5);
+		spd = vec2(0, zTo);
 	}
 	
 	if (movement.a != 0 || movement.b != 0){
 		this.position.a += movement.a;
 		this.position.c += movement.b;
 		this.doVerticalChecks();
-		this.jogMovement();
+		// this.jogMovement();
 		moved = true;
 	}
 	
@@ -201,41 +201,63 @@ Player.prototype.mouseLook = function(){
 	if (mMovement.y != -10000){ this.rotation.a -= Math.degToRad(mMovement.y); }
 };
 
+Player.prototype.executeDelayed = function(f) {
+	if (this.executing) {
+		return;
+	}
+	this.executing = true;
+	var player = this;
+	setTimeout(function () {
+		f();
+		player.executing = false;
+	}, 300);
+}
+
 Player.prototype.movement = function(){
 	var game = this.mapManager.game;
 	
-	this.mouseLook();
+	// this.mouseLook();
 
 	// Rotation with keyboard
 	if (game.keys[81] == 1 || game.keys[37] == 1){
-		this.rotation.b += this.rotationSpd.b;
+		//this.rotation.b += this.rotationSpd.b;
+		this.executeDelayed(function() { this.rotation.b += Math.degToRad(90); }.bind(this));
+		return;
 	}else if (game.keys[69] == 1 || game.keys[39] == 1){
-		this.rotation.b -= this.rotationSpd.b;
+		//this.rotation.b -= this.rotationSpd.b;
+		this.executeDelayed(function() { this.rotation.b -= Math.degToRad(90); }.bind(this));
+		return;
 	}else if (game.keys[38] == 1){ // Up arrow
-		this.rotation.a += this.rotationSpd.a;
+		// this.rotation.a += this.rotationSpd.a;
 	}else if (game.keys[40] == 1){ // Down arrow
-		this.rotation.a -= this.rotationSpd.a;
+		// this.rotation.a -= this.rotationSpd.a;
 	}
 	
 	
 	var A = 0.0, B = 0.0;
-	if (game.keys[87] == 1){
+	this.movementSpd = 1;
+	//if (game.keys[87] == 1){ // Forward
+	if (game.keys[38] == 1){ // Up arrow
 		A = Math.cos(this.rotation.b) * this.movementSpd;
 		B = -Math.sin(this.rotation.b) * this.movementSpd;
-	}else if (game.keys[83] == 1){
-		A = -Math.cos(this.rotation.b) * this.movementSpd * 0.3;
-		B = Math.sin(this.rotation.b) * this.movementSpd * 0.3;
+	// }else if (game.keys[83] == 1){ // Backward
+	}else if (game.keys[40] == 1){ // Down arrow
+		A = -Math.cos(this.rotation.b) * this.movementSpd;
+		B = Math.sin(this.rotation.b) * this.movementSpd;
 	}
-	
-	if (game.keys[65] == 1){
+	/*
+	if (game.keys[65] == 1){ // Strafe
 		A = Math.cos(this.rotation.b + Math.PI_2) * this.movementSpd;
 		B = -Math.sin(this.rotation.b + Math.PI_2) * this.movementSpd;
 	}else if (game.keys[68] == 1){
 		A = Math.cos(this.rotation.b - Math.PI_2) * this.movementSpd;
 		B = -Math.sin(this.rotation.b - Math.PI_2) * this.movementSpd;
-	}
+	}*/
 	
-	if (A != 0.0 || B != 0.0){ this.moveTo(A, B); }else{ this.jog.a = 0.0; }
+	if (A != 0.0 || B != 0.0){
+		this.executeDelayed(function() { this.moveTo(A, B); }.bind(this));
+		
+	}else{ this.jog.a = 0.0; }
 	if (this.rotation.a > this.maxVertRotation) this.rotation.a = this.maxVertRotation;
 	else if (this.rotation.a < -this.maxVertRotation) this.rotation.a = -this.maxVertRotation;
 };
