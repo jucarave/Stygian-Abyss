@@ -355,6 +355,16 @@ Choise.prototype.loopTimer = function() {
     }, 1000);
 };
 
+Choise.prototype.placePlayer = function() {
+    var player = this.mapManager.player,
+        offset = this.cursor * 2 - 1;
+
+    player.rotation.b += Math.degToRad(-90 * offset);
+
+    player.position.a += Math.cos(player.rotation.b);
+    player.position.c -= Math.sin(player.rotation.b);
+};
+
 Choise.prototype.loop = function() {
     if (this.status != CHOISE_STATUS.CHOOSING) { return; }
 
@@ -368,6 +378,8 @@ Choise.prototype.loop = function() {
         this.status = CHOISE_STATUS.ANSWERED;
         this.answer = this.options[this.cursor].answer.split("\n");
         this.game.keys[13] = 0;
+
+        this.placePlayer();
 
         // Destroy answer text after X milliseconds
         var self = this;
@@ -1177,7 +1189,7 @@ Item.prototype.init = function(position, item, mapManager){
 	this.position = position;
 	this.item = null;
 	this.mapManager = mapManager;
-	this.billboard = ObjectFactory.billboard(vec3(1.0,1.0,1.0), vec2(1.0, 1.0), gl);
+	this.billboard = ObjectFactory.billboard(vec3(1.0,1.0,1.0), vec2(1.0, 1.0), gl, vec3(0.0,0.0,0.5));
 	this.billboard.texBuffer = null;
 	this.textureCode = null;
 	this.imgInd = 0;
@@ -3054,20 +3066,22 @@ module.exports = {
 		return door;
 	},
 	
-	billboard: function(size, texRepeat, gl){
+	billboard: function(size, texRepeat, gl, positionOffset){
 		var vertex, indices, texCoords, darkVertex;
 		var w = size.a / 2;
 		var h = size.b;
 		var l = size.c / 2;
+
+		var po = positionOffset || vec3(0.0, 0.0, 0.0);
 		
 		var tx = texRepeat.a;
 		var ty = texRepeat.b;
 		
 		vertex = [
-			 w,  h,  0,
-			-w,  h,  0,
-			 w,  0,  0,
-			-w,  0,  0,
+			 w + po.a,  h + po.b,  0 + po.c,
+			-w + po.a,  h + po.b,  0 + po.c,
+			 w + po.a,  0 + po.b,  0 + po.c,
+			-w + po.a,  0 + po.b,  0 + po.c,
 		];
 		
 		indices = [];
