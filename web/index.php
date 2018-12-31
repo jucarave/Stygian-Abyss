@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Stygian Abyss</title>
+		<title>Bandersnatch</title>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>lib/circular.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/Vec.js<?php echo $ver; ?>"></script>
 		<script type="text/javascript" src="<?php echo $contextPath; ?>js/stygianAbyss.js<?php echo $ver; ?>"></script>
