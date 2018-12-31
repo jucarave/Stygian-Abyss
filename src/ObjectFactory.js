@@ -361,20 +361,22 @@ module.exports = {
 		return door;
 	},
 	
-	billboard: function(size, texRepeat, gl){
+	billboard: function(size, texRepeat, gl, positionOffset){
 		var vertex, indices, texCoords, darkVertex;
 		var w = size.a / 2;
 		var h = size.b;
 		var l = size.c / 2;
+
+		var po = positionOffset || vec3(0.0, 0.0, 0.0);
 		
 		var tx = texRepeat.a;
 		var ty = texRepeat.b;
 		
 		vertex = [
-			 w,  h,  0,
-			-w,  h,  0,
-			 w,  0,  0,
-			-w,  0,  0,
+			 w + po.a,  h + po.b,  0 + po.c,
+			-w + po.a,  h + po.b,  0 + po.c,
+			 w + po.a,  0 + po.b,  0 + po.c,
+			-w + po.a,  0 + po.b,  0 + po.c,
 		];
 		
 		indices = [];
