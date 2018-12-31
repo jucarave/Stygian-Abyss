@@ -140,6 +140,7 @@ Choise.prototype.drawAnswer = function() {
 
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
+    this.ctx.font = "20px 'ZX_SPECTRUM'";
 
     for (var i=0,len=this.answer.length;i<len;i++) {
         this.ctx.fillText(this.answer[i], this.ctx.width / 2, this.ctx.height - 16 - (len - 1 - i) * 10);
