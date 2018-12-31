@@ -80,6 +80,8 @@ module.exports = {
 		codex: {name: "Codex of Ultimate Wisdom", tex: "itemsMisc", subImg: 0, type: 'codex'},
 		
 		// Dungeon features
+		agent: {name: "Agent", tex: "itemsMisc", subImg: 0, type: 'feature', solid: true},
+
 		orb: {name: "Orb", tex: "itemsMisc", subImg: 1, type: 'feature', solid: true},
 		deadTree: {name: "Dead Tree", tex: "itemsMisc", subImg: 2, type: 'feature', solid: true},
 		tree: {name: "Tree", tex: "itemsMisc", subImg: 3, type: 'feature', solid: true},

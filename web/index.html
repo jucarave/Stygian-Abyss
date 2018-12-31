@@ -48,18 +48,8 @@ varying mediump float vPaintInRed;
 
 void main(void){
 	mediump vec4 color = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
-	
 	if (color.r == 1.0 && color.g == 0.0 && color.b == 1.0){ color.a = 0.0;  }
-	
-	if (vVertexIsDark == 1.0){ color.rgb *= 0.5; }
-	color.rgb *= vVertexDepth;
-	
-	if (vPaintInRed == 1.0){
-		if (color.r != 0.0 || color.g != 0.0 || color.b != 0.0) color.r = 0.7;
-		color.gb *= 0.0;
-	}
-	
-	gl_FragColor = color;
+	gl_FragColor  = color;
 }
 		</script>
 		

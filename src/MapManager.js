@@ -38,13 +38,15 @@ MapManager.prototype.init = function(game, map, depth){
 	
 	this.mapToDraw = [];
 	
-	if (map == "test"){
+	this.loadMap("bandersnatch");
+
+	/*if (map == "test"){
 		this.loadMap("testMap");
 	} else if (map == "codexRoom"){
 		this.loadMap("codexRoom");
 	} else {
 		this.generateMap(depth);
-	}
+	}*/
 };
 
 MapManager.prototype.generateMap = function(depth){
