@@ -932,8 +932,8 @@ Utils.addEvent(window, "load", function(){
 	Utils.addEvent(canvas, "mousedown", function(e){
 		if (window.event) e = window.event;
 		
-		if (game.map != null)
-			canvas.requestPointerLock();
+		/*if (game.map != null)
+			canvas.requestPointerLock();*/
 		
 		game.mouse.a = Math.round((e.clientX - canvas.offsetLeft) / game.UI.scale);
 		game.mouse.b = Math.round((e.clientY - canvas.offsetTop) / game.UI.scale);
