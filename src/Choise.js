@@ -105,26 +105,26 @@ Choise.prototype.drawQuestion = function() {
     if (this.cursor == 0) {
         var size = this.ctx.measureText(this.options[0].question);
         this.ctx.fillStyle = "white";
-        this.ctx.fillRect(46, this.ctx.height - 25, size.width + 4, 11);
+        this.ctx.fillRect(36, this.ctx.height - 25, size.width + 4, 11);
 
         this.ctx.fillStyle = "black";
     }
     
     this.ctx.textAlign = "left";
-    this.ctx.fillText(this.options[0].question, 48, this.ctx.height - 16);
+    this.ctx.fillText(this.options[0].question, 38, this.ctx.height - 16);
 
     this.ctx.fillStyle = "white";
 
     if (this.cursor == 1) {
         var size = this.ctx.measureText(this.options[1].question);
         this.ctx.fillStyle = "white";
-        this.ctx.fillRect(this.ctx.width-50-size.width, this.ctx.height - 25, size.width + 4, 11);
+        this.ctx.fillRect(this.ctx.width-40-size.width, this.ctx.height - 25, size.width + 4, 11);
 
         this.ctx.fillStyle = "black";
     }
 
     this.ctx.textAlign = "right";
-    this.ctx.fillText(this.options[1].question, this.ctx.width-48, this.ctx.height - 16);
+    this.ctx.fillText(this.options[1].question, this.ctx.width-38, this.ctx.height - 16);
 
     // Draw image
     this.ctx.drawImage(this.sprite, this.ctx.width / 2 - this.sprite.width / 2, this.ctx.height / 2 - this.sprite.height / 2);
