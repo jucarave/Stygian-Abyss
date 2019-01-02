@@ -1,4 +1,4 @@
-(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports = {
 	_1Frame: [],
 	_2Frames: [],
@@ -423,26 +423,26 @@ Choise.prototype.drawQuestion = function() {
     if (this.cursor == 0) {
         var size = this.ctx.measureText(this.options[0].question);
         this.ctx.fillStyle = "white";
-        this.ctx.fillRect(46, this.ctx.height - 25, size.width + 4, 11);
+        this.ctx.fillRect(36, this.ctx.height - 25, size.width + 4, 11);
 
         this.ctx.fillStyle = "black";
     }
     
     this.ctx.textAlign = "left";
-    this.ctx.fillText(this.options[0].question, 48, this.ctx.height - 16);
+    this.ctx.fillText(this.options[0].question, 38, this.ctx.height - 16);
 
     this.ctx.fillStyle = "white";
 
     if (this.cursor == 1) {
         var size = this.ctx.measureText(this.options[1].question);
         this.ctx.fillStyle = "white";
-        this.ctx.fillRect(this.ctx.width-50-size.width, this.ctx.height - 25, size.width + 4, 11);
+        this.ctx.fillRect(this.ctx.width-40-size.width, this.ctx.height - 25, size.width + 4, 11);
 
         this.ctx.fillStyle = "black";
     }
 
     this.ctx.textAlign = "right";
-    this.ctx.fillText(this.options[1].question, this.ctx.width-48, this.ctx.height - 16);
+    this.ctx.fillText(this.options[1].question, this.ctx.width-38, this.ctx.height - 16);
 
     // Draw image
     this.ctx.drawImage(this.sprite, this.ctx.width / 2 - this.sprite.width / 2, this.ctx.height / 2 - this.sprite.height / 2);
@@ -1374,10 +1374,10 @@ module.exports = {
 		// Dungeon features
 		agent: {name: "Agent", tex: "itemsMisc", subImg: 0, type: 'feature'},
 		fakeAgent: {name: "Agent", tex: "itemsMisc", subImg: 0, type: 'feature'},
-		eye: {name: "Eye", tex: "itemsMisc", subImg: 0, type: 'feature'},
-		pax: {name: "Pax", tex: "itemsMisc", subImg: 0, type: 'feature'},
-		dragon: {name: "Dragon", tex: "itemsMisc", subImg: 0, type: 'feature'},
-		blank: {name: "Blank", tex: "itemsMisc", subImg: 0, type: 'feature'},
+		eye: {name: "Eye", tex: "itemsMisc", subImg: 2, type: 'feature'},
+		pax: {name: "Pax", tex: "itemsMisc", subImg: 1, type: 'feature'},
+		dragon: {name: "Dragon", tex: "itemsMisc", subImg: 3, type: 'feature'},
+		blank: {name: "Blank", tex: "itemsMisc", subImg: 4, type: 'feature'},
 
 		orb: {name: "Orb", tex: "itemsMisc", subImg: 1, type: 'feature', solid: true},
 		deadTree: {name: "Dead Tree", tex: "itemsMisc", subImg: 2, type: 'feature', solid: true},
@@ -4552,10 +4552,10 @@ Underworld.prototype.loadImages = function(){
 
 	this.images.c2d = {
 		pax: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
-		eye: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
-		dragon: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
-		blank: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
-		agent: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version)
+		eye: this.UI.loadSprite(cp + this.grPack + "blank.png?version=" + version),
+		dragon: this.UI.loadSprite(cp + this.grPack + "blank.png?version=" + version),
+		blank: this.UI.loadSprite(cp + this.grPack + "blank.png?version=" + version),
+		agent: this.UI.loadSprite(cp + this.grPack + "agent.png?version=" + version)
 	};
 };
 
@@ -4613,7 +4613,7 @@ Underworld.prototype.loadTextures = function(){
 	/*this.objectTex.items = this.GL.loadImage(cp + this.grPack + "texItems.png?version=" + version, true, 1, true, {clampWrap: true});
 	this.objectTex.items.buffers = AnimatedTexture.getTextureBufferCoords(8, 8, this.GL.ctx);*/
 	this.objectTex.itemsMisc = this.GL.loadImage(cp + this.grPack + "texMisc.png?version=" + version, true, 1, true, {clampWrap: true});
-	this.objectTex.itemsMisc.buffers = AnimatedTexture.getTextureBufferCoords(2, 1, this.GL.ctx);
+	this.objectTex.itemsMisc.buffers = AnimatedTexture.getTextureBufferCoords(5, 1, this.GL.ctx);
 	
 	/*this.objectTex.spells = this.GL.loadImage(cp + this.grPack + "texSpells.png?version=" + version, true, 1, true, {clampWrap: true});
 	this.objectTex.spells.buffers = AnimatedTexture.getTextureBufferCoords(4, 4, this.GL.ctx);
@@ -5362,8 +5362,8 @@ Utils.addEvent(window, "load", function(){
 	Utils.addEvent(canvas, "mousedown", function(e){
 		if (window.event) e = window.event;
 		
-		if (game.map != null)
-			canvas.requestPointerLock();
+		/*if (game.map != null)
+			canvas.requestPointerLock();*/
 		
 		game.mouse.a = Math.round((e.clientX - canvas.offsetLeft) / game.UI.scale);
 		game.mouse.b = Math.round((e.clientY - canvas.offsetTop) / game.UI.scale);
