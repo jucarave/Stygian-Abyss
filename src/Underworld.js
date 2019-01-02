@@ -183,7 +183,7 @@ Underworld.prototype.loadTextures = function(){
 	/*this.objectTex.items = this.GL.loadImage(cp + this.grPack + "texItems.png?version=" + version, true, 1, true, {clampWrap: true});
 	this.objectTex.items.buffers = AnimatedTexture.getTextureBufferCoords(8, 8, this.GL.ctx);*/
 	this.objectTex.itemsMisc = this.GL.loadImage(cp + this.grPack + "texMisc.png?version=" + version, true, 1, true, {clampWrap: true});
-	this.objectTex.itemsMisc.buffers = AnimatedTexture.getTextureBufferCoords(2, 1, this.GL.ctx);
+	this.objectTex.itemsMisc.buffers = AnimatedTexture.getTextureBufferCoords(5, 1, this.GL.ctx);
 	
 	/*this.objectTex.spells = this.GL.loadImage(cp + this.grPack + "texSpells.png?version=" + version, true, 1, true, {clampWrap: true});
 	this.objectTex.spells.buffers = AnimatedTexture.getTextureBufferCoords(4, 4, this.GL.ctx);
