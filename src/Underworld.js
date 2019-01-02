@@ -122,10 +122,10 @@ Underworld.prototype.loadImages = function(){
 
 	this.images.c2d = {
 		pax: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
-		eye: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
-		dragon: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
-		blank: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version),
-		agent: this.UI.loadSprite(cp + this.grPack + "pax.png?version=" + version)
+		eye: this.UI.loadSprite(cp + this.grPack + "blank.png?version=" + version),
+		dragon: this.UI.loadSprite(cp + this.grPack + "blank.png?version=" + version),
+		blank: this.UI.loadSprite(cp + this.grPack + "blank.png?version=" + version),
+		agent: this.UI.loadSprite(cp + this.grPack + "agent.png?version=" + version)
 	};
 };
 
