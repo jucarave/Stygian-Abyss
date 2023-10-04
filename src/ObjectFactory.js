@@ -14,7 +14,7 @@ module.exports = {
 	},
 	
 	cube: function(size, texRepeat, gl, light, /*[u,l,d,r]*/ faces){
-		var vertex, indices, texCoords, darkVertex;
+		var vertex, indices, texCoords;
 		var w = size.a / 2;
 		var h = size.b;
 		var l = size.c / 2;
@@ -23,7 +23,6 @@ module.exports = {
 		var ty = texRepeat.b;
 		
 		vertex = [];
-		darkVertex = [];
 		if (!faces) faces = [1,1,1,1];
 		if (faces[0]){ // Up Face
 			vertex.push(
@@ -31,8 +30,6 @@ module.exports = {
 			 	 w,  0, -l,
 				-w,  h, -l,
 				-w,  0, -l);
-				
-			darkVertex.push(1,1,1,1);
 		}
 		if (faces[1]){ // Left Face
 			vertex.push(
@@ -40,8 +37,6 @@ module.exports = {
 				 w,  0,  l,
 				 w,  h, -l,
 				 w,  0, -l);
-				
-			darkVertex.push(0,0,0,0);
 		}
 		if (faces[2]){ // Down Face
 			vertex.push(
@@ -49,8 +44,6 @@ module.exports = {
 				-w,  0,  l,
 				 w,  h,  l,
 				 w,  0,  l);
-				
-			darkVertex.push(1,1,1,1);
 		}
 		if (faces[3]){ // Right Face
 			vertex.push(
@@ -58,8 +51,6 @@ module.exports = {
 				-w,  0, -l,
 				-w,  h,  l,
 				-w,  0,  l);
-				
-			darkVertex.push(0,0,0,0);
 		}
 		
 		indices = [];
@@ -75,7 +66,7 @@ module.exports = {
 			);
 		}
 		
-		return {vertices: vertex, indices: indices, texCoords: texCoords, darkVertex: darkVertex};
+		return { vertices: vertex, indices: indices, texCoords: texCoords };
 	},
 	
 	floor: function(size, texRepeat, gl){
@@ -105,9 +96,7 @@ module.exports = {
 			0.0,0.0
 		);
 		
-		darkVertex = [0,0,0,0];
-		
-		return {vertices: vertex, indices: indices, texCoords: texCoords, darkVertex: darkVertex};
+		return { vertices: vertex, indices: indices, texCoords: texCoords };
 	},
 	
 	ceil: function(size, texRepeat, gl){
@@ -137,13 +126,11 @@ module.exports = {
 			0.0,0.0
 		);
 		
-		darkVertex = [0,0,0,0];
-		
-		return {vertices: vertex, indices: indices, texCoords: texCoords, darkVertex: darkVertex};
+		return {vertices: vertex, indices: indices, texCoords: texCoords};
 	},
 	
 	doorWall: function(size, texRepeat, gl){
-		var vertex, indices, texCoords, darkVertex;
+		var vertex, indices, texCoords;
 		var w = size.a / 2;
 		var h = size.b;
 		var l = size.c * 0.05;
@@ -238,11 +225,6 @@ module.exports = {
 			);
 		}
 		
-		darkVertex = [];
-		for (var i=0;i<36;i++){
-			darkVertex.push(0);
-		}
-		
 		// Creates the buffer data for the vertices
 		var vertexBuffer = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
@@ -264,17 +246,11 @@ module.exports = {
 		indicesBuffer.numItems = indices.length;
 		indicesBuffer.itemSize = 1;
 		
-		var darkBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, darkBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER,new Uint8Array(darkVertex), gl.STATIC_DRAW);
-		darkBuffer.numItems = darkBuffer.length;
-		darkBuffer.itemSize = 1;
-		
-		return this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer, darkBuffer);
+		return this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer);
 	},
 	
-	door: function(size, texRepeat, gl, light){
-		var vertex, indices, texCoords, darkVertex;
+	door: function(size, texRepeat, gl){
+		var vertex, indices, texCoords;
 		var w = size.a;
 		var h = size.b;
 		var l = size.c / 2;
@@ -325,11 +301,6 @@ module.exports = {
 			);
 		}
 		
-		darkVertex = [];
-		for (var i=0;i<16;i++){
-			darkVertex.push(0);
-		}
-		
 		// Creates the buffer data for the vertices
 		var vertexBuffer = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
@@ -351,13 +322,7 @@ module.exports = {
 		indicesBuffer.numItems = indices.length;
 		indicesBuffer.itemSize = 1;
 		
-		var darkBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, darkBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER,new Uint8Array(darkVertex), gl.STATIC_DRAW);
-		darkBuffer.numItems = darkBuffer.length;
-		darkBuffer.itemSize = 1;
-		
-		var door = this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer, darkBuffer);
+		var door = this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer);
 		return door;
 	},
 	
@@ -365,7 +330,6 @@ module.exports = {
 		var vertex, indices, texCoords, darkVertex;
 		var w = size.a / 2;
 		var h = size.b;
-		var l = size.c / 2;
 		
 		var tx = texRepeat.a;
 		var ty = texRepeat.b;
@@ -388,9 +352,6 @@ module.exports = {
 			 tx,0.0,
 			0.0,0.0
 		];
-				 
-		
-		darkVertex = [0,0,0,0];
 		
 		// Creates the buffer data for the vertices
 		var vertexBuffer = gl.createBuffer();
@@ -413,13 +374,7 @@ module.exports = {
 		indicesBuffer.numItems = indices.length;
 		indicesBuffer.itemSize = 1;
 		
-		var darkBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, darkBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER,new Uint8Array(darkVertex), gl.STATIC_DRAW);
-		darkBuffer.numItems = darkBuffer.length;
-		darkBuffer.itemSize = 1;
-		
-		var bill =  this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer, darkBuffer);
+		var bill =  this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer);
 		bill.isBillboard = true;
 		return bill;
 	},
@@ -484,16 +439,13 @@ module.exports = {
 			0.0,  ty
 		);
 		
-		darkVertex = [0,0,0,0,0,0,0,0,0,0];
-		
-		return {vertices: vertex, indices: indices, texCoords: texCoords, darkVertex: darkVertex};
+		return { vertices: vertex, indices: indices, texCoords: texCoords };
 	},
 	
 	assembleObject: function(mapData, objectType, gl){
 		var vertices = [];
 		var texCoords = [];
 		var indices = [];
-		var darkVertex = [];
 		
 		var rect = [64,64,0,0]; // [x1,y1,x2,y2]
 		for (var y=0,ylen=mapData.length;y<ylen;y++){
@@ -528,10 +480,6 @@ module.exports = {
 					for (var i=0,len=vv.texCoords.length;i<len;i+=1){
 						texCoords.push(vv.texCoords[i]);
 					}
-					
-					for (var i=0,len=vv.darkVertex.length;i<len;i+=1){
-						darkVertex.push(vv.darkVertex[i]);
-					}
 				}
 			}
 		}
@@ -559,13 +507,7 @@ module.exports = {
 		indicesBuffer.numItems = indices.length;
 		indicesBuffer.itemSize = 1;
 		
-		var darkBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, darkBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER,new Uint8Array(darkVertex), gl.STATIC_DRAW);
-		darkBuffer.numItems = darkVertex.length;
-		darkBuffer.itemSize = 1;
-		
-		var buffer = this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer, darkBuffer);
+		var buffer = this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer);
 		buffer.boundaries = rect;
 		return buffer;
 	},
@@ -607,14 +549,13 @@ module.exports = {
 		return ret;
 	},
 	
-	getObjectWithProperties: function(vertexBuffer, indexBuffer, texBuffer, darkBuffer){
+	getObjectWithProperties: function(vertexBuffer, indexBuffer, texBuffer){
 		var obj = {
 			rotation: vec3(0, 0, 0),
 			position: vec3(0, 0, 0),
 			vertexBuffer: vertexBuffer, 
 			indicesBuffer: indexBuffer, 
-			texBuffer: texBuffer,
-			darkBuffer: darkBuffer
+			texBuffer: texBuffer
 		};
 		
 		return obj;
@@ -642,13 +583,7 @@ module.exports = {
 		indicesBuffer.numItems = baseObject.indices.length;
 		indicesBuffer.itemSize = 1;
 		
-		var darkBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, darkBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER,new Uint8Array(baseObject.darkVertex), gl.STATIC_DRAW);
-		darkBuffer.numItems = baseObject.darkVertex.length;
-		darkBuffer.itemSize = 1;
-		
-		var buffer = this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer, darkBuffer);
+		var buffer = this.getObjectWithProperties(vertexBuffer, indicesBuffer, texBuffer);
 		
 		return buffer;
 	},
@@ -667,7 +602,6 @@ module.exports = {
 		var vertices = [];
 		var texCoords = [];
 		var indices = [];
-		var darkVertex = [];
 		
 		var indexCount = 0;
 		for (var i=0,len=objectList.length;i<len;i++){
@@ -685,14 +619,10 @@ module.exports = {
 				indices.push(obj.indices[j] + indexCount);
 			}
 			
-			for (var j=0,jlen=obj.darkVertex.length;j<jlen;j++){
-				darkVertex.push(obj.darkVertex[j]);
-			}
-			
 			indexCount += obj.vertices.length / 3;
 		}
 		
-		return {vertices: vertices, indices: indices, texCoords: texCoords, darkVertex: darkVertex};
+		return { vertices: vertices, indices: indices, texCoords: texCoords };
 	},
 	
 	load3DModel: function(modelFile, gl){
@@ -704,7 +634,7 @@ module.exports = {
 			if (http.readyState == 4 && http.status == 200) {
 				var lines = http.responseText.split("\n");
 				
-				var vertices = [], texCoords = [], triangles = [], vertexIndex = [], texIndices = [], indices = [], darkVertex = [];
+				var vertices = [], texCoords = [], triangles = [], vertexIndex = [], texIndices = [], indices = [];
 				var working;
 				var t = false;
 				for (var i=0,len=lines.length;i<len;i++){
@@ -747,11 +677,7 @@ module.exports = {
 					}
 				}
 				
-				for (var i=0,len=texIndices.length/2;i<len;i++){
-					darkVertex.push(0);
-				}
-				
-				var base = {vertices: vertexIndex, indices: indices, texCoords: texIndices, darkVertex: darkVertex};
+				var base = { vertices: vertexIndex, indices: indices, texCoords: texIndices };
 				var model3D = this.create3DObject(gl, base);
 
 				model.rotation = model3D.rotation;
@@ -759,7 +685,6 @@ module.exports = {
 				model.vertexBuffer = model3D.vertexBuffer;
 				model.indicesBuffer = model3D.indicesBuffer;
 				model.texBuffer = model3D.texBuffer;
-				model.darkBuffer = model3D.darkBuffer;
 				model.ready = true;
 			}
 		};

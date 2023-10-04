@@ -15,7 +15,6 @@
 		<script id="vertexShader" type="x-shader/x-vertex">
 attribute mediump vec3 aVertexPosition;
 attribute mediump vec2 aTextureCoord;
-attribute mediump float aVertexIsDark;
 
 uniform mediump mat4 uTransformationMatrix;
 uniform mediump mat4 uPerspectiveMatrix;
@@ -23,14 +22,12 @@ uniform mediump float uPaintInRed;
 uniform mediump float uLightDepth;
 
 varying mediump vec2 vTextureCoord;
-varying mediump float vVertexIsDark;
 varying mediump float vVertexDepth;
 varying mediump float vPaintInRed;
 
 void main(void){
 	gl_Position = uPerspectiveMatrix * uTransformationMatrix * vec4(aVertexPosition, 1.0);
 	vTextureCoord = aTextureCoord;
-	vVertexIsDark = aVertexIsDark;
 	vPaintInRed = uPaintInRed;
 	
 	vVertexDepth = cos((gl_Position.z + uLightDepth) / 3.0);
@@ -42,7 +39,6 @@ void main(void){
 uniform sampler2D uSampler;
 
 varying mediump vec2 vTextureCoord;
-varying mediump float vVertexIsDark;
 varying mediump float vVertexDepth;
 varying mediump float vPaintInRed;
 
@@ -51,7 +47,6 @@ void main(void){
 	
 	if (color.r == 1.0 && color.g == 0.0 && color.b == 1.0){ color.a = 0.0;  }
 	
-	if (vVertexIsDark == 1.0){ color.rgb *= 0.5; }
 	color.rgb *= vVertexDepth;
 	
 	if (vPaintInRed == 1.0){

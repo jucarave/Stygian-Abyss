@@ -86,12 +86,10 @@ WebGL.prototype.processShaders = function(){
 	// Get attribute locations
 	this.aVertexPosition = gl.getAttribLocation(this.shaderProgram, "aVertexPosition");
 	this.aTextureCoord = gl.getAttribLocation(this.shaderProgram, "aTextureCoord");
-	this.aVertexIsDark = gl.getAttribLocation(this.shaderProgram, "aVertexIsDark");
 	
 	// Enable attributes
 	gl.enableVertexAttribArray(this.aVertexPosition);
 	gl.enableVertexAttribArray(this.aTextureCoord);
-	gl.enableVertexAttribArray(this.aVertexIsDark);
 	
 	// Get the uniform locations
 	this.uSampler = gl.getUniformLocation(this.shaderProgram, "uSampler");
@@ -187,12 +185,6 @@ WebGL.prototype.drawObject = function(object, camera, texture){
 	// Pass the texture data to the shader
 	gl.bindBuffer(gl.ARRAY_BUFFER, object.texBuffer);
 	gl.vertexAttribPointer(this.aTextureCoord, object.texBuffer.itemSize, gl.FLOAT, false, 0, 0);
-	
-	// Pass the dark buffer data to the shader
-	if (object.darkBuffer){
-		gl.bindBuffer(gl.ARRAY_BUFFER, object.darkBuffer);
-		gl.vertexAttribPointer(this.aVertexIsDark, object.darkBuffer.itemSize, gl.UNSIGNED_BYTE, false, 0, 0);
-	}
 	
 	// Paint the object in red (When hurt for example)
 	var red = (object.paintInRed)? 1.0 : 0.0; 
